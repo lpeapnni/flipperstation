@@ -846,9 +846,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/list/usable_markings = pref.body_markings.Copy() ^ body_marking_styles_list.Copy()
 		for(var/M in usable_markings)
 			var/datum/sprite_accessory/S = usable_markings[M]
-			if(!S.species_allowed.len)
+			if(!S.species_allowed.len && !pref.mismatched_accessories) // FLIPPER EDIT - MISMATCHED MARKINGS
 				continue
-			else if(!(pref.species in S.species_allowed))
+			else if(!(pref.species in S.species_allowed) && !pref.mismatched_accessories) // FLIPPER EDIT - MISMATCHED MARKINGS
 				usable_markings -= M
 
 		var/new_marking = input(user, "Choose a body marking:", "Character Preference")  as null|anything in usable_markings
