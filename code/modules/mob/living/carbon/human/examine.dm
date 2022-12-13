@@ -95,7 +95,7 @@
 			name_ender = ", <b><font color='#555555'>[use_gender]!</font></b>[species.get_additional_examine_text(src)]"
 
 		else if(species.name != "Human")
-			name_ender = ", <b><font color='[species.get_flesh_colour(src)]'>\a [species.get_examine_name()]!</font></b>[species.get_additional_examine_text(src)]"
+			name_ender = ", <b><font color='[species.get_flesh_colour(src)]'>\a [custom_species ? custom_species : species.get_examine_name()]!</font></b>[species.get_additional_examine_text(src)]" //FLIPPER EDIT - custom species names
 
 	var/list/msg = list("<span class='info'>*---------*","This is [bicon(src)] <EM>[src.name]</EM>[name_ender]")
 

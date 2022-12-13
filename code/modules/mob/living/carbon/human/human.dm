@@ -1550,6 +1550,9 @@
 			return "Gynoid"
 		else
 			return "Synthetic"
+	// FLIPPER ADDITION - custom species names
+	if(custom_species)
+		return custom_species
 	//Else species name
 	if(species)
 		return species.get_examine_name()

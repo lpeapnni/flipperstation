@@ -73,7 +73,8 @@
 
 				var/mob/living/carbon/human/D = B.data["donor"]
 				pathogen_pool.Add(list(list(\
-					"name" = "[istype(D) ? "[D.get_species()] " : ""][B.name]", \
+					// FLIPPER EDIT - custom species
+					"name" = "[istype(D) ? "[D.custom_species ? D.custom_species : D.get_species()] " : ""][B.name]", \
 					"dna" = B.data["blood_DNA"], \
 					"unique_id" = V.uniqueID, \
 					"reference" = "\ref[V]", \
@@ -108,7 +109,7 @@
 
 	var/mob/user = usr
 	add_fingerprint(user)
-	
+
 	. = TRUE
 	switch(tgui_modal_act(src, action, params))
 		if(TGUI_MODAL_ANSWER)
@@ -162,7 +163,7 @@
 
 			for(var/datum/reagent/blood/B in sample.reagents.reagent_list)
 				var/mob/living/carbon/human/D = B.data["donor"]
-				P.info += "<large><u>[D.get_species()] [B.name]:</u></large><br>[B.data["blood_DNA"]]<br>"
+				P.info += "<large><u>[D.custom_species ? D.custom_species : D.get_species()] [B.name]:</u></large><br>[B.data["blood_DNA"]]<br>" //FLIPPER EDIT - custom species
 
 				var/list/virus = B.data["virus2"]
 				P.info += "<u>Pathogens:</u> <br>"

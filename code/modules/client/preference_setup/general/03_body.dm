@@ -146,7 +146,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_wing3"]		>> pref.r_wing3
 	S["g_wing3"]		>> pref.g_wing3
 	S["b_wing3"]		>> pref.b_wing3
-	S["mismatched_accessories"] 	>> pref.mismatched_accessories // FLIPPER ADDITION
+	S["mismatched_accessories"] 	>> pref.mismatched_accessories // FLIPPER ADDITION - Mismatched sprite accessories
+	S["custom_species"]		>> pref.custom_species // FLIPPER ADDITION - Custom species name
 
 /datum/category_item/player_setup_item/general/body/save_character(var/savefile/S)
 	S["species"]			<< pref.species
@@ -211,7 +212,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_wing3"]		<< pref.r_wing3
 	S["g_wing3"]		<< pref.g_wing3
 	S["b_wing3"]		<< pref.b_wing3
-	S["mismatched_accessories"] 	<< pref.mismatched_accessories // FLIPPER ADDITION
+	S["mismatched_accessories"] 	<< pref.mismatched_accessories // FLIPPER ADDITION - Mismatched sprite accessories
+	S["custom_species"]		<< pref.custom_species // FLIPPER ADDITION - Custom species name
 
 /datum/category_item/player_setup_item/general/body/sanitize_character(var/savefile/S)
 	if(!pref.species || !(pref.species in GLOB.playable_species))
@@ -306,6 +308,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.b_synth	= pref.b_synth
 	character.synth_markings = pref.synth_markings
 	character.mismatched_accessories = pref.mismatched_accessories // FLIPPER ADDITION
+	character.custom_species = pref.custom_species // FLIPPER ADDITION
 
 	var/list/ear_styles = pref.get_available_styles(global.ear_styles_list)
 	character.ear_style =  ear_styles[pref.ear_style]
@@ -412,6 +415,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "(<a href='?src=\ref[src];random=1'>&reg;</A>)"
 	. += "<br>"
 	. += "Species: <a href='?src=\ref[src];show_species=1'>[pref.species]</a><br>"
+	. += "Custom Species Name: <a href='?src=\ref[src];custom_species=1'>[pref.custom_species ? pref.custom_species : "None"]</a><br>"
 	. += "Blood Type: <a href='?src=\ref[src];blood_type=1'>[pref.b_type]</a><br>"
 	if(has_flag(mob_species, HAS_SKIN_TONE))
 		. += "Skin Tone: <a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
@@ -668,6 +672,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/prev_species = pref.species
 		pref.species = href_list["set_species"]
 		if(prev_species != pref.species)
+			pref.custom_species = null //FLIPPER ADDITION
+
 			if(!(pref.biological_gender in mob_species.genders))
 				pref.set_biological_gender(mob_species.genders[1])
 
@@ -705,6 +711,14 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.age = max(min(pref.age, max_age), min_age)
 
 			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["custom_species"])
+		var/new_species = reject_bad_text(input(user, "Choose your species subtype, if unique. This will show up on examinations. Do not abuse this:", "Character Preference", pref.custom_species) as null|text)
+		if(new_species)
+			pref.custom_species = new_species
+		else
+			pref.custom_species = null
+		return TOPIC_REFRESH
 
 	else if(href_list["hair_color"])
 		if(!has_flag(mob_species, HAS_HAIR_COLOR))
