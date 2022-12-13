@@ -59,6 +59,7 @@ var/global/list/preferences_datums = list()
 	var/b_eyes = 0						//Eye color
 	var/species = SPECIES_HUMAN         //Species datum to use.
 	var/species_preview                 //Used for the species selection window.
+	var/custom_species = null				// FLIPPER ADDITION - Custom species name
 	var/list/alternate_languages = list() //Secondary language(s)
 	var/list/language_prefixes = list() //Kanguage prefix keys
 	var/list/gear						//Left in for Legacy reasons, will no longer save.

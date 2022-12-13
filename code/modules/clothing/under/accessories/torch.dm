@@ -223,7 +223,7 @@ badges
 	if(!istype(H))
 		return
 	var/religion = "Unset"
-	desc = "[initial(desc)]\nName: [H.real_name] ([H.get_species()])\nReligion: [religion]\nBlood type: [H.b_type]"
+	desc = "[initial(desc)]\nName: [H.real_name] ([H.custom_species ? H.custom_species : H.get_species()])\nReligion: [religion]\nBlood type: [H.b_type]" // FLIPPER EDIT - custom species
 
 /obj/item/clothing/accessory/badge/solgov/representative
 	name = "representative's badge"
