@@ -53,7 +53,7 @@
 
 	update_hair()
 	return 1
-	
+
 /mob/living/carbon/human/proc/change_hair_gradient(var/hair_gradient)
 	if(!hair_gradient)
 		return
@@ -124,7 +124,7 @@
 
 	update_hair()
 	return 1
-	
+
 /mob/living/carbon/human/proc/change_grad_color(var/red, var/green, var/blue)
 	if(red == r_grad && green == g_grad && blue == b_grad)
 		return
@@ -203,14 +203,15 @@
 	var/list/valid_hairstyles = new()
 	for(var/hairstyle in hair_styles_list)
 		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
-
+		/*
+		// FLIPPER REMOVAL - WHY THE FUCK IS THIS DONE TWICE
 		if(check_gender && gender != NEUTER)
 			if(gender == MALE && S.gender == FEMALE)
 				continue
 			else if(gender == FEMALE && S.gender == MALE)
 				continue
-
-		if(!(use_species in S.species_allowed))
+		*/
+		if(!(use_species in S.species_allowed) && !mismatched_accessories) // FLIPPER EDIT - mismatched accessories
 			continue
 		valid_hairstyles += hairstyle
 
@@ -225,14 +226,15 @@
 	var/list/valid_facial_hairstyles = new()
 	for(var/facialhairstyle in facial_hair_styles_list)
 		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
-
-		if(gender != NEUTER)
+		/*
+		// FLIPPER REMOVAL - WHY THE FUCK IS THIS DONE TWICE
+		if(check_gender && gender != NEUTER)
 			if(gender == MALE && S.gender == FEMALE)
 				continue
 			else if(gender == FEMALE && S.gender == MALE)
 				continue
-
-		if(!(use_species in S.species_allowed))
+		*/
+		if(!(use_species in S.species_allowed) && !mismatched_accessories) // FLIPPER EDIT - mismatched accessories
 			continue
 
 		valid_facial_hairstyles += facialhairstyle

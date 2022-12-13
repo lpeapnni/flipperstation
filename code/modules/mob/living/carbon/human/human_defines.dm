@@ -156,3 +156,5 @@
 	var/custom_species
 
 	dexterity = MOB_DEXTERITY_FULL
+
+	var/mismatched_accessories = 0 //FLIPPER ADDITION

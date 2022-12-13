@@ -14,26 +14,26 @@
 	var/extra_overlay2
 
 	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-	whitelist_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_PROMETHEAN)
+	//whitelist_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_PROMETHEAN) - FLIPPER REMOVAL
 
 /datum/sprite_accessory/ears/shadekin
 	name = "Shadekin Ears"
 	icon_state = "shadekin"
 	species_allowed = list() // SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW
-	whitelist_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_PROMETHEAN)
+	//whitelist_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_PROMETHEAN) - FLIPPER REMOVAL
 
 /datum/sprite_accessory/ears/taj_ears
 	name = "Tajaran Ears"
 	icon_state = "ears_plain"
 	species_allowed = list(SPECIES_TAJ, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-	whitelist_allowed = list(SPECIES_PROMETHEAN)
+	//whitelist_allowed = list(SPECIES_PROMETHEAN) - FLIPPER REMOVAL
 	extra_overlay = "ears_plain-inner"
 
 /datum/sprite_accessory/ears/taj_ears_tall
 	name = "Tajaran Tall Ears"
 	icon_state = "msai_plain"
 	species_allowed = list(SPECIES_TAJ, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-	whitelist_allowed = list(SPECIES_PROMETHEAN)
+	//whitelist_allowed = list(SPECIES_PROMETHEAN) - FLIPPER REMOVAL
 	extra_overlay = "msai_plain-inner"
 
 /datum/sprite_accessory/ears/antennae
@@ -191,7 +191,7 @@
 	name = "frills"
 	icon_state = "drake"
 	species_allowed = list(SPECIES_UNATHI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-	whitelist_allowed = list(SPECIES_PROMETHEAN)
+	//whitelist_allowed = list(SPECIES_PROMETHEAN) - FLIPPER REMOVAL
 
 /datum/sprite_accessory/ears/vulp
 	name = "canine (dual tone)"
@@ -220,21 +220,21 @@
 	icon_state = "teshari"
 	extra_overlay = "teshariinner"
 	species_allowed = list(SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-	whitelist_allowed = list()
+	//whitelist_allowed = list() - FLIPPER REMOVAL
 
 /datum/sprite_accessory/ears/tesharihigh
 	name = "Teshari upper ears (colorable fluff)"
 	icon_state = "tesharihigh"
 	extra_overlay = "tesharihighinner"
 	species_allowed = list(SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-	whitelist_allowed = list()
+	//whitelist_allowed = list() - FLIPPER REMOVAL
 
 /datum/sprite_accessory/ears/tesharilow
 	name = "Teshari lower ears (colorable fluff)"
 	icon_state = "tesharilow"
 	extra_overlay = "tesharilowinner"
 	species_allowed = list(SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-	whitelist_allowed = list()
+	//whitelist_allowed = list() - FLIPPER REMOVAL
 
 // Special snowflake ears go below here.
 /datum/sprite_accessory/ears/elf/caprine

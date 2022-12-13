@@ -73,11 +73,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 		// Is an admin OR
 		// Instance is species-whitelisted AND current species matches whitelist OR
-		// config ckey-whitelist is enabled AND ckey matches whitelist AND the ckey-whitelist enables this instance for current species.
-		// That last list is entirely arbitrary. Take complaints up with Kholdstare.
+		// (FLIPPER EDIT) Player has mismatched sprite accessories enabled
 		if((istype(client) && check_rights(R_ADMIN | R_EVENT | R_FUN, 0, client)) || \
 				(LAZYLEN(instance.species_allowed) && species && (species in instance.species_allowed)) || \
-				(config.genemod_whitelist && client.is_whitelisted(/whitelist/genemod) && LAZYLEN(instance.whitelist_allowed) && (species in instance.whitelist_allowed)))
+				mismatched_accessories)
 			.[instance.name] = instance
 
 /datum/category_item/player_setup_item/general/body
@@ -147,6 +146,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_wing3"]		>> pref.r_wing3
 	S["g_wing3"]		>> pref.g_wing3
 	S["b_wing3"]		>> pref.b_wing3
+	S["mismatched_accessories"] 	>> pref.mismatched_accessories // FLIPPER ADDITION
 
 /datum/category_item/player_setup_item/general/body/save_character(var/savefile/S)
 	S["species"]			<< pref.species
@@ -211,6 +211,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_wing3"]		<< pref.r_wing3
 	S["g_wing3"]		<< pref.g_wing3
 	S["b_wing3"]		<< pref.b_wing3
+	S["mismatched_accessories"] 	<< pref.mismatched_accessories // FLIPPER ADDITION
 
 /datum/category_item/player_setup_item/general/body/sanitize_character(var/savefile/S)
 	if(!pref.species || !(pref.species in GLOB.playable_species))
@@ -304,6 +305,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.g_synth	= pref.g_synth
 	character.b_synth	= pref.b_synth
 	character.synth_markings = pref.synth_markings
+	character.mismatched_accessories = pref.mismatched_accessories // FLIPPER ADDITION
 
 	var/list/ear_styles = pref.get_available_styles(global.ear_styles_list)
 	character.ear_style =  ear_styles[pref.ear_style]
@@ -603,6 +605,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		. += "<tr><td>[M]</td><td>[pref.body_markings.len > 1 ? "<a href='?src=\ref[src];marking_up=[M]'>&#708;</a> <a href='?src=\ref[src];marking_down=[M]'>&#709;</a> <a href='?src=\ref[src];marking_move=[M]'>mv</a> " : ""]<a href='?src=\ref[src];marking_remove=[M]'>-</a> <a href='?src=\ref[src];marking_color=[M]'>Color</a>[color_square(hex = pref.body_markings[M])]</td></tr>"
 
 	. += "</table>"
+	. += "<br>"
+	. += "<b>Allow mismatched accessories:</b> <a href='?src=\ref[src];mismatched_accessories=1'><b>[pref.mismatched_accessories ? "Yes" : "No"]</b></a><br>" // FLIPPER ADDITION
 	. += "<br>"
 	. += "<b>Allow Synth markings:</b> <a href='?src=\ref[src];synth_markings=1'><b>[pref.synth_markings ? "Yes" : "No"]</b></a><br>"
 	. += "<b>Allow Synth color:</b> <a href='?src=\ref[src];synth_color=1'><b>[pref.synth_color ? "Yes" : "No"]</b></a><br>"
@@ -1109,6 +1113,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	else if(href_list["synth_markings"])
 		pref.synth_markings = !pref.synth_markings
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	// FLIPPER ADDITION
+	else if(href_list["mismatched_accessories"])
+		pref.mismatched_accessories = !pref.mismatched_accessories
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["cycle_bg"])
