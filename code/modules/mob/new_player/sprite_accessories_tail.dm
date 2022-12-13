@@ -24,7 +24,7 @@
 	var/icon/clip_mask = null //Instantiated clip mask of given icon and state
 
 	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-	whitelist_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_PROMETHEAN)
+	//whitelist_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_PROMETHEAN) - FLIPPER REMOVAL
 
 /datum/sprite_accessory/tail/New()
 	. = ..()
@@ -97,12 +97,12 @@
 /datum/sprite_accessory/tail/fantail
 	name = "avian fantail"
 	icon_state = "fantail"
-	whitelist_allowed = list()
+	//whitelist_allowed = list() - FLIPPER REMOVAL
 
 /datum/sprite_accessory/tail/wagtail
 	name = "avian wagtail"
 	icon_state = "wagtail"
-	whitelist_allowed = list()
+	//whitelist_allowed = list() - FLIPPER REMOVAL
 
 /datum/sprite_accessory/tail/wagtail/dc
 	name = "avian wagtail, dual-color"
@@ -112,7 +112,7 @@
 	name = "avian wagtail, marked, dual-color"
 	icon_state = "wagtail2_dc"
 	extra_overlay = "wagtail2_dc_mark"
-	whitelist_allowed = list()
+	//whitelist_allowed = list() - FLIPPER REMOVAL
 
 /datum/sprite_accessory/tail/crossfox
 	name = "cross fox"
@@ -137,7 +137,7 @@
 	name = "ringtail"
 	icon_state = "ringtail"
 	extra_overlay = "ringtail_mark"
-	whitelist_allowed = list() // Too excessive
+	//whitelist_allowed = list() - FLIPPER REMOVAL
 
 /datum/sprite_accessory/tail/curltail
 	name = "curltail (vwag)"
@@ -184,7 +184,7 @@
 /datum/sprite_accessory/tail/snaketail
 	name = "snake tail"
 	icon_state = "snaketail"
-	whitelist_allowed = list() // Too excessive
+	//whitelist_allowed = list() - FLIPPER REMOVAL
 
 /datum/sprite_accessory/tail/vulpan_alt
 	name = "canine alt style"
@@ -205,13 +205,13 @@
 	icon_state = "teshari_fluffytail"
 	extra_overlay = "teshari_fluffytail_mark"
 	species_allowed = list(SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-	whitelist_allowed = list()
+	//whitelist_allowed = list() - FLIPPER REMOVAL
 
 //For all species tails. Includes haircolored tails.
 /datum/sprite_accessory/tail/special
 	name = "Blank tail. Do not select."
 	icon = 'icons/effects/species_tails.dmi'
-	whitelist_allowed = list()
+	//whitelist_allowed = list() - FLIPPER REMOVAL
 
 /datum/sprite_accessory/tail/special/unathi
 	name = "unathi tail"
@@ -488,7 +488,7 @@
 	name = "Kitsune 9 tails"
 	icon_state = "ninekitsune"
 	extra_overlay = "ninekitsune-tips"
-	whitelist_allowed = list() // Too excessive
+	//whitelist_allowed = list() - FLIPPER REMOVAL
 
 /datum/sprite_accessory/tail/shadekin_short
 	name = "Shadekin Short Tail"

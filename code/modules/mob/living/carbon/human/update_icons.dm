@@ -414,7 +414,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	if(f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
-		if(facial_hair_style && facial_hair_style.species_allowed && (src.species.get_bodytype(src) in facial_hair_style.species_allowed))
+		if(facial_hair_style && (facial_hair_style.species_allowed && (src.species.get_bodytype(src) in facial_hair_style.species_allowed) || mismatched_accessories)) // FLIPPER EDIT - MISMATCHED ACCESSORIES
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
 				facial_s.Blend(rgb(r_facial, g_facial, b_facial), facial_hair_style.color_blend_mode)
@@ -427,7 +427,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			if(!(hair_style.flags & HAIR_VERY_SHORT))
 				hair_style = hair_styles_list["Short Hair"]
 
-		if(hair_style && (src.species.get_bodytype(src) in hair_style.species_allowed))
+		if(hair_style && ((src.species.get_bodytype(src) in hair_style.species_allowed) || mismatched_accessories)) // FLIPPER EDIT - MISMATCHED ACCESSORIES
 			var/icon/grad_s = null
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			var/icon/hair_s_add = new/icon("icon" = hair_style.icon_add, "icon_state" = "[hair_style.icon_state]_s")

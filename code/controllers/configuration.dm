@@ -291,7 +291,7 @@ var/global/list/gamemode_cache = list()
 	var/loadout_whitelist = LOADOUT_WHITELIST_LAX
 
 	// Whether whitelists are enforced for ears/tail/etc modifications
-	var/genemod_whitelist = FALSE
+	//var/genemod_whitelist = FALSE - FLIPPER REMOVAL - THIS IS FUCKING RETARDED
 
 	var/disable_webhook_embeds = FALSE
 
@@ -944,8 +944,11 @@ var/global/list/gamemode_cache = list()
 				if("enable_night_shifts")
 					config.enable_night_shifts = TRUE
 
+				/*
+				//FLIPPER REMOVAL
 				if("genemod_whitelist")
 					config.genemod_whitelist = TRUE
+				*/
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

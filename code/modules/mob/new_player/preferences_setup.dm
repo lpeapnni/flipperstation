@@ -291,7 +291,7 @@
 	var/list/valid_hairstyles = list()
 	for(var/hairstyle in hair_styles_list)
 		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
-		if(!(species in S.species_allowed))
+		if(!(species in S.species_allowed) && !mismatched_accessories) // FLIPPER EDIT - mismatched accessories
 			continue
 
 		valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
@@ -302,11 +302,14 @@
 	var/list/valid_facialhairstyles = list()
 	for(var/facialhairstyle in facial_hair_styles_list)
 		var/datum/sprite_accessory/S = facial_hair_styles_list[facialhairstyle]
+		/*
+		// FLIPPER REMOVAL - PLEASE I HAVE A CROSSDRESSING FETISH
 		if(biological_gender == MALE && S.gender == FEMALE)
 			continue
 		if(biological_gender == FEMALE && S.gender == MALE)
 			continue
-		if(!(species in S.species_allowed))
+		*/
+		if(!(species in S.species_allowed) && !mismatched_accessories) // FLIPPER EDIT - mismatched accessories
 			continue
 
 		valid_facialhairstyles[facialhairstyle] = facial_hair_styles_list[facialhairstyle]
