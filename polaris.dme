@@ -3328,4 +3328,5 @@
 #include "modular_flipper\code\modules\mob\mob\living\carbon\human\species\station\custom.dm"
 #include "modular_flipper\code\modules\mob\mob\living\carbon\human\species\station\station.dm"
 #include "modular_flipper\code\modules\mob\mob\living\carbon\human\species\station\teshari.dm"
+#include "modular_flipper\code\modules\organs\subtypes\standard.dm"
 // END_INCLUDE

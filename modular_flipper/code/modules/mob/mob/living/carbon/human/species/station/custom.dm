@@ -2,7 +2,7 @@
 	name = SPECIES_ANTHRO
 	name_plural = "Anthromorphs"
 	primitive_form = SPECIES_MONKEY
-	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite)
 	blurb = "This is a blank slate for you to make your own species. Go wild!"
 	num_alternate_languages = 3
 	name_language = null // Use the first-name last-name generator rather than a language scrambler
@@ -17,7 +17,7 @@
 
 	economic_modifier = 7
 
-	health_hud_intensity = 1.5
+	health_hud_intensity = 2
 
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
@@ -43,3 +43,28 @@
 	name_plural = "Aquatics"
 	icobase = 'modular_flipper/icons/mob/human_races/r_aquatic.dmi'
 	deform = 'modular_flipper/icons/mob/human_races/r_aquatic.dmi' //too lazy to make a deformed one
+
+/datum/species/anthro/moth
+	name = SPECIES_MOTH
+	name_plural = "Mothpeople"
+	icobase = 'modular_flipper/icons/mob/human_races/r_moth.dmi'
+	deform = 'modular_flipper/icons/mob/human_races/r_moth.dmi'
+
+	male_scream_sound = 'modular_flipper/sound/effects/mob_effects/moth_scream.ogg'
+	female_scream_sound	= 'modular_flipper/sound/effects/mob_effects/moth_scream.ogg'
+
+	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_UNDERWEAR
+
+	has_limbs = list(
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/moth),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
+		)

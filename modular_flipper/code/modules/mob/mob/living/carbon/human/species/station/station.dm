@@ -8,6 +8,8 @@
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair)
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	descriptors = list()
+	male_scream_sound = 'modular_flipper/sound/effects/mob_effects/lizard_scream.ogg'
+	female_scream_sound	= 'modular_flipper/sound/effects/mob_effects/lizard_scream.ogg'
 
 /datum/species/tajaran
 	icobase = 'modular_flipper/icons/mob/human_races/r_tajaran.dmi'
