@@ -1,0 +1,5 @@
+#define SPECIES_ANTHRO				"Anthromorph"
+#define SPECIES_AQUATIC				"Aquatic"
+#define SPECIES_ANTHRO_INSECT		"Anthromorphic Insect"
+#define SPECIES_ANTHRO_FLY			"Anthromorphic Fly"
+#define SPECIES_MOTH				"Mothperson"

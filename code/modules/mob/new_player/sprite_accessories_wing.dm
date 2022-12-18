@@ -20,7 +20,7 @@
 	var/extra_overlay_w // Flapping state for extra overlay
 	var/extra_overlay2_w
 
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3, SPECIES_ANTHRO_INSECT, SPECIES_ANTHRO_FLY) //FLIPPER EDIT - allow bugs to have wings
 	//whitelist_allowed = list() - FLIPPER REMOVAL
 
 /datum/sprite_accessory/wing/featheredlarge //Made by Natje!
@@ -29,6 +29,7 @@
 	icon_state = "feathered2"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3, SPECIES_ANTHRO_INSECT, SPECIES_ANTHRO_FLY, SPECIES_ANTHRO) //FLIPPER EDIT - for birds
 
 /datum/sprite_accessory/wing/spider_legs //Not really /WINGS/ but they protrude from the back, kinda. Might as well have them here.
 	name = "spider legs"
@@ -41,6 +42,7 @@
 	name = "moth wings"
 	desc = ""
 	icon_state = "moth"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3, SPECIES_ANTHRO_INSECT, SPECIES_ANTHRO_FLY, SPECIES_MOTH) //FLIPPER EDIT - for moths
 
 /datum/sprite_accessory/wing/mothc
 	name = "moth wings, colorable"
@@ -48,6 +50,7 @@
 	icon_state = "moth"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3, SPECIES_ANTHRO_INSECT, SPECIES_ANTHRO_FLY, SPECIES_MOTH) //FLIPPER EDIT - for moths
 
 /datum/sprite_accessory/wing/dragonfly
 	name = "dragonfly"
@@ -61,6 +64,7 @@
 	icon_state = "feathered"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3, SPECIES_ANTHRO_INSECT, SPECIES_ANTHRO_FLY, SPECIES_ANTHRO) //FLIPPER EDIT - for birds
 
 /datum/sprite_accessory/wing/feathered_medium
 	name = "medium feathered wings, colorable" // Keekenox made these feathery things with a little bit more shape to them than the other wings. They are medium sized wing boys.
@@ -68,22 +72,26 @@
 	icon_state = "feathered3"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3, SPECIES_ANTHRO_INSECT, SPECIES_ANTHRO_FLY, SPECIES_ANTHRO) //FLIPPER EDIT - for birds
 
 /datum/sprite_accessory/wing/bat_black
 	name = "bat wings, black"
 	desc = ""
 	icon_state = "bat-black"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3, SPECIES_ANTHRO_INSECT, SPECIES_ANTHRO_FLY, SPECIES_ANTHRO) //FLIPPER EDIT - for birds
 
 /datum/sprite_accessory/wing/bat_color
 	name = "bat wings, colorable"
 	desc = ""
 	icon_state = "bat-color"
 	do_colouration = 1
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3, SPECIES_ANTHRO_INSECT, SPECIES_ANTHRO_FLY, SPECIES_ANTHRO) //FLIPPER EDIT - for birds
 
 /datum/sprite_accessory/wing/bat_red
 	name = "bat wings, red"
 	desc = ""
 	icon_state = "bat-red"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3, SPECIES_ANTHRO_INSECT, SPECIES_ANTHRO_FLY, SPECIES_ANTHRO) //FLIPPER EDIT - for birds
 
 /datum/sprite_accessory/wing/harpywings
 	name = "harpy wings, colorable"
@@ -91,6 +99,7 @@
 	icon_state = "harpywings"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3, SPECIES_ANTHRO_INSECT, SPECIES_ANTHRO_FLY, SPECIES_ANTHRO) //FLIPPER EDIT - for birds
 
 /datum/sprite_accessory/wing/feathered
 	name = "feathered wings, colorable"
@@ -98,6 +107,7 @@
 	icon_state = "feathered"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3, SPECIES_ANTHRO_INSECT, SPECIES_ANTHRO_FLY, SPECIES_ANTHRO) //FLIPPER EDIT - for birds
 
 /datum/sprite_accessory/wing/beewings
 	name = "bee wings"
@@ -114,6 +124,7 @@
 	name = "moth antenna and wings"
 	desc = ""
 	icon_state = "moth_full"
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3, SPECIES_ANTHRO_INSECT, SPECIES_ANTHRO_FLY, SPECIES_MOTH) //FLIPPER EDIT - for moths
 
 /datum/sprite_accessory/wing/moth_full_gray
 	name = "moth antenna and wings, colorable"
@@ -121,6 +132,7 @@
 	icon_state = "moth_full_gray"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3, SPECIES_ANTHRO_INSECT, SPECIES_ANTHRO_FLY, SPECIES_MOTH) //FLIPPER EDIT - for moths
 
 /datum/sprite_accessory/wing/snag
 	name = "xenomorph backplate"

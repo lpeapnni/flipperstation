@@ -86,6 +86,7 @@
 #include "code\__defines\dcs\flags.dm"
 #include "code\__defines\dcs\helpers.dm"
 #include "code\__defines\dcs\signals.dm"
+#include "code\__defines\~flipper_defines\mobs.dm"
 #include "code\_global_vars\bitfields.dm"
 #include "code\_global_vars\misc.dm"
 #include "code\_global_vars\mobs.dm"
@@ -3324,4 +3325,9 @@
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
 #include "maps\~map_system\maps.dm"
+#include "modular_flipper\code\modules\mob\living\carbon\human\species\station\custom.dm"
+#include "modular_flipper\code\modules\mob\living\carbon\human\species\station\moth.dm"
+#include "modular_flipper\code\modules\mob\living\carbon\human\species\station\station.dm"
+#include "modular_flipper\code\modules\mob\living\carbon\human\species\station\teshari.dm"
+#include "modular_flipper\code\modules\organs\subtypes\standard.dm"
 // END_INCLUDE
