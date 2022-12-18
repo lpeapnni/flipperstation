@@ -3325,8 +3325,9 @@
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
 #include "maps\~map_system\maps.dm"
-#include "modular_flipper\code\modules\mob\mob\living\carbon\human\species\station\custom.dm"
-#include "modular_flipper\code\modules\mob\mob\living\carbon\human\species\station\station.dm"
-#include "modular_flipper\code\modules\mob\mob\living\carbon\human\species\station\teshari.dm"
+#include "modular_flipper\code\modules\mob\living\carbon\human\species\station\custom.dm"
+#include "modular_flipper\code\modules\mob\living\carbon\human\species\station\moth.dm"
+#include "modular_flipper\code\modules\mob\living\carbon\human\species\station\station.dm"
+#include "modular_flipper\code\modules\mob\living\carbon\human\species\station\teshari.dm"
 #include "modular_flipper\code\modules\organs\subtypes\standard.dm"
 // END_INCLUDE
