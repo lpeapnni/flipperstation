@@ -171,6 +171,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	// FLIPPER ADDITION START
 	S["mismatched_accessories"] 	>> pref.mismatched_accessories
 	S["custom_species"]		>> pref.custom_species
+	S["snout_style"]		>> pref.snout_style
 	S["r_snout"]			>> pref.r_snout
 	S["g_snout"]			>> pref.g_snout
 	S["b_snout"]			>> pref.b_snout
@@ -248,6 +249,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	// FLIPPER ADDITION START
 	S["mismatched_accessories"] 	<< pref.mismatched_accessories
 	S["custom_species"]		<< pref.custom_species
+	S["snout_style"]		<< pref.snout_style
 	S["r_snout"]			<< pref.r_snout
 	S["g_snout"]			<< pref.g_snout
 	S["b_snout"]			<< pref.b_snout
