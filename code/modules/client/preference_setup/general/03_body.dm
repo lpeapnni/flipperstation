@@ -651,7 +651,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if(istype(snout))
 		. += " Style: <a href='?src=\ref[src];snout_style=1'>[snout.name]</a><br>"
 		if(snout.do_colouration)
-			. += "<a href='?src=\ref[src];wing_color=1'>Change Color</a> [color_square(pref.r_snout, pref.g_snout, pref.b_snout)]<br>"
+			. += "<a href='?src=\ref[src];snout_color=1'>Change Color</a> [color_square(pref.r_snout, pref.g_snout, pref.b_snout)]<br>"
 		if(snout.extra_overlay)
 			. += "<a href='?src=\ref[src];snout_color2=1'>Change Secondary Color</a> [color_square(pref.r_snout2, pref.g_snout2, pref.b_snout2)]<br>"
 		if(snout.extra_overlay2)
