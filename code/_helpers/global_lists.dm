@@ -47,6 +47,7 @@ var/global/list/body_marking_nopersist_list = list()	// Body marking styles, min
 var/global/list/ear_styles_list = list()	// Stores /datum/sprite_accessory/ears indexed by type
 var/global/list/tail_styles_list = list()	// Stores /datum/sprite_accessory/tail indexed by type
 var/global/list/wing_styles_list = list()	// Stores /datum/sprite_accessory/wing indexed by type
+var/global/list/snout_styles_list = list() // FLIPPER ADDITION - snouts
 
 GLOBAL_LIST_INIT(custom_species_bases, new) // Species that can be used for a Custom Species icon base
 	//Underwear
@@ -234,6 +235,13 @@ var/global/list/string_slot_flags = list(
 	for(var/path in paths)
 		var/datum/sprite_accessory/wing/instance = new path()
 		wing_styles_list[path] = instance
+
+	// FLIPPER ADDITION START - snouts
+	paths = subtypesof(/datum/sprite_accessory/snout)
+	for(var/path in paths)
+		var/datum/sprite_accessory/snout/instance = new path()
+		snout_styles_list[path] = instance
+	// FLIPPER ADDITION END
 
 	init_crafting_recipes(GLOB.crafting_recipes)
 

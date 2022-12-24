@@ -36,6 +36,18 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/r_wing3 = 30	// Wing tertiary color
 	var/g_wing3 = 30	// Wing tertiary color
 	var/b_wing3 = 30	// Wing tertiary color
+	// FLIPPER ADDITION START - snouts
+	var/snout_style // selected snout style
+	var/r_snout = 30 // main color
+	var/g_snout = 30
+	var/b_snout = 30
+	var/r_snout2 = 30 // secondary color
+	var/g_snout2 = 30
+	var/b_snout2 = 30
+	var/r_snout3 = 30 // tertiary color
+	var/g_snout3 = 30
+	var/b_snout3 = 30
+	// FLIPPER ADDITION END
 
 // Sanitize ear/wing/tail styles
 /datum/preferences/proc/sanitize_body_styles()
@@ -53,6 +65,12 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		var/datum/sprite_accessory/instance = global.tail_styles_list[tail_style]
 		if(istype(instance))
 			tail_style = instance.name
+	// FLIPPER ADDITION START - snouts
+	if(ispath(snout_style, /datum/sprite_accessory))
+		var/datum/sprite_accessory/instance = global.snout_styles_list[snout_style]
+		if(istype(instance))
+			snout_style = instance.name
+	// FLIPPER ADDITION END
 
 	// Sanitize for non-existent keys.
 	if(ear_style && !(ear_style in get_available_styles(global.ear_styles_list)))
@@ -61,6 +79,10 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		wing_style = null
 	if(tail_style && !(tail_style in get_available_styles(global.tail_styles_list)))
 		tail_style = null
+	// FLIPPER ADDITION START - snouts
+	if(snout_style && !(snout_style in get_available_styles(global.snout_styles_list)))
+		snout_style = null
+	// FLIPPER ADDITION END
 
 /datum/preferences/proc/get_available_styles(var/style_list)
 	. = list("Normal" = null)
@@ -146,8 +168,20 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_wing3"]		>> pref.r_wing3
 	S["g_wing3"]		>> pref.g_wing3
 	S["b_wing3"]		>> pref.b_wing3
-	S["mismatched_accessories"] 	>> pref.mismatched_accessories // FLIPPER ADDITION - Mismatched sprite accessories
-	S["custom_species"]		>> pref.custom_species // FLIPPER ADDITION - Custom species name
+	// FLIPPER ADDITION START
+	S["mismatched_accessories"] 	>> pref.mismatched_accessories
+	S["custom_species"]		>> pref.custom_species
+	S["snout_style"]		>> pref.snout_style
+	S["r_snout"]			>> pref.r_snout
+	S["g_snout"]			>> pref.g_snout
+	S["b_snout"]			>> pref.b_snout
+	S["r_snout2"]		>> pref.r_snout2
+	S["g_snout2"]		>> pref.g_snout2
+	S["b_snout2"]		>> pref.b_snout2
+	S["r_snout3"]		>> pref.r_snout3
+	S["g_snout3"]		>> pref.g_snout3
+	S["b_snout3"]		>> pref.b_snout3
+	// FLIPPER ADDITION END
 
 /datum/category_item/player_setup_item/general/body/save_character(var/savefile/S)
 	S["species"]			<< pref.species
@@ -212,8 +246,20 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	S["r_wing3"]		<< pref.r_wing3
 	S["g_wing3"]		<< pref.g_wing3
 	S["b_wing3"]		<< pref.b_wing3
-	S["mismatched_accessories"] 	<< pref.mismatched_accessories // FLIPPER ADDITION - Mismatched sprite accessories
-	S["custom_species"]		<< pref.custom_species // FLIPPER ADDITION - Custom species name
+	// FLIPPER ADDITION START
+	S["mismatched_accessories"] 	<< pref.mismatched_accessories
+	S["custom_species"]		<< pref.custom_species
+	S["snout_style"]		<< pref.snout_style
+	S["r_snout"]			<< pref.r_snout
+	S["g_snout"]			<< pref.g_snout
+	S["b_snout"]			<< pref.b_snout
+	S["r_snout2"]		<< pref.r_snout2
+	S["g_snout2"]		<< pref.g_snout2
+	S["b_snout2"]		<< pref.b_snout2
+	S["r_snout3"]		<< pref.r_snout3
+	S["g_snout3"]		<< pref.g_snout3
+	S["b_snout3"]		<< pref.b_snout3
+	// FLIPPER ADDITION END
 
 /datum/category_item/player_setup_item/general/body/sanitize_character(var/savefile/S)
 	if(!pref.species || !(pref.species in GLOB.playable_species))
@@ -274,6 +320,17 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.r_wing3	= sanitize_integer(pref.r_wing3, 0, 255, initial(pref.r_wing3))
 	pref.g_wing3	= sanitize_integer(pref.g_wing3, 0, 255, initial(pref.g_wing3))
 	pref.b_wing3	= sanitize_integer(pref.b_wing3, 0, 255, initial(pref.b_wing3))
+	// FLIPPER ADDITION START - HOW MANY FUCKING TIMES DO I HAVE TO ADD THIS SHIT
+	pref.r_snout	= sanitize_integer(pref.r_snout, 0, 255, initial(pref.r_snout))
+	pref.g_snout	= sanitize_integer(pref.g_snout, 0, 255, initial(pref.g_snout))
+	pref.b_snout	= sanitize_integer(pref.b_snout, 0, 255, initial(pref.b_snout))
+	pref.r_snout2	= sanitize_integer(pref.r_snout2, 0, 255, initial(pref.r_snout2))
+	pref.g_snout2	= sanitize_integer(pref.g_snout2, 0, 255, initial(pref.g_snout2))
+	pref.b_snout2	= sanitize_integer(pref.b_snout2, 0, 255, initial(pref.b_snout2))
+	pref.r_snout3	= sanitize_integer(pref.r_snout3, 0, 255, initial(pref.r_snout3))
+	pref.g_snout3	= sanitize_integer(pref.g_snout3, 0, 255, initial(pref.g_snout3))
+	pref.b_snout3	= sanitize_integer(pref.b_snout3, 0, 255, initial(pref.b_snout3))
+	// FLIPPER ADDITION END
 
 	pref.sanitize_body_styles()
 
@@ -345,6 +402,20 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.r_wing3 =    pref.r_wing3
 	character.b_wing3 =    pref.b_wing3
 	character.g_wing3 =    pref.g_wing3
+
+	// FLIPPER ADDITION START - snouts
+	var/list/snout_styles = pref.get_available_styles(global.snout_styles_list)
+	character.snout_style = snout_styles[pref.snout_style]
+	character.r_snout =     pref.r_snout
+	character.b_snout =     pref.b_snout
+	character.g_snout =     pref.g_snout
+	character.r_snout2 =    pref.r_snout2
+	character.b_snout2 =    pref.b_snout2
+	character.g_snout2 =    pref.g_snout2
+	character.r_snout3 =    pref.r_snout3
+	character.b_snout3 =    pref.b_snout3
+	character.g_snout3 =    pref.g_snout3
+	// FLIPPER ADDITION END - snouts
 
 	character.set_gender(pref.biological_gender)
 
@@ -574,6 +645,22 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			. += "<a href='?src=\ref[src];ear_color3=1'>Change Tertiary Color</a> [color_square(pref.r_ears3, pref.g_ears3, pref.b_ears3)]<br>"
 	else
 		. += " Style: <a href='?src=\ref[src];ear_style=1'>Select</a><br>"
+
+	// FLIPPER ADDITION START - snouts
+	var/list/snout_styles = pref.get_available_styles(global.snout_styles_list)
+	var/datum/sprite_accessory/snout/snout = snout_styles[pref.snout_style]
+	. += "<b>Snout</b><br>"
+	if(istype(snout))
+		. += " Style: <a href='?src=\ref[src];snout_style=1'>[snout.name]</a><br>"
+		if(snout.do_colouration)
+			. += "<a href='?src=\ref[src];snout_color=1'>Change Color</a> [color_square(pref.r_snout, pref.g_snout, pref.b_snout)]<br>"
+		if(snout.extra_overlay)
+			. += "<a href='?src=\ref[src];snout_color2=1'>Change Secondary Color</a> [color_square(pref.r_snout2, pref.g_snout2, pref.b_snout2)]<br>"
+		if(snout.extra_overlay2)
+			. += "<a href='?src=\ref[src];snout_color3=1'>Change Secondary Color</a> [color_square(pref.r_snout3, pref.g_snout3, pref.b_snout3)]<br>"
+	else
+		. += " Style: <a href='?src=\ref[src];snout_style=1'>Select</a><br>"
+	// FLIPPER ADDITION END - snouts
 
 	var/list/tail_styles = pref.get_available_styles(global.tail_styles_list)
 	var/datum/sprite_accessory/tail/tail = tail_styles[pref.tail_style]
@@ -1129,10 +1216,11 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		pref.synth_markings = !pref.synth_markings
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
-	// FLIPPER ADDITION
+	// FLIPPER ADDITION START - mismatched accessories
 	else if(href_list["mismatched_accessories"])
 		pref.mismatched_accessories = !pref.mismatched_accessories
 		return TOPIC_REFRESH_UPDATE_PREVIEW
+	// FLIPPER ADDITION END
 
 	else if(href_list["cycle_bg"])
 		pref.bgstate = next_in_list(pref.bgstate, pref.bgstate_options)
@@ -1238,6 +1326,42 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.g_wing3 = hex2num(copytext(new_wingc3, 4, 6))
 			pref.b_wing3 = hex2num(copytext(new_wingc3, 6, 8))
 			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	// FLIPPER ADDITION START - snouts
+	else if(href_list["snout_style"])
+		var/new_snout_style = input(user, "Select a snout style for this character:", "Character Preference", pref.snout_style) as null|anything in pref.get_available_styles(global.snout_styles_list)
+		if(new_snout_style)
+			pref.snout_style = new_snout_style
+
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["snout_color"])
+		var/new_snoutc = input(user, "Choose your character's snout colour:", "Character Preference",
+			rgb(pref.r_snout, pref.g_snout, pref.b_snout)) as color|null
+		if(new_snoutc)
+			pref.r_snout = hex2num(copytext(new_snoutc, 2, 4))
+			pref.g_snout = hex2num(copytext(new_snoutc, 4, 6))
+			pref.b_snout = hex2num(copytext(new_snoutc, 6, 8))
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["snout_color2"])
+		var/new_snoutc2 = input(user, "Choose your character's secondary snout colour:", "Character Preference",
+			rgb(pref.r_snout2, pref.g_snout2, pref.b_snout2)) as color|null
+		if(new_snoutc2)
+			pref.r_snout2 = hex2num(copytext(new_snoutc2, 2, 4))
+			pref.g_snout2 = hex2num(copytext(new_snoutc2, 4, 6))
+			pref.b_snout2 = hex2num(copytext(new_snoutc2, 6, 8))
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if(href_list["snout_color3"])
+		var/new_snoutc3 = input(user, "Choose your character's tertiary snout colour:", "Character Preference",
+			rgb(pref.r_snout3, pref.g_snout3, pref.b_snout3)) as color|null
+		if(new_snoutc3)
+			pref.r_snout3 = hex2num(copytext(new_snoutc3, 2, 4))
+			pref.g_snout3 = hex2num(copytext(new_snoutc3, 4, 6))
+			pref.b_snout3 = hex2num(copytext(new_snoutc3, 6, 8))
+			return TOPIC_REFRESH_UPDATE_PREVIEW
+	// FLIPPER ADDITION END
 
 	return ..()
 

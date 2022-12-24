@@ -412,6 +412,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	//base icons
 	var/icon/face_standing = icon(icon = 'icons/mob/human_face.dmi', icon_state = "bald_s")
 
+	// FLIPPER ADDITION START - snouts
+	var/icon/snout_s = get_snout_overlay()
+	if(snout_s)
+		face_standing.Blend(snout_s, ICON_OVERLAY)
+	// FLIPPER ADDITION END
+
 	if(f_style)
 		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
 		if(facial_hair_style && (facial_hair_style.species_allowed && (src.species.get_bodytype(src) in facial_hair_style.species_allowed) || mismatched_accessories)) // FLIPPER EDIT - MISMATCHED ACCESSORIES
@@ -1119,6 +1125,25 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return ears_s
 	return null
 
+// FLIPPER ADDITION START - snouts
+/mob/living/carbon/human/proc/get_snout_overlay()
+	if(snout_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
+		var/icon/snout_s = new/icon("icon" = snout_style.icon, "icon_state" = snout_style.icon_state)
+		if(snout_style.do_colouration)
+			snout_s.Blend(rgb(src.r_snout, src.g_snout, src.b_snout), snout_style.color_blend_mode)
+		if(snout_style.extra_overlay)
+			var/icon/overlay = new/icon("icon" = snout_style.icon, "icon_state" = snout_style.extra_overlay)
+			overlay.Blend(rgb(src.r_snout2, src.g_snout2, src.b_snout2), snout_style.color_blend_mode)
+			snout_s.Blend(overlay, ICON_OVERLAY)
+			qdel(overlay)
+		if(snout_style.extra_overlay2)
+			var/icon/overlay = new/icon("icon" = snout_style.icon, "icon_state" = snout_style.extra_overlay2)
+			overlay.Blend(rgb(src.r_snout3, src.g_snout3, src.b_snout3), snout_style.color_blend_mode)
+			snout_s.Blend(overlay, ICON_OVERLAY)
+			qdel(overlay)
+		return snout_s
+	return null
+// FLIPPER ADDITION END
 
 /mob/living/carbon/human/proc/get_tail_image()
 	//If you are FBP with tail style and didn't set a custom one
