@@ -9,7 +9,7 @@
 	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_SKRELLIAN, LANGUAGE_SKRELLIANFAR, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 
 	icobase = 'modular_flipper/icons/mob/human_races/r_human.dmi'
-	deform = 'modular_flipper/icons/mob/human_races/r_def_human.dmi'
+	deform = 'modular_flipper/icons/mob/human_races/r_human.dmi'
 	limb_blend = ICON_MULTIPLY
 
 	min_age = 18
