@@ -21,6 +21,8 @@
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_TORSO,BP_GROIN)
 
+/*
+// FLIPPER REMOVAL - axes redundant markings
 /datum/sprite_accessory/marking/vr/vulp_nose
 	name = "nose (canine)"
 	icon_state = "vulp_nose"
@@ -76,7 +78,7 @@
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
 	species_allowed = list("Sergal")
-
+*/
 /datum/sprite_accessory/marking/vr/monoeye
 	name = "Monoeye"
 	icon_state = "monoeye"
@@ -97,7 +99,8 @@
 	icon_state = "brows"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
-
+/*
+// FLIPPER REMOVAL - axes redundant markings
 /datum/sprite_accessory/marking/vr/nevrean_female
 	name = "Female Nevrean beak"
 	icon_state = "nevrean_f"
@@ -111,7 +114,7 @@
 	body_parts = list(BP_HEAD)
 	color_blend_mode = ICON_MULTIPLY
 	gender = MALE
-
+*/
 /datum/sprite_accessory/marking/vr/spots
 	name = "Spots"
 	icon_state = "spots"
@@ -153,7 +156,8 @@
 	name = "Tusks"
 	icon_state = "tusks"
 	body_parts = list(BP_HEAD)
-
+/*
+// FLIPPER REMOVAL - axes redundant markings
 /datum/sprite_accessory/marking/vr/otie_face
 	name = "Otie face"
 	icon_state = "otieface"
@@ -171,7 +175,7 @@
 	icon_state = "otienose_lite"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
-
+*/
 /datum/sprite_accessory/marking/vr/backstripes
 	name = "Back stripes"
 	icon_state = "otiestripes"
@@ -195,13 +199,14 @@
 	icon_state = "otiesocks"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
-
+/*
+// FLIPPER REMOVAL - axes redundant markings
 /datum/sprite_accessory/marking/vr/corvid_beak
 	name = "Corvid beak"
 	icon_state = "corvidbeak"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
-
+*/
 /datum/sprite_accessory/marking/vr/corvid_belly
 	name = "Corvid belly"
 	icon_state = "corvidbelly"
@@ -231,7 +236,8 @@
 	icon_state = "zbody"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_R_LEG,BP_GROIN,BP_TORSO)
-
+/*
+// FLIPPER REMOVAL - axes redundant markings
 /datum/sprite_accessory/marking/vr/znose
 	name = "Jagged snout"
 	icon_state = "znose"
@@ -267,7 +273,7 @@
 	icon_state = "shepface"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
-
+*/
 /datum/sprite_accessory/marking/vr/sheppy_back
 	name = "Shepherd back"
 	icon_state = "shepback"
@@ -291,7 +297,8 @@
 	icon_state = "zorren_backpatch"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_TORSO)
-
+/*
+// FLIPPER REMOVAL - axes redundant markings
 /datum/sprite_accessory/marking/vr/zorren_face_male
 	name = "Zorren Male Face"
 	icon_state = "zorren_face"
@@ -319,7 +326,7 @@
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 	gender = FEMALE
-
+*/
 /datum/sprite_accessory/marking/vr/zorren_socks
 	name = "Zorren Socks"
 	icon_state = "zorren_socks"
@@ -501,7 +508,8 @@
 	icon_state = "claws"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_HAND,BP_R_HAND)
-
+/*
+// FLIPPER REMOVAL - axes redundant markings
 /datum/sprite_accessory/marking/vr/equine_snout //Why the long face? Works best with sergal bodytype.
 	name = "Equine Snout"
 	icon_state = "donkey"
@@ -513,3 +521,4 @@
 	icon_state = "dnose"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
+*/

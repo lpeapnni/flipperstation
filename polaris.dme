@@ -3330,6 +3330,7 @@
 #include "modular_flipper\code\modules\mob\living\carbon\human\species\station\moth.dm"
 #include "modular_flipper\code\modules\mob\living\carbon\human\species\station\station.dm"
 #include "modular_flipper\code\modules\mob\living\carbon\human\species\station\teshari.dm"
+#include "modular_flipper\code\modules\mob\new_player\sprite_accessories_flipper.dm"
 #include "modular_flipper\code\modules\mob\new_player\sprite_accessories_snout.dm"
 #include "modular_flipper\code\modules\organs\subtypes\standard.dm"
 // END_INCLUDE

@@ -2631,7 +2631,8 @@ shaved
 	icon_state = "taj_bellyfull"
 	body_parts = list(BP_TORSO)
 	species_allowed = list(SPECIES_TAJ)
-
+/*
+// FLIPPER REMOVAL - axes redundant markings
 /datum/sprite_accessory/marking/taj_earsout
 	name = "Outer Ear (Taj)"
 	icon_state = "taj_earsout"
@@ -2649,13 +2650,14 @@ shaved
 	icon_state = "taj_nose"
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_TAJ)
-
+*/
 /datum/sprite_accessory/marking/taj_crest
 	name = "Chest Fur Crest (Taj)"
 	icon_state = "taj_crest"
 	body_parts = list(BP_TORSO)
 	species_allowed = list(SPECIES_TAJ)
-
+/*
+// FLIPPER REMOVAL - axes redundant markings
 /datum/sprite_accessory/marking/taj_muzzle
 	name = "Muzzle Color (Taj)"
 	icon_state = "taj_muzzle"
@@ -2673,8 +2675,10 @@ shaved
 	icon_state = "taj_all"
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_TAJ)
-
+*/
 	//Una specific stuff
+/*
+// FLIPPER REMOVAL - axes redundant markings
 /datum/sprite_accessory/marking/una_face
 	name = "Face Color (Una)"
 	icon_state = "una_face"
@@ -2686,7 +2690,7 @@ shaved
 	icon_state = "una_facelow"
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_UNATHI)
-
+*/
 /datum/sprite_accessory/marking/una_scutes
 	name = "Scutes (Una)"
 	icon_state = "una_scutes"
