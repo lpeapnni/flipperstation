@@ -110,6 +110,8 @@
 		vr_link = null
 		to_chat(src, "<span class='danger'>Everything abruptly stops.</span>")
 
+	set_combat_indicator(FALSE) // FLIPPER ADDITION - combat indicator
+
 	return ..(gibbed,species.get_death_message(src))
 
 /mob/living/carbon/human/proc/ChangeToHusk()

@@ -3325,6 +3325,8 @@
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
 #include "maps\~map_system\maps.dm"
+#include "modular_flipper\code\modules\combat_indicator\combat_indicator.dm"
+#include "modular_flipper\code\modules\mob\living\emote_popup.dm"
 #include "modular_flipper\code\modules\mob\living\carbon\human\human_defines.dm"
 #include "modular_flipper\code\modules\mob\living\carbon\human\species\station\custom.dm"
 #include "modular_flipper\code\modules\mob\living\carbon\human\species\station\moth.dm"
