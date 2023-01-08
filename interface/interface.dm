@@ -104,6 +104,7 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tr = throw
 \tt = say
 \t5 = emote
+\tc = toggle combat indicator
 \tx = swap-hand
 \tz = activate held object (or y)
 \tu = Rest
@@ -142,6 +143,7 @@ Any-Mode: (hotkey doesn't need to be on)
 \tF2 = ooc
 \tF3 = say
 \tF4 = emote
+\tCtrl+c = toggle combat indicator
 \tDEL = stop pulling
 \tINS = cycle-intents-right
 \tHOME = drop
@@ -168,6 +170,7 @@ Hotkey-Mode: (hotkey-mode must be on)
 \t3 = activate module 3
 \t4 = toggle intents
 \t5 = emote
+\tc = toggle combat indicator
 \tCtrl+Click = pull
 \tShift+Click = examine
 </font>"}
@@ -191,6 +194,7 @@ Any-Mode: (hotkey doesn't need to be on)
 \tF2 = ooc
 \tF3 = say
 \tF4 = emote
+\tCtrl+c = toggle combat indicator
 \tDEL = stop pulling
 \tINS = toggle intents
 \tPGUP = cycle active modules
