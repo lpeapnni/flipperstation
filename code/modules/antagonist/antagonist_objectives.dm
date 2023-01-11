@@ -41,8 +41,9 @@
 		to_chat(src, "<span class='warning'>While you may perhaps have goals, this verb's meant to only be visible \
 		to antagonists.  Please make a bug report!</span>")
 		return
+	// FLIPPER EDIT - ambitions are no longer optional, so that part of the dialouge was axed
 	var/new_ambitions = input(src, "Write a short sentence of what your character hopes to accomplish \
-	today as an antagonist.  Remember that this is purely optional.  It will be shown at the end of the \
+	today as an antagonist.  It will be shown at the end of the \
 	round for everybody else.", "Ambitions", mind.ambitions) as null|message
 	if(isnull(new_ambitions))
 		return
