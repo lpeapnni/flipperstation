@@ -402,6 +402,12 @@
 	if(flavor_text)
 		msg += "[flavor_text]"
 
+	// FLIPPER ADDITION START - ooc notes
+	var/ooc_notes = print_ooc_notes()
+	if(ooc_notes)
+		msg += "[ooc_notes]"
+	// FLIPPER ADDITION END
+
 	msg += "*---------*</span>"
 	if(applying_pressure)
 		msg += applying_pressure

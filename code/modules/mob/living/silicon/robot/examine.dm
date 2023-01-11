@@ -32,6 +32,11 @@
 	. += "*---------*"
 
 	if(print_flavor_text()) . += "<br>[print_flavor_text()]"
+	// FLIPPER ADDITION START - ooc notes
+	var/ooc_notes = print_ooc_notes()
+	if(ooc_notes)
+		. += "[ooc_notes]"
+	// FLIPPER ADDITION END
 
 	if (pose)
 		if(!findtext(pose, regex("\[.?!]$"))) // Will be zero if the last character is not a member of [.?!]
