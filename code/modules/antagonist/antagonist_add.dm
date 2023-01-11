@@ -1,6 +1,6 @@
-/datum/antagonist/proc/add_antagonist(var/datum/mind/player, var/ignore_role, var/do_not_equip, var/move_to_spawn, var/do_not_announce, var/preserve_appearance)
+/datum/antagonist/proc/add_antagonist(var/datum/mind/player, var/ignore_role, var/do_not_equip, var/move_to_spawn, var/do_not_announce, var/preserve_appearance, var/ambitions_required)
 
-	if(!add_antagonist_mind(player, ignore_role))
+	if(!add_antagonist_mind(player, ignore_role, null, null, ambitions_required)) // FLIPPER EDIT - shit for ambitions
 		return
 
 	//do this again, just in case
@@ -12,11 +12,12 @@
 		create_default(player.current)
 	else
 		create_antagonist(player, move_to_spawn, do_not_announce, preserve_appearance)
-		if(!do_not_equip)
+		if(!do_not_equip || !ambitions_required)
 			equip(player.current)
 	return 1
 
-/datum/antagonist/proc/add_antagonist_mind(var/datum/mind/player, var/ignore_role, var/nonstandard_role_type, var/nonstandard_role_msg)
+// FLIPPER EDIT - shit for ambitions being required
+/datum/antagonist/proc/add_antagonist_mind(var/datum/mind/player, var/ignore_role, var/nonstandard_role_type, var/nonstandard_role_msg, var/ambitions_required)
 	if(!istype(player))
 		return 0
 	if(!player.current)
@@ -31,9 +32,15 @@
 		player.current.verbs |= faction_verb
 
 	spawn(1 SECOND) //Added a delay so that this should pop up at the bottom and not the top of the text flood the new antag gets.
-		to_chat(player.current, "<span class='notice'>Once you decide on a goal to pursue, you can optionally display it to \
-			everyone at the end of the shift with the <b>Set Ambition</b> verb, located in the IC tab.  You can change this at any time, \
-			and it otherwise has no bearing on your round.</span>")
+		// FLIPPER EDIT START - you have to get ambitions approved to get your equipment
+		if(ambitions_required)
+			to_chat(player.current, "<span class='notice'>In order to recieve your equipment, you need to have your goals be approved by an admin. \
+				To set your goals, use the <b>Set Ambition</b> verb, located in the IC tab. Once your goals have been set, use adminhelp to tell an admin.</span>")
+		else
+			to_chat(player.current, "<span class='notice'>Once you decide on a goal to pursue, you can optionally display it to \
+				everyone at the end of the shift with the <b>Set Ambition</b> verb, located in the IC tab.  You can change this at any time, \
+				and it otherwise has no bearing on your round.</span>")
+		// FLIPPER EDIT END
 	player.current.verbs |= /mob/living/proc/write_ambition
 
 	if(can_speak_aooc)
