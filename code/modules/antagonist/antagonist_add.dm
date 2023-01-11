@@ -12,7 +12,7 @@
 		create_default(player.current)
 	else
 		create_antagonist(player, move_to_spawn, do_not_announce, preserve_appearance)
-		if(!do_not_equip || !ambitions_required)
+		if(!(do_not_equip || ambitions_required))
 			equip(player.current)
 	return 1
 
