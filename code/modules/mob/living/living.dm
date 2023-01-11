@@ -605,7 +605,8 @@
 /mob/living/proc/UpdateDamageIcon()
 	return
 
-
+/*
+// FLIPPER REMOVAL - examine a player to see their ooc notes
 /mob/living/proc/Examine_OOC()
 	set name = "Examine Meta-Info (OOC)"
 	set category = "OOC"
@@ -620,6 +621,7 @@
 		to_chat(usr, "OOC Metadata is not supported by this server!")
 
 	return
+*/
 
 /mob/living/verb/resist()
 	set name = "Resist"

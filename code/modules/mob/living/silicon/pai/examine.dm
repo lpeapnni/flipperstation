@@ -11,8 +11,13 @@
 
 	if(print_flavor_text()) . += "\n[print_flavor_text()]\n"
 
+	// FLIPPER ADDITION START - ooc notes
+	var/ooc_notes = print_ooc_notes()
+	if(ooc_notes)
+		. += "[ooc_notes]\n"
+	// FLIPPER ADDITION END
+
 	if (pose)
 		if(!findtext(pose, regex("\[.?!]$"))) // Will be zero if the last character is not a member of [.?!]
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		. += "<br>It is [pose]" //Extra <br> intentional
-		

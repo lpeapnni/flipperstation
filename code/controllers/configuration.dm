@@ -46,7 +46,7 @@ var/global/list/gamemode_cache = list()
 	var/static/objectives_disabled = 0 			//if objectives are disabled or not
 	var/static/protect_roles_from_antagonist = 0// If security and such can be traitor/cult/other
 	var/static/continous_rounds = 0			// Gamemodes which end instantly will instead keep on going until the round ends by escape shuttle or nuke.
-	var/static/allow_Metadata = 0				// Metadata is supported.
+	//var/static/allow_Metadata = 0				// Metadata is supported. //FLIPPER REMOVAL - ooc notes always on
 	var/static/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
 	var/static/fps = 20
 	var/static/tick_limit_mc_init = TICK_LIMIT_MC_INIT_DEFAULT	//SSinitialization throttling
@@ -573,8 +573,11 @@ var/global/list/gamemode_cache = list()
 				if ("feature_object_spell_system")
 					config.feature_object_spell_system = 1
 
+				/*
+				// FLIPPER REMOVAL - ooc notes always on
 				if ("allow_metadata")
 					config.allow_Metadata = 1
+				*/
 
 				if ("traitor_scaling")
 					config.traitor_scaling = 1
