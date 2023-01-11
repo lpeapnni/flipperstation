@@ -150,7 +150,7 @@
 	if(istype(player.current, /mob/observer/dead))
 		create_default(player.current)
 	else
-		add_antagonist(player,0,0,0,1,1)
+		add_antagonist(player,0,0,0,1,1,1) // FLIPPER EDIT - ambition shit
 	return 1
 
 /datum/antagonist/proc/build_candidate_list(var/ghosts_only)
@@ -208,7 +208,7 @@
 
 	for(var/datum/mind/player in pending_antagonists)
 		pending_antagonists -= player
-		add_antagonist(player,0,0,1)
+		add_antagonist(player,0,0,1,0,0,1) // FLIPPER EDIT - ambition shit
 
 //Resets all pending_antagonists, clearing their special_role (and assigned_role if ANTAG_OVERRIDE_JOB is set)
 /datum/antagonist/proc/reset()
