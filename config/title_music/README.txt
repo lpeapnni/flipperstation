@@ -1,0 +1,1 @@
+Just throw any music files you want into /sounds/. There's no weird naming convention, but try to avoid '.' in the file name.

@@ -1,3 +1,7 @@
 #ignore everything here, except subdirectories.
-*
-!*/
+/*
+!/*/
+
+#FLIPPER EDIT - title music shit
+/title_music/sounds/*
+!/title_music/sounds/exclude
