@@ -103,8 +103,8 @@ var/global/list/all_maps = list()
 	var/list/lobby_screens = list('icons/default_lobby.png')                 // The list of lobby screen to pick() from.
 	var/current_lobby_screen
 
-	var/decl/music_track/lobby_track                     // The track that will play in the lobby screen.
-	var/list/lobby_tracks = list()                  // The list of lobby tracks to pick() from. If left unset will randomly select among all available /music_track subtypes.
+	//var/decl/music_track/lobby_track                     // The track that will play in the lobby screen. // FLIPPER REMOVAL - see config/title_music
+	//var/list/lobby_tracks = list()                  // The list of lobby tracks to pick() from. If left unset will randomly select among all available /music_track subtypes. // FLIPPER REMOVAL - see config/title_music
 
 	var/default_law_type = /datum/ai_laws/nanotrasen // The default lawset use by synth units, if not overriden by their laws var.
 
@@ -409,6 +409,8 @@ var/global/list/all_maps = list()
 		// Hide title screen, allowing player to see the map
 		winset(C, "lobbybrowser", "is-disabled=true;is-visible=false")
 
+/*
+// FLIPPER REMOVAL - see config/title_music
 /datum/map/proc/get_lobby_track(var/exclude)
 	var/lobby_track_type
 	if(LAZYLEN(lobby_tracks) == 1)
@@ -418,3 +420,4 @@ var/global/list/all_maps = list()
 	else
 		lobby_track_type = pick(subtypesof(/decl/music_track) - exclude)
 	return GET_DECL(lobby_track_type)
+*/
