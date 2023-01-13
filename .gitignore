@@ -15,7 +15,3 @@ cfg/
 
 node_modules/
 package-lock.json
-
-#FLIPPER EDIT - ignore title music
-!/config/title_music/sounds/exclude
-/config/title_music/sounds/*
