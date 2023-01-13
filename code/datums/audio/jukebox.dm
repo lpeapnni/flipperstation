@@ -1,5 +1,5 @@
-
-
+/*
+// FLIPPER REMOVAL - see modular_flipper/code/datums/audio/
 GLOBAL_LIST_INIT(music_tracks, list(
 	"Beyond" = /decl/music_track/ambispace,
 	"Clouds of Fire" = /decl/music_track/clouds_of_fire,
@@ -52,3 +52,4 @@ GLOBAL_LIST_INIT(jukebox_secret_tracks, list(
 	for(var/track_name in track_list)
 		var/track_path = track_list[track_name]
 		. += new/datum/track(track_name, track_path)
+*/

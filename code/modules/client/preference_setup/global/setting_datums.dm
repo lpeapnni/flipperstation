@@ -61,7 +61,35 @@ var/global/list/_client_preferences_by_type
 
 /datum/client_preference/play_lobby_music/toggled(var/mob/preference_mob, var/enabled)
 	if(enabled)
-		using_map.lobby_track.play_to(preference_mob)
+		//using_map.lobby_track.play_to(preference_mob) // FLIPPER REMOVAL - changing the way music works
+		var/list/byond_sound_formats = list(
+			"mid" = TRUE,
+			"midi" = TRUE,
+			"mod" = TRUE,
+			"it" = TRUE,
+			"s3m" = TRUE,
+			"xm" = TRUE,
+			"oxm" = TRUE,
+			"wav" = TRUE,
+			"ogg" = TRUE,
+			"raw" = TRUE,
+			"wma" = TRUE,
+			"aiff" = TRUE,
+		)
+
+		var/list/possible_tracks = flist("config/title_music/sounds/")
+		var/list/music = list()
+
+		for(var/songs in possible_tracks)
+			var/list/L = splittext(songs,".")
+			if(L.len >= 2)
+				var/ext = lowertext(L[L.len]) //pick the real extension, no 'honk.ogg.exe' nonsense here
+				if(byond_sound_formats[ext])
+					music += songs
+
+		if(length(music) > 0)
+			var/final_song = pick(music)
+			preference_mob << sound("config/title_music/sounds/[final_song]", repeat = 1, wait = 0, volume = 70, channel = 1)
 	else
 		preference_mob << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
 

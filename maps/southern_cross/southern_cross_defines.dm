@@ -15,6 +15,8 @@
 	name = "Southern Cross"
 	full_name = "Southern Cross"
 	path = "southern_cross"
+	/*
+	// FLIPPER REMOVAL - see config/title_music
 	lobby_tracks = list(
 		/decl/music_track/chasing_time,
 		/decl/music_track/epicintro2015,
@@ -24,6 +26,7 @@
 		/decl/music_track/asfarasitgets,
 		/decl/music_track/space_oddity,
 		/decl/music_track/martiancowboy)
+	*/
 
 	holomap_smoosh = list(list(
 		Z_LEVEL_STATION_ONE,

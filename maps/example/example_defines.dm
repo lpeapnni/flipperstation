@@ -7,7 +7,7 @@
 	path = "example"
 
 	lobby_screens = list('maps/example/example.png')
-	lobby_tracks = list(/decl/music_track/absconditus)
+	//lobby_tracks = list(/decl/music_track/absconditus) // FLIPPER REMOVAL - see config/title_music
 
 	zlevel_datum_type = /datum/map_z_level/example
 

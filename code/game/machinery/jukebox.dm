@@ -240,11 +240,13 @@
 
 	var/area/main_area = get_area(src)
 	if(freq)
-		var/sound/new_song = sound(current_track.GetTrack(), channel = 1, repeat = 1, volume = 25)
+		//var/sound/new_song = sound(current_track.GetTrack(), channel = 1, repeat = 1, volume = 25) // FLIPPER EDIT - config/jukebox_tracks/
+		var/sound/new_song = sound(current_track.path, channel = 1, repeat = 1, volume = 25)
 		new_song.frequency = freq
 		main_area.forced_ambience = list(new_song)
 	else
-		main_area.forced_ambience = list(current_track.GetTrack())
+		//main_area.forced_ambience = list(current_track.GetTrack()) // FLIPPER EDIT - config/jukebox_tracks/
+		main_area.forced_ambience = list(current_track.path)
 
 	for(var/mob/living/M in mobs_in_area(main_area))
 		if(M.mind)
