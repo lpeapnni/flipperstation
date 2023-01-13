@@ -10,6 +10,7 @@
 	var/sound_channel
 	var/current_track
 	var/music_volume = 50
+	var/list/datum/track/tracks //FLIPPER ADDITION - config/jukebox_tracks/
 
 /obj/item/clothing/head/headphones/Initialize()
 	. = ..()
@@ -60,10 +61,19 @@
 /obj/item/clothing/head/headphones/proc/play_music(mob/user)
 	if(!user || !user.client)
 		return
+	/*
+	// FLIPPER EDIT - config/jukebox_tracks/
 	if(current_track)
 		var/decl/music_track/track = GET_DECL(GLOB.music_tracks[current_track])
 		user << sound(null, channel = sound_channel)
 		user << sound(track.song, repeat = 1, wait = 0, volume = music_volume, channel = sound_channel)
+	*/
+
+	if(current_track)
+		var/datum/track/track = tracks[current_track]
+		user << sound(null, channel = sound_channel)
+		user << sound(track.path, repeat = 1, wait = 0, volume = music_volume, channel = sound_channel)
+	// FLIPPER EDIT END
 
 /obj/item/clothing/head/headphones/proc/stop_music(mob/user)
 	if(!user || !user.client)
@@ -77,11 +87,21 @@
 	dat += "<A href='?src=\ref[src];toggle=1;'>Switch [headphones_on ? "off" : "on"]</a>"
 	dat += "Volume: [music_volume] <A href='?src=\ref[src];vol=-10;'>-</a><A href='?src=\ref[src];vol=10;'>+</a>"
 	dat += "Tracks:"
+	/*
+	// FLIPPER EDIT - config/jukebox_tracks/
 	for(var/track in GLOB.music_tracks)
 		if(track == current_track)
 			dat += "<span class='linkOn'>[track]</span>"
 		else
 			dat += "<A href='?src=\ref[src];track=[track];'>[track]</a>"
+	*/
+
+	for(var/track in tracks)
+		if(track == current_track)
+			dat += "<span class='linkOn'>[track]</span>"
+		else
+			dat += "<A href='?src=\ref[src];track=[track];'>[track]</a>"
+	// FLIPPER EDIT END
 
 	var/datum/browser/popup = new(user, "headphones", name, 290, 410)
 	popup.set_content(jointext(dat,"<br>"))

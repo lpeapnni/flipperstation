@@ -2,6 +2,11 @@
 /*
 !/*/
 
-#FLIPPER EDIT - title music shit
+#FLIPPER EDIT - music shit
 /title_music/sounds/*
 !/title_music/sounds/exclude
+
+/jukebox_music/sounds/*
+!/jukebox_music/sounds/exclude
+/jukebox_music/secret_sounds/*
+!/jukebox_music/secret_sounds/exclude
