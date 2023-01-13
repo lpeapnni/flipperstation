@@ -20,7 +20,6 @@
 	allergens = null
 	heat_discomfort_level = 295 //Prevents heat discomfort spam at 20c
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
-	spawn_flags = SPECIES_IS_RESTRICTED //just use anthromorph
 
 /datum/species/skrell
 	icobase = 'modular_flipper/icons/mob/human_races/r_skrell.dmi'
