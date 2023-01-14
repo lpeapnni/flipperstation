@@ -42,7 +42,7 @@ Configure how fast explosion strength diminishes when travelling up/down z level
 ## log OOC channel
 LOG_OOC
 
-## log client Say 
+## log client Say
 LOG_SAY
 
 ## log admin actions
@@ -112,7 +112,7 @@ MOD_JOB_TEMPBAN_MAX 1440
 
 
 ## probablities for game modes chosen in "secret" and "random" modes
-## 
+##
 ## default probablity is 1, increase to make that mode more likely to be picked
 ## set to 0 to disable that mode
 PROBABILITY EXTENDED 1
@@ -186,6 +186,9 @@ VOTE_AUTOTRANSFER_INTERVAL 36000
 
 ## Time left (seconds) before round start when automatic gamemote vote is called (default 100).
 VOTE_AUTOGAMEMODE_TIMELEFT 100
+
+## uncomment to enable automatic gamemode voting
+#VOTE_AUTOGAMEMODE_ALLOWED
 
 ## prevents dead players from voting or starting votes
 #NO_DEAD_VOTE
@@ -264,7 +267,7 @@ GUEST_BAN
 ##Remove the # mark infront of this to forbid admins from posssessing the singularity.
 #FORBID_SINGULO_POSSESSION
 
-## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM. 
+## Remove the # to show a popup 'reply to' window to every non-admin that recieves an adminPM.
 ## The intention is to make adminPMs more visible. (although I fnd popups annoying so this defaults to off)
 #POPUP_ADMIN_PM
 
@@ -344,7 +347,7 @@ LOADOUT_SLOTS 3
 ## Uncomment to use overmap system for zlevel travel
 #USE_OVERMAP
 
-## Defines which Z-levels the station exists on. 
+## Defines which Z-levels the station exists on.
 STATION_LEVELS 1
 
 ## Defines which Z-levels are used for admin functionality, such as Central Command and the Syndicate Shuttle
@@ -427,7 +430,7 @@ STARLIGHT 0
 ## Uncomment to override default brain health.
 #DEFAULT_BRAIN_HEALTH 400
 
-## Default language prefix keys, separated with spaces. Only single character keys are supported. If unset, defaults to , and # 
+## Default language prefix keys, separated with spaces. Only single character keys are supported. If unset, defaults to , and #
 # DEFAULT_LANGUAGE_PREFIXES , #
 
 ## Uncomment to enable the Panic Bunker by default. This will prevent all unseen-before players from connecting. Requires SQL.
@@ -504,13 +507,13 @@ IPR_MINIMUM_AGE 5
 ## The benefit of doing so in-game is that the quality of feedback received will likely be superior, as it self-selects for people who care enough to join the game.
 # SQLITE_FEEDBACK
 
-## A list of 'topics' that can be used to categorize feedback submitted, chosen 
+## A list of 'topics' that can be used to categorize feedback submitted, chosen
 ## by the user. Have each topic seperated by a ';', as seen below.
 ## The first one in the list will be the default one used, if the user does not change it.
 # SQLITE_FEEDBACK_TOPICS General; Suggestion; Complaint
 
 ## Uncomment to add a layer of privacy to player feedback, by hashing their key, if the user wants to.
-## This is intended to encourage more honest feedback, while still allowing the ability to determine 
+## This is intended to encourage more honest feedback, while still allowing the ability to determine
 ## if its just one person submitting everything.
 ## A 'pepper.txt' containing a secret string must exist in the /config folder.
 ## If this is turned off, users won't have the option to obfuscate their key.

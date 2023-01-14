@@ -99,7 +99,8 @@ var/global/datum/controller/subsystem/ticker/ticker
 			fire() // Don't wait for next tick, do it now!
 		return
 
-	if(pregame_timeleft <= config.vote_autogamemode_timeleft && !SSvote.gamemode_vote_called)
+	//if(pregame_timeleft <= config.vote_autogamemode_timeleft && !SSvote.gamemode_vote_called) // FLIPPER EDIT - game mode vote can be disabled
+	if(pregame_timeleft <= config.vote_autogamemode_timeleft && !SSvote.gamemode_vote_called && config.vote_autogamemode_allowed)
 		SSvote.autogamemode() // Start the game mode vote (if we haven't had one already)
 
 // Called during GAME_STATE_SETTING_UP (RUNLEVEL_SETUP)

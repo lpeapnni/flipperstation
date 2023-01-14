@@ -13,7 +13,7 @@
 	full_name = "Cynosure Station"
 	path = "cynosure"
 
-	lobby_screens = list('maps/cynosure/title_cynosure.png')
+	//lobby_screens = list('maps/cynosure/title_cynosure.png') // FLIPPER REMOVAL - LET ME USE MY OWN FUCKING LOBBY SCREEN
 
 	/*
 	// FLIPPER REMOVAL - see config/title_music

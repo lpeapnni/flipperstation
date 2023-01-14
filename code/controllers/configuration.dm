@@ -37,6 +37,7 @@ var/global/list/gamemode_cache = list()
 	var/static/vote_autotransfer_initial = 108000 // Length of time before the first autotransfer vote is called
 	var/static/vote_autotransfer_interval = 36000 // length of time before next sequential autotransfer vote
 	var/static/vote_autogamemode_timeleft = 100 //Length of time before round start when autogamemode vote is called (in seconds, default 100).
+	var/static/vote_autogamemode_allowed = 0 // FLIPPER ADDITION - gamemode vote can be disabled
 	var/static/vote_no_default = 0				// vote does not default to nochange/norestart (tbi)
 	var/static/vote_no_dead = 0				// dead people can't vote (tbi)
 //	var/static/enable_authentication = 0		// goon authentication
@@ -478,6 +479,11 @@ var/global/list/gamemode_cache = list()
 
 				if ("vote_autogamemode_timeleft")
 					config.vote_autogamemode_timeleft = text2num(value)
+
+				// FLIPPER EDIT START - gamemode vote can be disabled
+				if ("vote_autogamemode_allowed")
+					config.vote_autogamemode_allowed = 1
+				// FLIPPER EDIT END
 
 				if("ert_admin_only")
 					config.ert_admin_call_only = 1
