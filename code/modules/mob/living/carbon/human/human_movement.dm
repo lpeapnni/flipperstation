@@ -101,8 +101,8 @@
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
 // This calculates the amount of slowdown to receive from items worn. This does NOT include species modifiers.
-// It is in a seperate place to avoid an infinite loop situation with dragging mobs dragging each other.
-// Also its nice to have these things seperated.
+// It is in a separate place to avoid an infinite loop situation with dragging mobs dragging each other.
+// Also its nice to have these things separated.
 /mob/living/carbon/human/proc/calculate_item_encumbrance()
 	if(!buckled && shoes) // Shoes can make you go faster.
 		. += shoes.slowdown
@@ -113,7 +113,7 @@
 		. += I.slowdown
 
 	// Hands are also included, to make the 'take off your armor instantly and carry it with you to go faster' trick no longer viable.
-	// This is done seperately to disallow negative numbers (so you can't hold shoes in your hands to go faster).
+	// This is done separately to disallow negative numbers (so you can't hold shoes in your hands to go faster).
 	for(var/obj/item/I in list(r_hand, l_hand))
 		. += max(I.slowdown, 0)
 
@@ -122,8 +122,13 @@
 	if(!T)
 		return 0
 
-	if(T.movement_cost)
-		var/turf_move_cost = T.movement_cost
+	var/movecost = T.get_movement_cost()
+	var/snow_layers = SNOW_NONE
+	if (istype(T, /turf/simulated/floor)) // isfloor() doesn't work here, since snow is specifically on simulated floors only
+		var/turf/simulated/floor/F = T
+		snow_layers = max(SNOW_NONE, F.snow_layers)
+	if(movecost)
+		var/turf_move_cost = movecost
 		if(istype(T, /turf/simulated/floor/water))
 			if(species.water_movement)
 				turf_move_cost = clamp(turf_move_cost + species.water_movement, HUMAN_LOWEST_SLOWDOWN, 15)
@@ -132,7 +137,7 @@
 				if(feet.water_speed)
 					turf_move_cost = clamp(turf_move_cost + feet.water_speed, HUMAN_LOWEST_SLOWDOWN, 15)
 			. += turf_move_cost
-		else if(istype(T, /turf/simulated/floor/outdoors/snow))
+		else if(snow_layers)
 			if(species.snow_movement)
 				turf_move_cost = clamp(turf_move_cost + species.snow_movement, HUMAN_LOWEST_SLOWDOWN, 15)
 			if(shoes)
@@ -152,7 +157,7 @@
 			if(WH && WH.wind_speed) // Is there any wind?
 				// With the wind.
 				if(direct & WH.wind_dir)
-					. = max(. - WH.wind_speed, -1) // Wind speedup is capped to prevent supersonic speeds from a storm.
+					. = max(. - WH.wind_speed, -0.5) // Wind speedup is capped to prevent supersonic speeds from a storm.
 				// Against it.
 				else if(direct & reverse_dir[WH.wind_dir])
 					. += WH.wind_speed
@@ -160,40 +165,17 @@
 #undef HUMAN_LOWEST_SLOWDOWN
 
 /mob/living/carbon/human/get_jetpack()
-	if(back)
-		var/obj/item/rig/rig = get_rig()
-		if(istype(back, /obj/item/tank/jetpack))
-			return back
-		else if(istype(rig))
-			for(var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
-				return module.jets
-
-/mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
-	//Can we act?
-	if(restrained())	return 0
-
-	if(..()) //Can move due to other reasons, don't use jetpack fuel
-		return 1
-
-	//Do we have a working jetpack?
-	var/obj/item/tank/jetpack/thrust = get_jetpack()
-
-	if(thrust)
-		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.do_thrust(0.01, src)))
-			inertia_dir = 0
-			return 1
-
-	return 0
-
+	if(istype(back, /obj/item/tank/jetpack))
+		return back
+	var/obj/item/rig/rig = get_rig()
+	for(var/obj/item/rig_module/maneuvering_jets/module in rig?.installed_modules)
+		return module.jets
+	return ..()
 
 /mob/living/carbon/human/Process_Spaceslipping(var/prob_slip = 5)
 	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
 
 	if(species.flags & NO_SLIP)
-		return 0
-
-	var/obj/item/tank/jetpack/thrust = get_jetpack()
-	if(thrust?.can_thrust(0.01))
 		return 0
 
 	if(stat)
@@ -204,13 +186,16 @@
 		prob_slip = 0
 
 	//Check hands and mod slip
-	if(!l_hand)	prob_slip -= 2
-	else if(l_hand.w_class <= 2)	prob_slip -= 1
-	if (!r_hand)	prob_slip -= 2
-	else if(r_hand.w_class <= 2)	prob_slip -= 1
+	if(!l_hand)
+		prob_slip -= 2
+	else if(l_hand.w_class <= 2)
+		prob_slip -= 1
+	if (!r_hand)
+		prob_slip -= 2
+	else if(r_hand.w_class <= 2)
+		prob_slip -= 1
 
-	prob_slip = round(prob_slip)
-	return(prob_slip)
+	return round(prob_slip)
 
 // Handle footstep sounds
 /mob/living/carbon/human/handle_footstep(var/turf/T)
@@ -230,17 +215,17 @@
 	if(!S) return
 
 	// Play every 20 steps while walking, for the sneak
-	if(m_intent == "walk" && step_count++ % 20 != 0)
+	if(IS_WALKING(src) && step_count++ % 20 != 0)
 		return
 
 	// Play every other step while running
-	if(m_intent == "run" && step_count++ % 2 != 0)
+	if(IS_RUNNING(src) && step_count++ % 2 != 0)
 		return
 
 	var/volume = config.footstep_volume
 
 	// Reduce volume while walking or barefoot
-	if(!shoes || m_intent == "walk")
+	if(!shoes || IS_WALKING(src))
 		volume *= 0.5
 	else if(shoes)
 		var/obj/item/clothing/shoes/feet = shoes

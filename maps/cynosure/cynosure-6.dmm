@@ -165,16 +165,6 @@
 /obj/item/storage/box/glasses/square,
 /turf/simulated/floor/carpet,
 /area/shuttle/merchant/home)
-"aiB" = (
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/main_hall)
 "aiQ" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/unsimulated/floor{
@@ -370,23 +360,6 @@
 	icon_state = "dark"
 	},
 /area/centcom/security)
-"aoW" = (
-/obj/structure/table/standard,
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 4
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 4;
-	pixel_x = 32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/terminal)
 "apA" = (
 /obj/structure/holostool{
 	dir = 4
@@ -557,10 +530,6 @@
 /obj/machinery/vending/cigarette{
 	dir = 4
 	},
-/obj/structure/sign/christmas/lights{
-	dir = 8;
-	pixel_x = -32
-	},
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
@@ -730,16 +699,6 @@
 	icon_state = "carpet"
 	},
 /area/centcom/command)
-"aLT" = (
-/obj/structure/sign/christmas/lights{
-	dir = 8;
-	pixel_x = -32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/main_hall)
 "aMd" = (
 /obj/effect/floor_decal/corner/green/full{
 	dir = 1
@@ -890,10 +849,6 @@
 	},
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 1
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
@@ -1209,17 +1164,6 @@
 /obj/machinery/optable,
 /turf/simulated/shuttle/floor/white,
 /area/skipjack_station/start)
-"boh" = (
-/obj/structure/flora/pottedplant/stoutbush,
-/obj/structure/sign/christmas/lights{
-	dir = 4;
-	pixel_x = 32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/main_hall)
 "boo" = (
 /obj/structure/shuttle/falsewall_no_join{
 	icon = 'icons/turf/wall_masks_tgmc.dmi';
@@ -1743,24 +1687,6 @@
 	},
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/syndicate_elite/mothership)
-"bVj" = (
-/obj/structure/table/standard,
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 4
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 4;
-	pixel_x = 32
-	},
-/obj/item/toy/xmastree,
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/terminal)
 "bVM" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /turf/unsimulated/floor{
@@ -1971,10 +1897,6 @@
 "cfy" = (
 /obj/structure/table/marble,
 /obj/machinery/chemical_dispenser/bar_soft/full,
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
@@ -3198,7 +3120,7 @@
 /obj/machinery/vending/cigarette{
 	name = "hacked cigarette machine";
 	prices = list();
-	products = list(/obj/item/storage/fancy/cigarettes = 10, /obj/item/storage/box/matches = 10, /obj/item/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
+	products = list(/obj/item/storage/fancy/cigarettes=10,/obj/item/storage/box/matches=10,/obj/item/flame/lighter/zippo=4,/obj/item/clothing/mask/smokable/cigarette/cigar/havana=2)
 	},
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
@@ -3337,6 +3259,16 @@
 /obj/item/toy/chess/rook_white,
 /turf/simulated/floor/holofloor/wmarble,
 /area/holodeck/source_chess)
+"dLe" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/effect/floor_decal/arrivals/right,
+/turf/unsimulated/floor{
+	icon = 'icons/turf/flooring/tiles.dmi';
+	icon_state = "steel"
+	},
+/area/centcom/main_hall)
 "dLk" = (
 /obj/structure/table/standard,
 /obj/item/deck/cards,
@@ -3878,10 +3810,6 @@
 "etB" = (
 /obj/structure/table/marble,
 /obj/machinery/chemical_dispenser/bar_alc/full,
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
@@ -4130,10 +4058,6 @@
 	},
 /obj/effect/floor_decal/corner/green/border{
 	dir = 6
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 4;
-	pixel_x = 32
 	},
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
@@ -4886,10 +4810,6 @@
 /obj/machinery/vending/boozeomat{
 	req_access = null
 	},
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
@@ -4903,25 +4823,6 @@
 /obj/machinery/teleport/station,
 /turf/simulated/shuttle/plating,
 /area/ninja_dojo/start)
-"fzU" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 4
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 4;
-	pixel_x = 32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/terminal)
 "fzX" = (
 /turf/unsimulated/wall,
 /area/centcom/medical)
@@ -4951,23 +4852,6 @@
 	icon_state = "techfloor_gray"
 	},
 /area/centcom/specops)
-"fAL" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 4
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 4;
-	pixel_x = 32
-	},
-/obj/structure/flora/pottedplant/xmas,
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/terminal)
 "fBf" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
@@ -5018,11 +4902,6 @@
 /obj/item/clothing/head/pin/flower/blue,
 /obj/item/clothing/head/pin/flower/orange,
 /obj/item/clothing/head/pin/flower/pink,
-/obj/item/clothing/head/justice,
-/obj/item/clothing/head/justice/blue,
-/obj/item/clothing/head/justice/green,
-/obj/item/clothing/head/justice/pink,
-/obj/item/clothing/head/justice/yellow,
 /obj/item/clothing/head/collectable/philosopher_wig,
 /obj/item/clothing/head/collectable/plaguedoctorhat,
 /obj/item/clothing/head/collectable/xenos,
@@ -5433,7 +5312,8 @@
 /area/ninja_dojo/dojo)
 "fZU" = (
 /obj/machinery/door/airlock/centcom{
-	name = "Storage"
+	name = "Storage";
+	req_one_access = list(150)
 	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
@@ -5569,7 +5449,8 @@
 "ggE" = (
 /obj/machinery/door/airlock/centcom{
 	icon_state = "door_locked";
-	locked = 1
+	locked = 1;
+	req_one_access = list(150)
 	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
@@ -5697,22 +5578,6 @@
 	icon_state = "lino"
 	},
 /area/tdome)
-"gou" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 4
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 4;
-	pixel_x = 32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/terminal)
 "gow" = (
 /obj/machinery/recharge_station,
 /turf/simulated/shuttle/floor/voidcraft/dark,
@@ -6031,10 +5896,6 @@
 /area/centcom/bar)
 "gIh" = (
 /obj/structure/closet/secure_closet/bar,
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
@@ -6874,10 +6735,6 @@
 /area/centcom/command)
 "hIC" = (
 /obj/structure/flora/pottedplant/stoutbush,
-/obj/structure/sign/christmas/lights{
-	dir = 8;
-	pixel_x = -32
-	},
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "steel"
@@ -6978,19 +6835,6 @@
 	name = "plating"
 	},
 /area/centcom/living)
-"hMX" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/main_hall)
 "hNd" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -7164,10 +7008,6 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 1
 	},
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
 "hUw" = (
@@ -7311,7 +7151,6 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 9
 	},
-/obj/item/toy/xmastree,
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "white"
@@ -7954,7 +7793,7 @@
 /turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/escape/centcom)
 "iNR" = (
-/obj/item/robot_parts/robot_suit,
+/obj/item/robot_parts/frame,
 /obj/item/robot_parts/r_leg,
 /obj/item/robot_parts/r_arm,
 /turf/simulated/shuttle/plating,
@@ -9211,7 +9050,6 @@
 /area/holodeck/source_boxingcourt)
 "khb" = (
 /obj/structure/table/woodentable,
-/obj/item/toy/xmas_cracker,
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
@@ -9289,7 +9127,8 @@
 /area/wizard_station)
 "kje" = (
 /obj/machinery/door/airlock/centcom{
-	name = "Suit Storage"
+	name = "Suit Storage";
+	req_one_access = list(150)
 	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
@@ -9377,7 +9216,7 @@
 "knf" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Kitchen";
-	req_access = list(150)
+	req_one_access = list(150)
 	},
 /turf/unsimulated/floor{
 	icon_state = "white"
@@ -10021,7 +9860,6 @@
 /obj/structure/table/woodentable,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/brown/border,
-/obj/item/toy/xmastree,
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
 "kPT" = (
@@ -10269,16 +10107,6 @@
 	icon_state = "steel"
 	},
 /area/shuttle/trade)
-"leI" = (
-/obj/item/stool/padded,
-/obj/structure/sign/christmas/lights{
-	dir = 8;
-	pixel_x = -32
-	},
-/turf/unsimulated/floor{
-	icon_state = "wood"
-	},
-/area/centcom/bar)
 "leY" = (
 /obj/machinery/light{
 	dir = 4
@@ -10412,10 +10240,6 @@
 	},
 /obj/effect/floor_decal/corner/green/border{
 	dir = 4
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 4;
-	pixel_x = 32
 	},
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
@@ -10717,12 +10541,6 @@
 	icon_state = "steel"
 	},
 /area/centcom/terminal)
-"lFE" = (
-/obj/structure/flora/tree/pine/xmas/presents,
-/turf/unsimulated/floor{
-	icon_state = "wood"
-	},
-/area/centcom/bar)
 "lFQ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -10843,9 +10661,9 @@
 /area/shuttle/merchant/home)
 "lMq" = (
 /obj/structure/table/standard,
-/obj/item/clothing/accessory/permit,
-/obj/item/clothing/accessory/permit,
-/obj/item/clothing/accessory/permit,
+/obj/item/clothing/accessory/medal/permit,
+/obj/item/clothing/accessory/medal/permit,
+/obj/item/clothing/accessory/medal/permit,
 /turf/unsimulated/floor{
 	icon_state = "steel"
 	},
@@ -11380,7 +11198,8 @@
 /area/space)
 "mpf" = (
 /obj/machinery/door/airlock/centcom{
-	name = "Armory"
+	name = "Armory";
+	req_one_access = list(150)
 	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
@@ -11481,7 +11300,7 @@
 "muV" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Barracks";
-	req_access = list(150)
+	req_one_access = list(150)
 	},
 /turf/unsimulated/floor{
 	icon_state = "cult";
@@ -12415,6 +12234,7 @@
 /obj/effect/floor_decal/corner/red/bordercorner{
 	dir = 8
 	},
+/obj/effect/floor_decal/arrivals,
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "steel"
@@ -12444,10 +12264,6 @@
 /obj/machinery/computer/arcade{
 	dir = 1
 	},
-/obj/structure/sign/christmas/lights{
-	dir = 8;
-	pixel_x = -32
-	},
 /turf/unsimulated/floor{
 	icon_state = "wood"
 	},
@@ -12459,7 +12275,7 @@
 "nAf" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Barracks";
-	req_access = list(150)
+	req_one_access = list(150)
 	},
 /turf/unsimulated/floor{
 	icon_state = "lino"
@@ -12515,22 +12331,6 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
-"nDE" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 1
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/terminal)
 "nDQ" = (
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/vox/medic,
@@ -13037,23 +12837,6 @@
 	icon_state = "wood"
 	},
 /area/centcom/bar)
-"oke" = (
-/obj/structure/closet/emcloset,
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/green/border{
-	dir = 4
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 4;
-	pixel_x = 32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/terminal)
 "okj" = (
 /obj/effect/floor_decal/industrial/warning/cee{
 	dir = 8
@@ -13992,21 +13775,6 @@
 /obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
-"pmz" = (
-/obj/structure/flora/pottedplant/stoutbush,
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 4;
-	pixel_x = 32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/main_hall)
 "pnf" = (
 /obj/machinery/light{
 	dir = 8
@@ -14410,16 +14178,6 @@
 	icon_state = "techfloor_gray"
 	},
 /area/centcom/specops)
-"pGc" = (
-/obj/structure/sign/christmas/lights{
-	dir = 4;
-	pixel_x = 32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/main_hall)
 "pGg" = (
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source_theatre)
@@ -14567,7 +14325,7 @@
 /obj/machinery/vending/cigarette{
 	name = "hacked cigarette machine";
 	prices = list();
-	products = list(/obj/item/storage/fancy/cigarettes = 10, /obj/item/storage/box/matches = 10, /obj/item/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
+	products = list(/obj/item/storage/fancy/cigarettes=10,/obj/item/storage/box/matches=10,/obj/item/flame/lighter/zippo=4,/obj/item/clothing/mask/smokable/cigarette/cigar/havana=2)
 	},
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
@@ -14898,7 +14656,7 @@
 	dir = 4;
 	name = "hacked cigarette machine";
 	prices = list();
-	products = list(/obj/item/storage/fancy/cigarettes = 10, /obj/item/storage/box/matches = 10, /obj/item/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
+	products = list(/obj/item/storage/fancy/cigarettes=10,/obj/item/storage/box/matches=10,/obj/item/flame/lighter/zippo=4,/obj/item/clothing/mask/smokable/cigarette/cigar/havana=2)
 	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
@@ -15017,15 +14775,6 @@
 "qpd" = (
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/ninja_dojo/start)
-"qpg" = (
-/obj/structure/sign/christmas/lights{
-	dir = 8;
-	pixel_x = -32
-	},
-/turf/unsimulated/floor{
-	icon_state = "wood"
-	},
-/area/centcom/bar)
 "qqa" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -15504,7 +15253,7 @@
 	dir = 4;
 	name = "hacked cigarette machine";
 	prices = list();
-	products = list(/obj/item/storage/fancy/cigarettes = 10, /obj/item/storage/box/matches = 10, /obj/item/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
+	products = list(/obj/item/storage/fancy/cigarettes=10,/obj/item/storage/box/matches=10,/obj/item/flame/lighter/zippo=4,/obj/item/clothing/mask/smokable/cigarette/cigar/havana=2)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/merchant/home)
@@ -15656,6 +15405,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner,
+/obj/effect/floor_decal/arrivals/right,
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "steel"
@@ -15735,19 +15485,6 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/merchant/home)
-"qZM" = (
-/obj/structure/table/woodentable,
-/obj/structure/flora/pottedplant/large{
-	pixel_y = 10
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 8;
-	pixel_x = -32
-	},
-/turf/unsimulated/floor{
-	icon_state = "wood"
-	},
-/area/centcom/bar)
 "rar" = (
 /obj/structure/table/steel_reinforced,
 /obj/random/plushie,
@@ -16933,10 +16670,6 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 1
 	},
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
 "sdu" = (
@@ -17347,10 +17080,6 @@
 	},
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 9
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
@@ -17772,10 +17501,6 @@
 /obj/machinery/media/jukebox,
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
 	},
 /turf/unsimulated/floor{
 	icon_state = "wood"
@@ -18450,13 +18175,9 @@
 /turf/simulated/shuttle/floor,
 /area/shuttle/escape/centcom)
 "tJi" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "centcom_dock_airlock";
-	locked = 1;
-	name = "Arrivals Airlock";
-	req_access = list(13)
+/obj/machinery/disposal/deliveryChute{
+	dir = 8;
+	name = "cargo chute"
 	},
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/plating.dmi';
@@ -18533,17 +18254,6 @@
 	},
 /turf/simulated/floor/holofloor/lino,
 /area/holodeck/source_meetinghall)
-"tNu" = (
-/obj/structure/table/bench/padded,
-/obj/structure/sign/christmas/lights{
-	dir = 4;
-	pixel_x = 32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/main_hall)
 "tOF" = (
 /obj/effect/floor_decal/sign/small_f,
 /turf/simulated/floor/holofloor/wood,
@@ -19254,18 +18964,14 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 5
 	},
-/obj/structure/flora/pottedplant/xmas,
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
+/obj/structure/flora/pottedplant/decorative,
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
 "uAk" = (
 /obj/machinery/vending/cigarette{
 	name = "hacked cigarette machine";
 	prices = list();
-	products = list(/obj/item/storage/fancy/cigarettes = 10, /obj/item/storage/box/matches = 10, /obj/item/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
+	products = list(/obj/item/storage/fancy/cigarettes=10,/obj/item/storage/box/matches=10,/obj/item/flame/lighter/zippo=4,/obj/item/clothing/mask/smokable/cigarette/cigar/havana=2)
 	},
 /turf/simulated/shuttle/floor/voidcraft,
 /area/syndicate_station/start)
@@ -19976,10 +19682,6 @@
 /area/shuttle/supply)
 "vpD" = (
 /obj/structure/table/bench/padded,
-/obj/structure/sign/christmas/lights{
-	dir = 8;
-	pixel_x = -32
-	},
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "steel"
@@ -20412,7 +20114,7 @@
 /obj/machinery/vending/assist{
 	contraband = null;
 	name = "AntagCorpVend";
-	products = list(/obj/item/assembly/prox_sensor = 5, /obj/item/assembly/signaler = 4, /obj/item/assembly/infra = 4, /obj/item/assembly/prox_sensor = 4, /obj/item/handcuffs = 8, /obj/item/flash = 4, /obj/item/cartridge/signal = 4, /obj/item/clothing/glasses/sunglasses = 4)
+	products = list(/obj/item/assembly/prox_sensor=5,/obj/item/assembly/signaler=4,/obj/item/assembly/infra=4,/obj/item/assembly/prox_sensor=4,/obj/item/handcuffs=8,/obj/item/flash=4,/obj/item/cartridge/signal=4,/obj/item/clothing/glasses/sunglasses=4)
 	},
 /turf/simulated/shuttle/floor/voidcraft,
 /area/syndicate_station/start)
@@ -21105,30 +20807,8 @@
 /area/syndicate_station/start)
 "wvQ" = (
 /obj/machinery/smartfridge,
-/obj/structure/sign/christmas/lights{
-	dir = 8;
-	pixel_x = -32
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
 /turf/unsimulated/floor{
 	icon_state = "wood"
-	},
-/area/centcom/bar)
-"wvR" = (
-/obj/machinery/floor_light{
-	anchored = 1
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/plating.dmi';
-	icon_state = "plating";
-	name = "plating"
 	},
 /area/centcom/bar)
 "wwH" = (
@@ -21421,6 +21101,16 @@
 	icon_state = "white"
 	},
 /area/shuttle/trade)
+"wMZ" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/effect/floor_decal/arrivals,
+/turf/unsimulated/floor{
+	icon = 'icons/turf/flooring/tiles.dmi';
+	icon_state = "steel"
+	},
+/area/centcom/main_hall)
 "wNd" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/organ/internal/stack,
@@ -21552,10 +21242,6 @@
 	},
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 1
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
@@ -21815,16 +21501,6 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
-"xeX" = (
-/obj/structure/table/marble,
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
-/turf/unsimulated/floor{
-	icon_state = "wood"
-	},
-/area/centcom/bar)
 "xfC" = (
 /obj/item/clothing/head/collectable/xenos,
 /turf/unsimulated/floor{
@@ -22035,15 +21711,6 @@
 /obj/effect/floor_decal/corner/brown/bordercorner,
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
-"xri" = (
-/obj/structure/table/marble,
-/obj/structure/balloon/xmas{
-	pixel_y = 10
-	},
-/turf/unsimulated/floor{
-	icon_state = "wood"
-	},
-/area/centcom/bar)
 "xrk" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -22163,21 +21830,6 @@
 	},
 /turf/simulated/floor/holofloor/space,
 /area/holodeck/source_space)
-"xxq" = (
-/obj/structure/flora/pottedplant/stoutbush,
-/obj/structure/sign/christmas/lights{
-	dir = 1;
-	pixel_y = 32
-	},
-/obj/structure/sign/christmas/lights{
-	dir = 8;
-	pixel_x = -32
-	},
-/turf/unsimulated/floor{
-	icon = 'icons/turf/flooring/tiles.dmi';
-	icon_state = "steel"
-	},
-/area/centcom/main_hall)
 "xyf" = (
 /obj/effect/floor_decal/sign/small_e,
 /turf/simulated/floor/holofloor/wood,
@@ -22499,7 +22151,7 @@
 	contraband = null;
 	dir = 1;
 	name = "Old Vending Machine";
-	products = list(/obj/item/assembly/prox_sensor = 5, /obj/item/assembly/signaler = 4, /obj/item/assembly/infra = 4, /obj/item/assembly/prox_sensor = 4, /obj/item/handcuffs = 8, /obj/item/flash = 4, /obj/item/cartridge/signal = 4, /obj/item/clothing/glasses/sunglasses = 4)
+	products = list(/obj/item/assembly/prox_sensor=5,/obj/item/assembly/signaler=4,/obj/item/assembly/infra=4,/obj/item/assembly/prox_sensor=4,/obj/item/handcuffs=8,/obj/item/flash=4,/obj/item/cartridge/signal=4,/obj/item/clothing/glasses/sunglasses=4)
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/merchant/home)
@@ -31057,7 +30709,7 @@ puk
 puk
 puk
 pAD
-hMX
+kXS
 kXS
 kXS
 pAD
@@ -31314,7 +30966,7 @@ puk
 puk
 puk
 pAD
-aiB
+gBA
 gBA
 gBA
 pAD
@@ -31571,7 +31223,7 @@ puk
 puk
 puk
 pAD
-aiB
+gBA
 piF
 gBA
 pAD
@@ -31828,7 +31480,7 @@ puk
 puk
 puk
 pAD
-aiB
+gBA
 piF
 gBA
 gSq
@@ -32085,7 +31737,7 @@ puk
 puk
 puk
 pAD
-aiB
+gBA
 piF
 gBA
 mBj
@@ -32100,19 +31752,19 @@ puk
 puk
 fVm
 wvQ
-qpg
-qpg
-qpg
-qpg
 haV
 haV
 haV
 haV
 haV
-leI
+haV
+haV
+haV
+haV
+nAm
 nyS
 azw
-qZM
+mqp
 iuf
 jEH
 eSW
@@ -32130,7 +31782,7 @@ nxV
 nxV
 nxV
 nxV
-nDE
+amw
 quS
 vjU
 nxV
@@ -32342,7 +31994,7 @@ puk
 puk
 puk
 pAD
-aiB
+gBA
 gBA
 gBA
 gSq
@@ -32387,7 +32039,7 @@ kpE
 kpE
 kpE
 nxV
-nDE
+amw
 qTA
 rLA
 nxV
@@ -32599,7 +32251,7 @@ puk
 puk
 puk
 pAD
-aiB
+gBA
 gBA
 gBA
 pAD
@@ -32644,7 +32296,7 @@ kpE
 kpE
 kpE
 nxV
-nDE
+amw
 qTA
 rLA
 pEe
@@ -32856,7 +32508,7 @@ vlH
 vlH
 vlH
 vlH
-aiB
+gBA
 piF
 gBA
 pAD
@@ -32901,7 +32553,7 @@ kpE
 kpE
 kpE
 pEe
-nDE
+amw
 quS
 rLA
 nxV
@@ -33113,7 +32765,7 @@ wfT
 wfT
 wfT
 vlH
-aiB
+gBA
 piF
 gBA
 pAD
@@ -33158,7 +32810,7 @@ kpE
 kpE
 kpE
 pEe
-nDE
+amw
 qTA
 rLA
 pEe
@@ -33370,7 +33022,7 @@ pCM
 tLG
 wfT
 vlH
-aiB
+gBA
 piF
 gBA
 pAD
@@ -33384,10 +33036,10 @@ mTz
 mTz
 mTz
 fVm
-xeX
+oNF
 wux
 wux
-xri
+oNF
 snZ
 haV
 haV
@@ -33415,7 +33067,7 @@ kpE
 kpE
 kpE
 pEe
-nDE
+amw
 qTA
 rLA
 pEe
@@ -33627,7 +33279,7 @@ pSk
 dGs
 wfT
 vlH
-aiB
+gBA
 gBA
 gBA
 pAD
@@ -33650,7 +33302,7 @@ haV
 haV
 haV
 haV
-lFE
+haV
 haV
 haV
 haV
@@ -33672,7 +33324,7 @@ kpE
 kpE
 kpE
 nxV
-nDE
+amw
 qTA
 rLA
 pEe
@@ -33884,7 +33536,7 @@ pSk
 dGs
 wfT
 vlH
-aiB
+gBA
 gBA
 gBA
 pAD
@@ -33898,7 +33550,7 @@ rrI
 xOi
 mTz
 fVm
-wvR
+yce
 yce
 yce
 yce
@@ -33929,7 +33581,7 @@ kpE
 kpE
 kpE
 nxV
-nDE
+amw
 quS
 rLA
 nxV
@@ -34141,7 +33793,7 @@ pSk
 dGs
 wfT
 roT
-aiB
+gBA
 piF
 gBA
 gSq
@@ -34155,7 +33807,7 @@ rrI
 xOi
 mTz
 fVm
-wvR
+yce
 yce
 yce
 yce
@@ -34186,7 +33838,7 @@ kpE
 kpE
 kpE
 pEe
-nDE
+amw
 qTA
 rLA
 pEe
@@ -34398,7 +34050,7 @@ pSk
 dGs
 wfT
 roT
-aiB
+gBA
 piF
 gBA
 gSq
@@ -34412,7 +34064,7 @@ rrI
 nYl
 qWM
 fVm
-wvR
+yce
 yce
 yce
 yce
@@ -34443,7 +34095,7 @@ kpE
 kpE
 kpE
 pEe
-nDE
+amw
 qTA
 rLA
 pEe
@@ -34655,7 +34307,7 @@ aLL
 dGs
 wfT
 roT
-aiB
+gBA
 piF
 gBA
 gSq
@@ -34669,7 +34321,7 @@ rrI
 pXt
 gBA
 fVm
-wvR
+yce
 yce
 yce
 yce
@@ -34700,7 +34352,7 @@ kpE
 kpE
 kpE
 pEe
-nDE
+amw
 qTA
 rLA
 pEe
@@ -34912,7 +34564,7 @@ vFe
 nmu
 wfT
 vlH
-aiB
+gBA
 gBA
 gBA
 pAD
@@ -34926,7 +34578,7 @@ qup
 sbj
 gBA
 fVm
-wvR
+yce
 yce
 yce
 yce
@@ -34957,7 +34609,7 @@ kpE
 kpE
 kpE
 nxV
-nDE
+amw
 quS
 rLA
 nxV
@@ -35169,7 +34821,7 @@ wfT
 wfT
 wfT
 vlH
-aiB
+gBA
 gBA
 gBA
 pAD
@@ -35214,7 +34866,7 @@ kpE
 kpE
 kpE
 nxV
-nDE
+amw
 qTA
 rLA
 pEe
@@ -35440,16 +35092,16 @@ pAD
 chb
 iUS
 pAD
-xxq
+hIC
 vpD
 vpD
 vpD
-aLT
-aLT
 gBA
 gBA
-aLT
-aLT
+gBA
+gBA
+gBA
+gBA
 vpD
 vpD
 vpD
@@ -35471,7 +35123,7 @@ pEe
 pEe
 nxV
 qeE
-nDE
+amw
 qTA
 rLA
 pEe
@@ -35697,7 +35349,7 @@ pAD
 gSq
 gSq
 pAD
-aiB
+gBA
 gBA
 piF
 piF
@@ -35719,7 +35371,7 @@ oqK
 wja
 rOS
 oqK
-wja
+dLe
 gBA
 hwF
 pAD
@@ -36725,7 +36377,7 @@ pAD
 gSq
 gSq
 pAD
-aiB
+gBA
 gBA
 piF
 piF
@@ -36747,7 +36399,7 @@ oqK
 wja
 rOS
 oqK
-wja
+wMZ
 gBA
 uOQ
 pAD
@@ -36982,20 +36634,20 @@ pAD
 iUS
 iUS
 pAD
-pmz
-pGc
-pGc
-pGc
+hIC
+gBA
+gBA
+gBA
 wcx
-pGc
-tNu
-tNu
-pGc
-pGc
+gBA
+vpD
+vpD
+gBA
+gBA
 mRQ
 wcx
-pGc
-boh
+gBA
+hIC
 pAD
 boE
 oUZ
@@ -37013,7 +36665,7 @@ pEe
 pEe
 nxV
 use
-nDE
+amw
 qTA
 rLA
 pEe
@@ -37225,7 +36877,7 @@ wha
 sqs
 sqs
 jKw
-aiB
+gBA
 gBA
 gBA
 pAD
@@ -37270,7 +36922,7 @@ kpE
 kpE
 kpE
 nxV
-nDE
+amw
 qTA
 rLA
 pEe
@@ -37482,7 +37134,7 @@ wha
 sqs
 jrv
 jKw
-aiB
+gBA
 gBA
 gBA
 pAD
@@ -37527,7 +37179,7 @@ kpE
 kpE
 kpE
 nxV
-nDE
+amw
 quS
 rLA
 nxV
@@ -37739,7 +37391,7 @@ wha
 sqs
 wha
 vDV
-aiB
+gBA
 piF
 gBA
 gSq
@@ -37784,7 +37436,7 @@ kpE
 kpE
 kpE
 pEe
-nDE
+amw
 qTA
 rLA
 pEe
@@ -37996,7 +37648,7 @@ wha
 wha
 wha
 vDV
-aiB
+gBA
 piF
 gBA
 gSq
@@ -38041,7 +37693,7 @@ kpE
 kpE
 kpE
 pEe
-nDE
+amw
 qTA
 rLA
 pEe
@@ -38253,7 +37905,7 @@ wha
 wha
 wha
 vDV
-aiB
+gBA
 piF
 gBA
 gSq
@@ -38298,7 +37950,7 @@ kpE
 kpE
 kpE
 pEe
-nDE
+amw
 qTA
 rLA
 pEe
@@ -38510,7 +38162,7 @@ wha
 wha
 wha
 jKw
-aiB
+gBA
 gBA
 gBA
 pAD
@@ -38555,7 +38207,7 @@ kpE
 kpE
 kpE
 nxV
-nDE
+amw
 quS
 rLA
 nxV
@@ -38767,7 +38419,7 @@ wha
 wha
 wha
 jKw
-aiB
+gBA
 gBA
 gBA
 pAD
@@ -38812,7 +38464,7 @@ kpE
 kpE
 kpE
 nxV
-nDE
+amw
 qTA
 rLA
 pEe
@@ -39024,7 +38676,7 @@ wha
 wha
 tra
 jKw
-aiB
+gBA
 piF
 gBA
 pAD
@@ -39069,7 +38721,7 @@ kpE
 kpE
 kpE
 pEe
-nDE
+amw
 qTA
 rLA
 pEe
@@ -39281,7 +38933,7 @@ jKw
 jKw
 jKw
 jKw
-aiB
+gBA
 piF
 gBA
 pAD
@@ -39326,7 +38978,7 @@ kpE
 kpE
 kpE
 pEe
-nDE
+amw
 qTA
 rLA
 pEe
@@ -39538,7 +39190,7 @@ puk
 puk
 puk
 pAD
-aiB
+gBA
 piF
 gBA
 pAD
@@ -39583,7 +39235,7 @@ kpE
 kpE
 kpE
 pEe
-nDE
+amw
 quS
 rLA
 nxV
@@ -39795,7 +39447,7 @@ puk
 puk
 puk
 pAD
-aiB
+gBA
 gBA
 gBA
 pAD
@@ -39840,7 +39492,7 @@ kpE
 kpE
 kpE
 nxV
-nDE
+amw
 qTA
 rLA
 pEe
@@ -40097,7 +39749,7 @@ kpE
 kpE
 kpE
 nxV
-nDE
+amw
 qTA
 rLA
 nxV
@@ -40354,7 +40006,7 @@ kpE
 kpE
 nxV
 nxV
-nDE
+amw
 quS
 rdN
 nxV
@@ -40636,8 +40288,8 @@ wqh
 qUO
 sLv
 nxV
-puk
-puk
+nxV
+nxV
 puk
 puk
 puk
@@ -41386,25 +41038,25 @@ wHT
 quS
 wHT
 nxV
-aoW
-fzU
-gou
-fzU
-gou
-fzU
-fAL
-fzU
-aoW
-fzU
-gou
-fzU
+wCB
+xWO
+lFQ
+xWO
+lFQ
+xWO
+lFQ
+xWO
+wCB
+xWO
+lFQ
+xWO
 llZ
-bVj
-aoW
-oke
-fzU
-fAL
-fzU
+wCB
+wCB
+eox
+xWO
+lFQ
+xWO
 eHd
 nxV
 puk

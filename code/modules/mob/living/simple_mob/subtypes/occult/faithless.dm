@@ -1,6 +1,6 @@
 /mob/living/simple_mob/faithless
-	name = "Faithless"
-	desc = "The Wish Granter's faith in humanity, incarnate"
+	name = "miasmic entity"
+	desc = "Malignant energy given physical form by phenomena unknown."
 	icon_state = "faithless"
 	icon_living = "faithless"
 	icon_dead = "faithless_dead"
@@ -43,7 +43,7 @@
 	minbodytemp = 0
 
 /mob/living/simple_mob/faithless/Process_Spacemove(var/check_drift = 0)
-	return 1
+	return TRUE
 
 /mob/living/simple_mob/faithless/apply_melee_effects(var/atom/A)
 	if(isliving(A))

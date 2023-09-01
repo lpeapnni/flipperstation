@@ -39,13 +39,13 @@ Grafadrekas are capable of exerting bite pressures in excess of 900 PSI, which a
 They have been observed to occasionally attack and kill colonists, generally when conditions are too poor to hunt their usual prey. Despite this, and despite their disposition being generally skittish and avoidant of colonists, some Sivian communities hold that they have been observed to guide or protect lost travellers.
 <br><br>
 Field studies suggest analytical abilities on par with some species of cepholapods, but their symbiotic physiology rapidly fails in captivity, making laboratory testing difficult. Their inability to make use of tools or form wider social groups beyond a handful of individuals has been hypothesised to prevent the expression of more complex social behaviors."}
-	value = CATALOGUER_REWARD_HARD
+	value = CATALOGUER_REWARD_EASY
 
 
 /datum/say_list/grafadreka
 	speak = list("Chff!", "Skhh.", "Rrrss...")
 	emote_see = list("scratches its ears","grooms its spines", "sways its tail", "claws at the ground")
-	emote_hear = list("hisses", "rattles", "rasps", "barks")
+	emote_hear = list("hisses", "rattles", "rasps", "barks", "warbles")
 
 
 /decl/mob_organ_names/grafadreka
@@ -63,23 +63,9 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	)
 
 
-/decl/emote/audible/drake_howl
-	key = "dhowl"
-	emote_message_3p = "lifts USER_THEIR head up and gives an eerie howl."
-	emote_sound = 'sound/effects/drakehowl_close.ogg'
-	broadcast_sound ='sound/effects/drakehowl_far.ogg'
-	emote_cooldown = 20 SECONDS
-	broadcast_distance = 90
-
-
-/decl/emote/audible/drake_howl/broadcast_emote_to(send_sound, mob/target, direction)
-	. = ..()
-	if (.)
-		to_chat(target, SPAN_NOTICE("You hear an eerie howl from somewhere to the [dir2text(direction)]."))
-
 
 /obj/item/projectile/drake_spit
-	name = "drake spit"
+	name = "drake spittle"
 	icon_state = "ice_1"
 	damage = 0
 	embed_chance = 0
@@ -90,24 +76,23 @@ Field studies suggest analytical abilities on par with some species of cepholapo
 	stun = 3
 	weaken = 3
 	eyeblur = 5
-	fire_sound = 'sound/effects/splat.ogg'
+	fire_sound = 'sound/voice/drakes/drake_spit.ogg'
 
+
+/obj/item/projectile/drake_spit/on_hit(atom/target, blocked, def_zone)
+	// Stun is needed to effectively hunt simplemobs, but it's OP against humans.
+	if(ishuman(target))
+		var/mob/living/carbon/human/victim = target
+		victim.AdjustConfused(max(stun, weaken))
+		stun = 0
+		weaken = 0
+	. = ..()
 
 /obj/item/projectile/drake_spit/weak
-	stun = 0
-	weaken = 0
+	stun = 1
+	weaken = 1
 	eyeblur = 2
-
-
-/obj/structure/animal_den/ghost_join/grafadreka
-	name = "drake den"
-	critter = /mob/living/simple_mob/animal/sif/grafadreka
-
-
-/obj/structure/animal_den/ghost_join/grafadreka_hatchling
-	name = "drake hatchling den"
-	critter = /mob/living/simple_mob/animal/sif/grafadreka/hatchling
-
+	fire_sound = 'sound/voice/drakes/hatchling_spit.ogg'
 
 /mob/living/simple_mob/animal/sif/grafadreka/rainbow/setup_colours()
 	glow_colour = get_random_colour(TRUE)

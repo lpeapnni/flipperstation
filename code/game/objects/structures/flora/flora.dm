@@ -455,7 +455,7 @@
 
 /obj/structure/flora/pottedplant/xmas
 	name = "small christmas tree"
-	desc = "This is a tiny well lit decorative christmas tree."
+	desc = "This is a tiny well lit decorative Christmas tree."
 	icon_state = "plant-xmas"
 
 /obj/structure/flora/mushroom
@@ -486,7 +486,7 @@
 	it to spread much farther than before, with the assistance of humans.\
 	<br><br>\
 	In Sif's early history, Sivian settlers found this plant while they were establishing mines. Their ability \
-	to emit low, but consistant amounts of light made them desirable to the settlers. They would often cultivate \
+	to emit low, but consistent amounts of light made them desirable to the settlers. They would often cultivate \
 	this plant inside man-made tunnels and mines to act as a backup source of light that would not need \
 	electricity. This technique has saved many lost miners, and this practice continues to this day."
 	value = CATALOGUER_REWARD_EASY
@@ -566,7 +566,7 @@
 	to forming buds, the petals of which secrete the luminescent sap containing the pollen at the time of blooming. Certain \
 	horticulturists have found ways of halting this process prior to the secretion of the sap, leaving the flower's petals \
 	bright, at the cost of making that bud sterile."
-	value = CATALOGUER_REWARD_HARD
+	value = CATALOGUER_REWARD_MEDIUM
 
 /obj/structure/flora/sif/frostbelle
 	name = "frostbelle shrub"

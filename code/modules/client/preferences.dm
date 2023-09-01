@@ -75,8 +75,8 @@ var/global/list/preferences_datums = list()
 
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
-	var/citizenship = "None"            //Current home system.
-	var/faction = "None"                //General associated faction.
+	var/citizenship = "Solar Confederate Government"            //Nation of citizenship
+	var/faction = "NanoTrasen"                //General associated faction.
 	var/religion = "None"               //Religious association.
 	var/antag_faction = "None"			//Antag associated faction.
 	var/antag_vis = "Hidden"			//How visible antag association is to others.
@@ -310,11 +310,11 @@ var/global/list/preferences_datums = list()
 
 	if(!istype(user, /mob/new_player))	return
 
-	if(href_list["preference"] == "open_whitelist_forum")
-		if(config.forumurl)
-			user << link(config.forumurl)
+	if(href_list["preference"] == "open_whitelist_discord")
+		if(config.discordurl)
+			user << link(config.discordurl)
 		else
-			to_chat(user, "<span class='danger'>The forum URL is not set in the server configuration.</span>")
+			to_chat(user, "<span class='danger'>The Discord server invite is not set in the server configuration.</span>")
 			return
 	ShowChoices(usr)
 	return 1

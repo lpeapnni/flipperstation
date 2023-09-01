@@ -148,7 +148,7 @@
 			qdel(mannequin)
 
 			spawning = 1
-			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
+			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS can't last forever yo
 
 
 			observer.started_as_observer = 1
@@ -419,6 +419,13 @@
 
 	var/datum/job/J = SSjob.get_job(rank)
 
+	// Get the appropriate announcement title.
+	var/announce_rank = rank
+	if(J?.substitute_announce_title)
+		announce_rank = J.substitute_announce_title
+	else if(character.mind.role_alt_title)
+		announce_rank = character.mind.role_alt_title
+
 	// AIs don't need a spawnpoint, they must spawn at an empty core
 	if(J.mob_type & JOB_SILICON_AI)
 
@@ -431,7 +438,7 @@
 		// AIize the character, but don't move them yet
 		character = character.AIize(move = FALSE) // Dupe of code in /datum/controller/subsystem/ticker/proc/create_characters() for non-latespawn, unify?
 
-		AnnounceCyborg(character, rank, "has been transferred to the empty core in \the [character.loc.loc]")
+		AnnounceCyborg(character, announce_rank, "has been transferred to the empty core in \the [character.loc.loc]")
 		ticker.mode.latespawn(character)
 
 		qdel(C) //Deletes empty core (really?)
@@ -450,12 +457,13 @@
 
 	ticker.mode.latespawn(character)
 
+	var/do_announce = join_props["announce"] && join_message && announce_channel
 	if(J.mob_type & JOB_SILICON)
-		if(join_message && announce_channel)
-			AnnounceCyborg(character, rank, join_message, announce_channel, character.z)
+		if(do_announce)
+			AnnounceCyborg(character, announce_rank, join_message, announce_channel, character.z)
 	else
-		if(join_message && announce_channel)
-			AnnounceArrival(character, J?.substitute_announce_title || rank, join_message, announce_channel, character.z)
+		if(do_announce)
+			AnnounceArrival(character, announce_rank, join_message, announce_channel, character.z)
 		data_core.manifest_inject(character)
 		ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 
@@ -464,8 +472,6 @@
 /mob/new_player/proc/AnnounceCyborg(var/mob/living/character, var/rank, var/join_message, var/channel, var/zlevel)
 	if (ticker.current_state == GAME_STATE_PLAYING)
 		var/list/zlevels = zlevel ? using_map.get_map_levels(zlevel, TRUE, om_range = DEFAULT_OVERMAP_RANGE) : null
-		if(character.mind.role_alt_title)
-			rank = character.mind.role_alt_title
 		// can't use their name here, since cyborg namepicking is done post-spawn, so we'll just say "A new Cyborg has arrived"/"A new Android has arrived"/etc.
 		global_announcer.autosay("A new[rank ? " [rank]" : " visitor" ] [join_message ? join_message : "has arrived on the station"].", "Arrivals Announcement Computer", channel, zlevels)
 
@@ -476,7 +482,7 @@
 	dat += "<b>Welcome, [name].<br></b>"
 	dat += "Round Duration: [roundduration2text()]<br>"
 
-	if(emergency_shuttle) //In case NanoTrasen decides reposess CentCom's shuttles.
+	if(emergency_shuttle) //In case NanoTrasen decides repossess CentCom's shuttles.
 		if(emergency_shuttle.going_to_centcom()) //Shuttle is going to CentCom, not recalled
 			dat += "<font color='red'><b>The station has been evacuated.</b></font><br>"
 		if(emergency_shuttle.online())
@@ -544,7 +550,7 @@
 	else
 		client.prefs.copy_to(new_character, icon_updates = TRUE)
 
-	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
+	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS can't last forever yo
 
 	if(mind)
 		mind.active = 0					//we wish to transfer the key manually
@@ -604,17 +610,11 @@
 	return check_rights(R_ADMIN, 0, src)
 
 /mob/new_player/get_species()
-	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = GLOB.all_species[client.prefs.species]
-
-	if(!chosen_species)
-		return SPECIES_HUMAN
-
-	if(is_alien_whitelisted(chosen_species))
-		return chosen_species.name
-
-	return SPECIES_HUMAN
+		var/datum/species/chosen_species = GLOB.all_species[client.prefs.species]
+		if(chosen_species && is_alien_whitelisted(src, chosen_species))
+			return chosen_species
+	return GLOB.all_species[SPECIES_HUMAN]
 
 /mob/new_player/get_gender()
 	if(!client || !client.prefs) ..()

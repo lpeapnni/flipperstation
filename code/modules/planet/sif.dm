@@ -121,6 +121,7 @@ var/global/datum/planet/sif/planet_sif = null
 		WEATHER_RAIN		= new /datum/weather/sif/rain(),
 		WEATHER_STORM		= new /datum/weather/sif/storm(),
 		WEATHER_HAIL		= new /datum/weather/sif/hail(),
+		WEATHER_FOG			= new /datum/weather/sif/fog(),
 		WEATHER_BLOOD_MOON	= new /datum/weather/sif/blood_moon(),
 		WEATHER_EMBERFALL	= new /datum/weather/sif/emberfall(),
 		WEATHER_ASH_STORM	= new /datum/weather/sif/ash_storm(),
@@ -130,9 +131,12 @@ var/global/datum/planet/sif/planet_sif = null
 		WEATHER_CLEAR		= 30,
 		WEATHER_OVERCAST	= 30,
 		WEATHER_LIGHT_SNOW	= 20,
+		WEATHER_FOG			= 20,
 		WEATHER_SNOW		= 5,
-		WEATHER_BLIZZARD	= 2.5,
-		WEATHER_HAIL		= 5
+		WEATHER_BLIZZARD	= 5,
+		WEATHER_RAIN		= 5,
+		WEATHER_STORM		= 2.5,
+		WEATHER_HAIL		= 2.5
 		)
 
 /datum/weather/sif
@@ -143,8 +147,9 @@ var/global/datum/planet/sif/planet_sif = null
 /datum/weather/sif/clear
 	name = "clear"
 	transition_chances = list(
-		WEATHER_CLEAR = 60,
-		WEATHER_OVERCAST = 40
+		WEATHER_CLEAR = 55,
+		WEATHER_OVERCAST = 35,
+		WEATHER_FOG = 10
 		)
 	transition_messages = list(
 		"The sky clears up.",
@@ -164,7 +169,9 @@ var/global/datum/planet/sif/planet_sif = null
 		WEATHER_CLEAR = 25,
 		WEATHER_OVERCAST = 50,
 		WEATHER_LIGHT_SNOW = 10,
+		WEATHER_FOG = 30,
 		WEATHER_SNOW = 5,
+		WEATHER_RAIN = 5,
 		WEATHER_HAIL = 5
 		)
 	observed_message = "It is overcast, all you can see are clouds."
@@ -184,9 +191,10 @@ var/global/datum/planet/sif/planet_sif = null
 	temp_low = 	258.15	// -15c
 	light_modifier = 0.7
 	transition_chances = list(
-		WEATHER_OVERCAST = 20,
-		WEATHER_LIGHT_SNOW = 50,
-		WEATHER_SNOW = 25,
+		WEATHER_OVERCAST = 10,
+		WEATHER_LIGHT_SNOW = 40,
+		WEATHER_FOG = 30,
+		WEATHER_SNOW = 15,
 		WEATHER_HAIL = 5
 		)
 	observed_message = "It is snowing lightly."
@@ -272,14 +280,17 @@ var/global/datum/planet/sif/planet_sif = null
 /datum/weather/sif/rain
 	name = "rain"
 	icon_state = "rain"
-	wind_high = 2
+	wind_high = 1
 	wind_low = 0
 	light_modifier = 0.5
 	effect_message = "<span class='warning'>Rain falls on you.</span>"
 
 	transition_chances = list(
-		WEATHER_OVERCAST = 25,
-		WEATHER_LIGHT_SNOW = 10,
+		WEATHER_OVERCAST = 20,
+		WEATHER_LIGHT_SNOW = 5,
+		WEATHER_FOG = 20,
+		WEATHER_RAIN = 40,
+		WEATHER_STORM = 10,
 		WEATHER_HAIL = 5
 		)
 	observed_message = "It is raining."
@@ -336,8 +347,11 @@ var/global/datum/planet/sif/planet_sif = null
 
 
 	transition_chances = list(
+		WEATHER_RAIN = 45,
+		WEATHER_STORM = 40,
 		WEATHER_HAIL = 10,
-		WEATHER_OVERCAST = 5
+		WEATHER_FOG = 3,
+		WEATHER_OVERCAST = 2
 		)
 
 /datum/weather/sif/storm/process_effects()
@@ -366,7 +380,7 @@ var/global/datum/planet/sif/planet_sif = null
 	handle_lightning()
 
 // This gets called to do lightning periodically.
-// There is a seperate function to do the actual lightning strike, so that badmins can play with it.
+// There is a separate function to do the actual lightning strike, so that badmins can play with it.
 /datum/weather/sif/storm/proc/handle_lightning()
 	if(world.time < next_lightning_strike)
 		return // It's too soon to strike again.
@@ -386,8 +400,10 @@ var/global/datum/planet/sif/planet_sif = null
 	effect_message = "<span class='warning'>The hail smacks into you!</span>"
 
 	transition_chances = list(
+		WEATHER_RAIN = 45,
+		WEATHER_STORM = 40,
 		WEATHER_HAIL = 10,
-		WEATHER_OVERCAST = 10 //higher chance to switch to overcase since rain/storm are off
+		WEATHER_OVERCAST = 5
 		)
 	observed_message = "Ice is falling from the sky."
 	transition_messages = list(
@@ -443,6 +459,30 @@ var/global/datum/planet/sif/planet_sif = null
 			if(show_message)
 				to_chat(H, effect_message)
 
+/datum/weather/sif/fog
+	name = "fog"
+	icon_state = "fog"
+	wind_high = 1
+	wind_low = 0
+	light_modifier = 0.7
+
+	temp_high = T0C		// 0c
+	temp_low = 263.15	// -10c
+
+	transition_chances = list(
+		WEATHER_FOG = 70,
+		WEATHER_OVERCAST = 15,
+		WEATHER_LIGHT_SNOW = 10,
+		WEATHER_RAIN = 5
+		)
+	observed_message = "A fogbank has rolled over the region."
+	transition_messages = list(
+		"Fog rolls in.",
+		"Visibility falls as the air becomes dense.",
+		"The clouds drift lower, as if to smother the forests."
+	)
+	outdoor_sounds_type = /datum/looping_sound/weather/wind
+	indoor_sounds_type = /datum/looping_sound/weather/wind/indoors
 
 // These never happen naturally, and are for adminbuse.
 

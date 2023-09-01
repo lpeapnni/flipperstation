@@ -45,7 +45,7 @@
 	The Prisoner is to be informed of their Sentencing Options, if available.  These will vary depending on the violation in question, and \
 	the exact circumstances involved.  For minor violations of Corp Regs, generally the Prisoner will have a choice of paying a Fine, or \
 	serving time within the brig.  For major violations, generally a demotion is recommended, however this is at the discretion of the Prisoner's \
-	Superior, and not the Arresting Officer.  For minor violations of Sif Law, the same rules generally apply as if it was a minor Corp Reg violation, however \
+	Superior, and not the Arresting Officer.  For minor violations of Vir Law, the same rules generally apply as if it was a minor Corp Reg violation, however \
 	major Law violations generally require a long brig sentence, or Holding until Transfer, as well as a fax to the VGA.  See the specific violation contained \
 	in this book for more details."
 
@@ -78,7 +78,7 @@
 // Sad that we need this page to exist.
 /datum/lore/codex/page/sop_prisoner_rights
 	name = "Prisoners' Rights"
-	data = "Prisoners are still under the protections of local Sif Law and Corporate Regulations, and still have their Sapient Rights (if applicable), sans their freedom of movement.  \
+	data = "Prisoners are still under the protections of local Vir Law and Corporate Regulations, and still have their Sapient Rights (if applicable), sans their freedom of movement.  \
 	Prisoners are entitled to have their communication devices (Radio, PDA, Communicator), provided they do not abuse them.  Departmental radios must be \
 	exchanged for general radios, if the prisoner has been sentenced to Holding until Transfer, or otherwise has been demoted by their Superior.  Prisoners \
 	are also entitled to receive medical care.  Their timer continues to run while they are outside their cell in order to receive medical treatment, if \
@@ -94,7 +94,7 @@
 	Weaponry and specialized armor are allowed to be given out to security officers, with clearance from the Warden or Head of Security.\
 	<br>\
 	For Red, Security may have weapons drawn at all times, however properly handling of weapons should not be disregarded.  Body armor and \
-	helmets are mandatory.  Specialized armor may be distributed by the Warden and Head of Security, when appropiate."
+	helmets are mandatory.  Specialized armor may be distributed by the Warden and Head of Security, when appropriate."
 
 /datum/lore/codex/page/sop_escalation
 	name = "Escalation of Force"
@@ -102,7 +102,7 @@
 	<br>\
 	<ul>\
 	<li>\[0\] <b>Safety</b>: If a crewmember (including the Arresting Officer) is in clear and immediate danger, officers may disregard steps \[1\] and \[2\], \
-	and procede to \[3\] Neutralize.</li>\
+	and proceed to \[3\] Neutralize.</li>\
 	<li>\[1\] <b>Passive</b>: Suspects are to be detailed verbally, with zero or minimal injury, and under their own power, if possible.  At this level for \
 	force, an Officer is permitted to use tasers, pepperspray, flashes, and stunbatons.</li>\
 	<li>\[2\] <b>Less-than-Lethal</b>: Suspect may be detained with minimal force, causing as little injury as possible.  The Arresting Officer must still \

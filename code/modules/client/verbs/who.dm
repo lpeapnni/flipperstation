@@ -32,9 +32,9 @@
 			var/age = C.player_age
 			switch(age)
 				if(0 to 1)
-					age = "<font color='#ff0000'><b>[age] days old</b></font>"
+					entry += " - <font color='#ff0000'><b>[age] days old</b></font>"
 				if(1 to 10)
-					age = "<font color='#ff8c00'><b>[age] days old</b></font>"
+					entry += " - <font color='#ff8c00'><b>[age] days old</b></font>"
 				else
 					entry += " - [age] days old"
 
@@ -52,6 +52,7 @@
 		msg += "[line]\n"
 
 	msg += "<b>Total Players: [length(Lines)]</b>"
+	msg = "<span class='filter_notice'>[jointext(msg, "<br>")]</span>"
 	to_chat(src,msg)
 
 /client/verb/staffwho()
@@ -82,7 +83,7 @@
 		else if(check_rights(R_EVENT, FALSE, C)) // event managers
 			category = R_EVENT
 			num_event_managers_online++
-		
+
 		temp += "\t[C] is a [C.holder.rank]"
 		if(holder)
 			if(C.holder.fakekey)
@@ -122,4 +123,4 @@
 	if(config.show_event_managers)
 		msg += "\n<b> Current Event Managers ([num_event_managers_online]):</b>\n" + eventMmsg
 
-	to_chat(src,msg)
+	to_chat(src,"<span class='filter_notice'>[jointext(msg, "<br>")]</span>")

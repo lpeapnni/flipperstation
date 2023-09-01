@@ -13,14 +13,16 @@
 
 	var/speed = 1
 	var/mat_efficiency = 1
-	var/list/materials = list(MAT_STEEL = 0, "glass" = 0, "plastic" = 0, MAT_GRAPHITE = 0, MAT_PLASTEEL = 0, "gold" = 0, "silver" = 0, MAT_LEAD = 0, "osmium" = 0, "diamond" = 0, MAT_DURASTEEL = 0, "phoron" = 0, "uranium" = 0, MAT_VERDANTIUM = 0, MAT_MORPHIUM = 0)
+	materials = list(MAT_STEEL = 0, "glass" = 0, "plastic" = 0, MAT_GRAPHITE = 0, MAT_PLASTEEL = 0, "gold" = 0, "silver" = 0, MAT_LEAD = 0, "osmium" = 0, "diamond" = 0, MAT_DURASTEEL = 0, "phoron" = 0, "uranium" = 0, MAT_VERDANTIUM = 0, MAT_MORPHIUM = 0)
 	var/list/hidden_materials = list(MAT_DURASTEEL, MAT_GRAPHITE, MAT_VERDANTIUM, MAT_MORPHIUM)
+	var/eject_lockout = FALSE
 	var/res_max_amount = 200000
 
 	var/datum/research/files
 	var/list/datum/design/queue = list()
 	var/progress = 0
 	var/busy = 0
+	var/datum/looping_sound/fabricator/soundloop
 
 	var/list/categories = list()
 	var/category = null
@@ -35,6 +37,11 @@
 	files = new /datum/research(src) //Setup the research data holder.
 	manufacturer = basic_robolimb.company
 	update_categories()
+	soundloop = new(list(src), FALSE)
+
+/obj/machinery/pros_fabricator/Destroy()
+	QDEL_NULL(soundloop)
+	return ..()
 
 /obj/machinery/pros_fabricator/process()
 	..()
@@ -60,8 +67,7 @@
 		icon_state = "[icon_state]_work"
 
 /obj/machinery/pros_fabricator/dismantle()
-	for(var/f in materials)
-		eject_materials(f, -1)
+	eject_materials() //Proc on obj/machinery in code/game/machinery/machinery.dm
 	..()
 
 /obj/machinery/pros_fabricator/RefreshParts()
@@ -139,8 +145,8 @@
 		if(href_list["manufacturer"] in all_robolimbs)
 			manufacturer = href_list["manufacturer"]
 
-	if(href_list["eject"])
-		eject_materials(href_list["eject"], text2num(href_list["amount"]))
+	if(href_list["eject"] && !eject_lockout)
+		eject_materials_partial(href_list["eject"], text2num(href_list["amount"]))
 
 	if(href_list["sync"])
 		sync()
@@ -166,7 +172,7 @@
 			to_chat(user, "<span class='warning'>This disk seems to be corrupted!</span>")
 		else
 			to_chat(user, "<span class='notice'>Installing blueprint files for [D.company]...</span>")
-			if(do_after(user,50,src))
+			if(do_after(user, 5 SECONDS, src))
 				var/datum/robolimb/R = all_robolimbs[D.company]
 				R.unavailable_to_build = 0
 				to_chat(user, "<span class='notice'>Installed [D.company] blueprints!</span>")
@@ -179,7 +185,7 @@
 			to_chat(user, "<span class='warning'>This disk seems to be corrupted!</span>")
 		else
 			to_chat(user, "<span class='notice'>Uploading modification files for [D.species]...</span>")
-			if(do_after(user,50,src))
+			if(do_after(user, 5 SECONDS, src))
 				species_types |= D.species
 				to_chat(user, "<span class='notice'>Uploaded [D.species] files!</span>")
 				qdel(I)
@@ -202,7 +208,7 @@
 					S.use(1)
 					count++
 				to_chat(user, "You insert [count] [sname] into the fabricator.")
-				update_busy()
+				refresh_queue()
 		else
 			to_chat(user, "The fabricator cannot hold more [sname].")
 
@@ -229,25 +235,28 @@
 		if(1)
 			visible_message("[bicon(src)] <b>[src]</b> beeps: \"No records in User DB\"")
 
-/obj/machinery/pros_fabricator/proc/update_busy()
+/obj/machinery/pros_fabricator/refresh_queue()
 	if(queue.len)
 		if(can_build(queue[1]))
 			busy = 1
+			soundloop.start()
 		else
 			busy = 0
+			soundloop.stop()
 	else
 		busy = 0
+		soundloop.stop()
 
 /obj/machinery/pros_fabricator/proc/add_to_queue(var/index)
 	var/datum/design/D = files.known_designs[index]
 	queue += D
-	update_busy()
+	refresh_queue()
 
 /obj/machinery/pros_fabricator/proc/remove_from_queue(var/index)
 	if(index == 1)
 		progress = 0
 	queue.Cut(index, index + 1)
-	update_busy()
+	refresh_queue()
 
 /obj/machinery/pros_fabricator/proc/can_build(var/datum/design/D)
 	for(var/M in D.materials)
@@ -318,24 +327,6 @@
 				continue
 		if(!hidden_mat)
 			. += list(list("mat" = capitalize(T), "amt" = materials[T]))
-
-/obj/machinery/pros_fabricator/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
-	var/recursive = amount == -1 ? 1 : 0
-	var/matstring = lowertext(material)
-	var/datum/material/M = get_material_by_name(matstring)
-
-	var/obj/item/stack/material/S = M.place_sheet(get_turf(src))
-	if(amount <= 0)
-		amount = S.max_amount
-	var/ejected = min(round(materials[matstring] / S.perunit), amount)
-	S.amount = min(ejected, amount)
-	if(S.amount <= 0)
-		qdel(S)
-		return
-	materials[matstring] -= ejected * S.perunit
-	if(recursive && materials[matstring] >= S.perunit)
-		eject_materials(matstring, -1)
-	update_busy()
 
 /obj/machinery/pros_fabricator/proc/sync()
 	sync_message = "Error: no console found."

@@ -38,6 +38,7 @@
 #include "priderock.dmm"
 #include "oldhotel.dmm"
 #include "VRDen.dmm"
+#include "reststop.dmm"
 #endif
 
 
@@ -287,4 +288,10 @@
 	name = "VR Den"
 	desc = "A temporarily abandoned VR den, still functional."
 	mappath = 'maps/submaps/surface_submaps/plains/VRDen.dmm'
+	cost = 10
+
+/datum/map_template/surface/plains/reststop
+	name = "Rest Stop"
+	desc = "Once this place was a nice spot to take a load off, now the wildlife call it home."
+	mappath = 'maps/submaps/surface_submaps/plains/reststop.dmm'
 	cost = 10

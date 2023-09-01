@@ -1,9 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Syringes.
 ////////////////////////////////////////////////////////////////////////////////
-#define SYRINGE_DRAW 0
-#define SYRINGE_INJECT 1
-#define SYRINGE_BROKEN 2
 
 /obj/item/reagent_containers/syringe
 	name = "syringe"
@@ -349,6 +346,16 @@
 /obj/item/reagent_containers/syringe/antitoxin/Initialize()
 	. = ..()
 	reagents.add_reagent("anti_toxin", 15)
+	mode = SYRINGE_INJECT
+	update_icon()
+
+/obj/item/reagent_containers/syringe/bicaridine
+	name = "Syringe (bicaridine)"
+	desc = "Contains bicaridine."
+
+/obj/item/reagent_containers/syringe/bicaridine/Initialize()
+	. = ..()
+	reagents.add_reagent("bicaridine", 15)
 	mode = SYRINGE_INJECT
 	update_icon()
 
