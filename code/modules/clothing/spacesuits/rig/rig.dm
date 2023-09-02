@@ -79,7 +79,7 @@
 	var/locked_down = 0
 
 	var/seal_delay = SEAL_DELAY
-	var/sealing                                               // Keeps track of seal status independantly of canremove.
+	var/sealing                                               // Keeps track of seal status independently of canremove.
 	var/offline = 1                                           // Should we be applying suit maluses?
 	var/offline_slowdown = 1.5                                  // If the suit is deployed and unpowered, it sets slowdown to this.
 	var/vision_restriction
@@ -200,7 +200,7 @@
 				M.unEquip(piece)
 			piece.forceMove(src)
 
-/obj/item/rig/get_worn_icon_file(var/body_type,var/slot_name,var/default_icon,var/inhands)
+/obj/item/rig/get_worn_icon_file(var/body_type, var/slot_name, var/default_icon, var/inhands, var/check_state)
 	if(!inhands && (slot_name == slot_back_str || slot_name == slot_belt_str))
 		if(icon_override)
 			return icon_override
@@ -589,8 +589,9 @@
 		var/species_icon = 'icons/mob/rig_back.dmi'
 		// Since setting mob_icon will override the species checks in
 		// update_inv_wear_suit(), handle species checks here.
-		if(wearer && sprite_sheets && sprite_sheets[wearer.species.get_bodytype(wearer)])
-			species_icon =  sprite_sheets[wearer.species.get_bodytype(wearer)]
+		var/body_type = wearer?.species.get_bodytype(wearer)
+		if(wearer && LAZYACCESS(sprite_sheets, body_type))
+			species_icon = LAZYACCESS(sprite_sheets, body_type)
 		mob_icon = icon(icon = species_icon, icon_state = "[icon_state]")
 
 	if(installed_modules.len)
@@ -808,8 +809,8 @@
 	if(!is_emp)
 		chance = 2*max(0, damage - (chest? chest.breach_threshold : 0))
 	else
-		//Want this to be roughly independant of the number of modules, meaning that X emp hits will disable Y% of the suit's modules on average.
-		//that way people designing hardsuits don't have to worry (as much) about how adding that extra module will affect emp resiliance by 'soaking' hits for other modules
+		//Want this to be roughly independent of the number of modules, meaning that X emp hits will disable Y% of the suit's modules on average.
+		//that way people designing hardsuits don't have to worry (as much) about how adding that extra module will affect emp resilience by 'soaking' hits for other modules
 		chance = 2*max(0, damage - emp_protection)*min(installed_modules.len/15, 1)
 
 	if(!prob(chance))
@@ -911,7 +912,7 @@
 		return
 
 	if((istype(wearer.loc, /turf/space)) || (wearer.lastarea.has_gravity == 0))
-		if(!wearer.Process_Spacemove(0))
+		if(!wearer.Process_Spacemove(FALSE))
 			return 0
 
 	if(malfunctioning)

@@ -69,7 +69,7 @@
 	if(!..())
 		return 0
 
-	usr.visible_message("<b>[src]</b> points to [A]")
+	usr.visible_message("<span class='filter_notice'><b>[src]</b> points to [A].</span>")
 	return 1
 
 /mob/living/verb/succumb()
@@ -81,11 +81,7 @@
 		to_chat(src, "<font color='blue'>You are not injured enough to succumb to death!</font>")
 
 /mob/living/proc/updatehealth()
-	if(status_flags & GODMODE)
-		health = 100
-		set_stat(CONSCIOUS)
-	else
-		health = getMaxHealth() - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
+	health = getMaxHealth() - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
@@ -149,8 +145,6 @@
 
 //'include_robo' only applies to healing, for legacy purposes, as all damage typically hurts both types of organs
 /mob/living/proc/adjustBruteLoss(var/amount,var/include_robo)
-	if(status_flags & GODMODE)	return 0	//godmode
-
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_damage_percent))
@@ -169,7 +163,6 @@
 	return oxyloss
 
 /mob/living/proc/adjustOxyLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
 
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
@@ -186,14 +179,12 @@
 	updatehealth()
 
 /mob/living/proc/setOxyLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
 	oxyloss = amount
 
 /mob/living/proc/getToxLoss()
 	return toxloss
 
 /mob/living/proc/adjustToxLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
 
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
@@ -210,7 +201,6 @@
 	updatehealth()
 
 /mob/living/proc/setToxLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
 	toxloss = amount
 
 /mob/living/proc/getFireLoss()
@@ -224,7 +214,6 @@
 
 //'include_robo' only applies to healing, for legacy purposes, as all damage typically hurts both types of organs
 /mob/living/proc/adjustFireLoss(var/amount,var/include_robo)
-	if(status_flags & GODMODE)	return 0	//godmode
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_damage_percent))
@@ -243,8 +232,6 @@
 	return cloneloss
 
 /mob/living/proc/adjustCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_damage_percent))
@@ -260,25 +247,21 @@
 	updatehealth()
 
 /mob/living/proc/setCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
 	cloneloss = amount
 
 /mob/living/proc/getBrainLoss()
 	return brainloss
 
 /mob/living/proc/adjustBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
 	brainloss = min(max(brainloss + amount, 0),(getMaxHealth()*2))
 
 /mob/living/proc/setBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
 	brainloss = amount
 
 /mob/living/proc/getHalLoss()
 	return halloss
 
 /mob/living/proc/adjustHalLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_damage_percent))
@@ -295,7 +278,6 @@
 	updatehealth()
 
 /mob/living/proc/setHalLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
 	halloss = amount
 
 // Use this to get a mob's max health whenever possible.  Reading maxHealth directly will give inaccurate results if any modifiers exist.
@@ -682,7 +664,7 @@
 	set category = "IC"
 
 	resting = !resting
-	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
+	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
 	update_canmove()
 
 //called when the mob receives a bright flash
@@ -716,10 +698,8 @@
 /mob/living/proc/slip(var/slipped_on,stun_duration=8)
 	return FALSE
 
-/mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
-	if(W in internal_organs)
-		return
-	..()
+/mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/target = null)
+	return !(W in internal_organs) && ..()
 
 /mob/living/touch_map_edge()
 
@@ -782,33 +762,7 @@
 						sleep(150)	//15 seconds until second warning
 						to_chat(src, "<span class='warning'>You feel like you are about to throw up!</span>")
 						sleep(100)	//and you have 10 more for mad dash to the bucket
-
-					//Damaged livers cause you to vomit blood.
-					if(!blood_vomit)
-						if(ishuman(src))
-							var/mob/living/carbon/human/H = src
-							if(!H.isSynthetic())
-								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name["liver"]
-								if(!L || L.is_broken())
-									blood_vomit = 1
-
-					Stun(5)
-					src.visible_message("<span class='warning'>[src] throws up!</span>","<span class='warning'>You throw up!</span>")
-					playsound(src, 'sound/effects/splat.ogg', 50, 1)
-
-					var/turf/simulated/T = get_turf(src)	//TODO: Make add_blood_floor remove blood from human mobs
-					if(istype(T))
-						if(blood_vomit)
-							T.add_blood_floor(src)
-						else
-							T.add_vomit_floor(src, 1)
-
-					if(blood_vomit)
-						if(getBruteLoss() < 50)
-							adjustBruteLoss(3)
-					else
-						adjust_nutrition(-40)
-						adjustToxLoss(-3)
+					empty_stomach(blood_vomit)
 
 		spawn(350)
 			lastpuke = 0
@@ -1034,7 +988,7 @@
 			var/mob/living/carbon/human/H = target
 			if(H.in_throw_mode && H.a_intent == I_HELP && unEquip(item))
 				H.put_in_hands(item) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
-				visible_message("<b>[src]</b> hands \the [H] \a [item].", SPAN_NOTICE("You give \the [target] \a [item]."))
+				visible_message("<span class='filter_notice'><b>[src]</b> hands \the [H] \a [item].</span>", SPAN_NOTICE("You give \the [target] \a [item]."))
 			else
 				to_chat(src, SPAN_NOTICE("You offer \the [item] to \the [target]."))
 				do_give(H)
@@ -1141,7 +1095,7 @@
 		throw_alert("weightless", /obj/screen/alert/weightless)
 
 // Tries to turn off things that let you see through walls, like mesons.
-// Each mob does vision a bit differently so this is just for inheritence and also so overrided procs can make the vision apply instantly if they call `..()`.
+// Each mob does vision a bit differently so this is just for inheritance and also so overridden procs can make the vision apply instantly if they call `..()`.
 /mob/living/proc/disable_spoiler_vision()
 	handle_vision()
 
@@ -1194,4 +1148,7 @@
 		return "snow_footprints"
 
 /mob/living/proc/IWasAttackedBy(var/mob/living/attacker)
+	return
+
+/mob/living/proc/empty_stomach()
 	return

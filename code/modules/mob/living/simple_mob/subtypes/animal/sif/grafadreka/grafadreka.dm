@@ -1,10 +1,9 @@
 /mob/living/simple_mob/animal/sif/grafadreka
 	name = "grafadreka"
 	desc = "A large, sleek snow drake with heavy claws, powerful jaws and many pale spines along its body."
-	player_msg = "You are a large Sivian pack predator in symbiosis with the local bioluminescent bacteria. You can eat glowing \
-	tree fruit to fuel your <b>ranged spitting attack</b> and <b>poisonous bite</b> (on <span class = 'danger'>harm intent</span>), as well as <b>healing saliva</b> \
-	(on <b><font color = '#009900'>help intent</font></b>).<br>There are humans moving through your territory; whether you help them get home safely, or treat them as a snack, \
-	is up to you."
+	player_msg = {"<b>You are a large Sivian pack predator.</b>
+There are humans moving through your territory; whether you help them get home safely, or treat them as a snack, is up to you.
+You can eat glowing tree fruit to fuel your <b>ranged spitting attack</b> and <b>poisonous bite</b> (on <span class = 'danger'>harm intent</span>), as well as <b>healing saliva</b> (on <b><font color = '#009900'>help intent</font></b>)."}
 	color = "#608894"
 	icon = 'icons/mob/drake_adult.dmi'
 	catalogue_data = list(/datum/category_item/catalogue/fauna/grafadreka)
@@ -13,7 +12,7 @@
 	icon_dead = "doggo_lying"
 	icon_rest = "doggo_lying"
 	projectileverb = "spits"
-	friendly = list("headbutts", "grooms", "play-bites", "rubs against")
+	friendly = list("sniffs")
 	bitesize = 10 // chomp
 	gender = NEUTER
 
@@ -96,10 +95,25 @@
 
 	/// A convenience value for whether this drake is the trained subtype.
 	var/trained_drake = FALSE
+	var/list/understands_languages
+
+	/// On clicking with an item, stuff that should use behaviors instead of being placed in storage.
+	var/static/list/allow_type_to_pass = list(
+		/obj/item/healthanalyzer,
+		/obj/item/stack/medical,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/shockpaddles
+	)
+
+/mob/living/simple_mob/animal/sif/grafadreka/Destroy()
+	if (istype(harness))
+		QDEL_NULL(harness)
+	return ..()
 
 
 /mob/living/simple_mob/animal/sif/grafadreka/Initialize()
-	charisma = rand(5, 15)
+	if(is_baby)
+		verbs |= /mob/living/proc/hide
 	stored_sap = rand(20, 30)
 	nutrition = rand(400,500)
 	if (gender == NEUTER)
@@ -109,7 +123,15 @@
 	create_reagents(50)
 	. = ..()
 	original_armor = armor
+	reset_charisma()
 	update_icon()
+
+
+// universal_understand is buggy and produces double lines, so we'll just do this hack instead.
+/mob/living/simple_mob/animal/sif/grafadreka/say_understands(mob/other, datum/language/speaking)
+	if (!speaking || (speaking.name in understands_languages))
+		return TRUE
+	return ..()
 
 
 /mob/living/simple_mob/animal/sif/grafadreka/Stat()
@@ -121,13 +143,24 @@
 
 /mob/living/simple_mob/animal/sif/grafadreka/Login()
 	. = ..()
-	charisma = (client && !is_baby) ? INFINITY : 0
+	reset_charisma()
+	SetSleeping(0)
+	update_icon()
+	QDEL_NULL(ai_holder) // Disable AI so player drakes don't maul prometheans to death when aghosted
+
+
+/mob/living/simple_mob/animal/sif/grafadreka/proc/reset_charisma()
+	if(client)
+		charisma = rand(100, 200)
+	else if(is_baby)
+		charisma = 0
+	else
+		charisma = rand(5,15)
 
 
 /mob/living/simple_mob/animal/sif/grafadreka/Logout()
 	. = ..()
-	if (!client)
-		charisma = rand(5, 15)
+	reset_charisma()
 
 
 /mob/living/simple_mob/animal/sif/grafadreka/examine(mob/living/user)
@@ -148,19 +181,41 @@
 	return ..()
 
 
+
 /mob/living/simple_mob/animal/sif/grafadreka/get_available_emotes()
-	if (!is_baby)
-		return global._default_mob_emotes | /decl/emote/audible/drake_howl
-	return global._default_mob_emotes
+	if(is_baby)
+		var/static/list/_baby_drake_emotes = list(
+			/decl/emote/audible/drake_hatchling_growl,
+			/decl/emote/audible/drake_hatchling_whine,
+			/decl/emote/audible/drake_hatchling_yelp,
+			/decl/emote/audible/drake_warn/hatchling,
+			/decl/emote/audible/drake_sneeze
+		)
+		return global._default_mob_emotes | _baby_drake_emotes
+	else
+		var/static/list/_adult_drake_emotes = list(
+			/decl/emote/audible/drake_warble,
+			/decl/emote/audible/drake_purr,
+			/decl/emote/audible/drake_grumble,
+			/decl/emote/audible/drake_huff,
+			/decl/emote/audible/drake_rattle,
+			/decl/emote/audible/drake_warn,
+			/decl/emote/audible/drake_rumble,
+			/decl/emote/audible/drake_roar,
+			/decl/emote/audible/drake_sneeze,
+			/decl/emote/visible/drake_headbutt
+		)
+		return global._default_mob_emotes | _adult_drake_emotes
+
 
 
 /mob/living/simple_mob/animal/sif/grafadreka/lay_down()
 	if (sitting)
 		to_chat(src, SPAN_NOTICE("You are now lying down."))
 		sitting = FALSE
-		update_icon()
 	else
 		..()
+	update_icon()
 
 
 /mob/living/simple_mob/animal/sif/grafadreka/can_projectile_attack(atom/target)
@@ -194,7 +249,19 @@
 
 
 /mob/living/simple_mob/animal/sif/grafadreka/Life()
+
+	// First up we knock ourselves out if we're expected to have a client and don't -
+	// this is to avoid aghosted or logged out drakes going wild on Teshari on the station.
+	if (stat != DEAD && key && !client)
+		if(!lying || !resting || sitting)
+			lying = TRUE
+			resting = TRUE
+			sitting = FALSE
+			update_icon()
+		Sleeping(2)
+
 	. = ..()
+
 	if (stat == CONSCIOUS)
 		// Don't make clientless drakes lose nutrition or they'll all go feral.
 		if (!resting && client)
@@ -227,6 +294,7 @@
 	. = ..()
 	if (sitting && stat == CONSCIOUS)
 		icon_state = "[initial(icon_state)]_sitting"
+
 	var/list/add_images = list()
 	var/image/I = image(icon, "[icon_state]")
 	I.color = base_colour
@@ -237,19 +305,34 @@
 	I = image(icon, "[icon_state]-claws")
 	I.color = claw_colour
 	add_images += I
+
 	if (stat == CONSCIOUS && !sleeping)
 		I = image(icon, "[icon_state]-eye_overlay")
 		I.color = eye_colour
 		add_images += I
+
 	if (stat != DEAD)
-		var/glow = add_glow()
+		var/image/glow = image(icon, "[icon_state]-glow")
+		glow.color = glow_colour
+		glow.plane = PLANE_LIGHTING_ABOVE
+		glow.alpha = 35 + round(220 * clamp(stored_sap/max_stored_sap, 0, 1))
+		if (harness)
+			glow.icon_state = "[glow.icon_state]-[harness.icon_state]"
 		if (glow)
 			add_images += glow
+
+	if (harness)
+		I = image(harness.icon, "[icon_state]-[harness.icon_state]")
+		I.color = harness.color
+		I.appearance_flags |= (RESET_COLOR|PIXEL_SCALE|KEEP_APART)
+		add_images += I
+
 	for (var/image/adding in add_images)
 		adding.appearance_flags |= (RESET_COLOR|PIXEL_SCALE|KEEP_APART)
 		if (offset_compiled_icon)
 			adding.pixel_x = offset_compiled_icon // Offset here so that things like modifiers, runechat text, etc. are centered
 		add_overlay(adding)
+
 	// We do this last so the default mob icon_state can be used for the overlays.
 	current_icon_state = icon_state
 	icon_state = "blank"
@@ -352,6 +435,11 @@
 	if (. && tox_damage && spend_sap(5))
 		var/mob/living/M = A
 		M.adjustToxLoss(tox_damage)
+		// It would be nice if we could keep track of the wound we just dealt, and give
+		// infections directly, but alas simplemob attack code is not great for that.
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			C.germ_level = max(C.germ_level, INFECTION_LEVEL_TWO)
 
 
 /mob/living/simple_mob/animal/sif/grafadreka/rejuvenate()
@@ -362,15 +450,6 @@
 
 /mob/living/simple_mob/animal/sif/grafadreka/has_appetite()
 	return reagents && abs(reagents.total_volume - reagents.maximum_volume) >= 10
-
-
-/mob/living/simple_mob/animal/sif/grafadreka/proc/add_glow()
-	var/image/I = image(icon, "[icon_state]-glow")
-	I.color = glow_colour
-	I.plane = PLANE_LIGHTING_ABOVE
-	I.alpha = 35 + round(220 * clamp(stored_sap/max_stored_sap, 0, 1))
-	return I
-
 
 /mob/living/simple_mob/animal/sif/grafadreka/proc/has_sap(amount)
 	return stored_sap >= amount
@@ -441,7 +520,11 @@ var/global/list/wounds_being_tended_by_drakes = list()
 		if (follower == src || follower.is_baby || follower.stat == DEAD || follower.faction != faction)
 			continue
 		pack = TRUE
-		if (!leader || follower.charisma > leader.charisma)
+		if (!leader)
+			leader = follower
+		if(follower.charisma == leader.charisma)
+			follower.charisma-- // to avoid deadlocks
+		if (follower.charisma > leader.charisma)
 			leader = follower
 	if (pack)
 		return leader
@@ -504,3 +587,24 @@ var/global/list/wounds_being_tended_by_drakes = list()
 			to_chat(drake, SPAN_NOTICE("<b>The pack leader wishes for you to follow them.</b>"))
 		else if (drake.ai_holder)
 			drake.ai_holder.set_follow(src)
+
+
+/mob/living/simple_mob/animal/sif/grafadreka/GetIdCard()
+	return harness?.GetIdCard()
+
+
+/mob/living/simple_mob/animal/sif/grafadreka/attack_hand(mob/living/user)
+	// Permit headpats/smacks
+	if (!harness || user.a_intent == I_HURT || (user.a_intent == I_HELP && user.zone_sel?.selecting == BP_HEAD))
+		return ..()
+	return harness.attack_hand(user)
+
+
+/mob/living/simple_mob/animal/sif/grafadreka/attackby(obj/item/item, mob/user)
+	if (user.a_intent == I_HURT)
+		return ..()
+	if (user.a_intent == I_HELP && is_type_in_list(item, allow_type_to_pass))
+		return ..()
+	if (harness?.attackby(item, user))
+		return TRUE
+	return ..()

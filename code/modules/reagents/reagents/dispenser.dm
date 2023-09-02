@@ -29,7 +29,7 @@
 /datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	if(M.ingested && M.ingested.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
+	if(M.ingested && M.ingested.reagent_list.len > 1) // Need to have at least 2 reagents - carbon and something to remove
 		var/effect = 1 / (M.ingested.reagent_list.len - 1)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
 			if(R == src)
@@ -299,7 +299,10 @@
 	name = "Potassium"
 	id = "potassium"
 	description = "A soft, low-melting solid that can easily be cut with a knife. Reacts violently with water."
-	taste_description = "sweetness" //potassium is bitter in higher doses but sweet in lower ones.
+	taste_description = list(
+		TASTE_STRING_DEFAULT = "sweetness",
+		SPECIES_TESHARI      = "mild bitterness"
+	) //potassium is bitter in higher doses but sweet in lower ones.
 	reagent_state = SOLID
 	color = "#A0A0A0"
 
@@ -445,7 +448,10 @@
 	name = "Sugar"
 	id = "sugar"
 	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
-	taste_description = "sugar"
+	taste_description = list(
+		SPECIES_TESHARI      = "chalk",
+		TASTE_STRING_DEFAULT = "sugar"
+	)
 	taste_mult = 1.8
 	reagent_state = SOLID
 	color = "#FFFFFF"

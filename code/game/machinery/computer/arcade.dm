@@ -19,7 +19,7 @@
 							/obj/random/plushie                                         = 1,
 							/obj/item/toy/cultsword                                     = 1,
 							/obj/item/toy/bouquet/fake                                  = 1,
-							/obj/item/clothing/accessory/badge/sheriff                  = 2,
+							/obj/item/clothing/accessory/medal/badge/sheriff                  = 2,
 							/obj/item/clothing/head/cowboy_hat/small                    = 2,
 							/obj/item/toy/stickhorse                                    = 2
 							)
@@ -1339,3 +1339,5 @@
 		O = T
 		to_chat(user, "<span class='notice'>You turn in 2 tickets to the [src] and claim a prize!</span>")
 		return
+	else
+		..() //You can now actually deconstruct these.

@@ -44,17 +44,6 @@
 	var/health = 300 					//Health is health
 	var/maxhealth = 300 				//Maxhealth is maxhealth.
 	var/deflect_chance = 10 			//Chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
-	//the values in this list show how much damage will pass through, not how much will be absorbed.
-	var/list/damage_absorption = list(
-									"brute"=0.8,
-									"fire"=1.2,
-									"bullet"=0.9,
-									"laser"=1,
-									"energy"=1,
-									"bomb"=1,
-									"bio"=1,
-									"rad"=1
-									)
 
 	var/damage_minimum = 10				//Incoming damage lower than this won't actually deal damage. Scrapes shouldn't be a real thing.
 	var/minimum_penetration = 15		//Incoming damage won't be fully applied if you don't have at least 20. Almost all AP clears this.
@@ -71,7 +60,11 @@
 	var/datum/effect_system/spark_spread/spark_system = new
 	var/lights = 0
 	var/lights_power = 6
-	var/force = 0
+
+	var/force = 15	// Damage value used for punching.
+	var/melee_cooldown = 10	// Cooldown for punching.
+	var/melee_can_hit = FALSE	// If set to true, the exosuit will be able to punch.
+	var/melee_sound = 'sound/weapons/heavysmash.ogg'
 
 	var/mech_faction = null
 	var/firstactivation = 0 			//It's simple. If it's 0, no one entered it yet. Otherwise someone entered it at least once.
@@ -153,6 +146,8 @@
 //Mech actions
 
 	var/strafing = 0 				//Are we strafing or not?
+
+	var/flying = 0					//Are we flying, or no?
 
 	var/defence_mode_possible = 0 	//Can we even use defence mode? This is used to assign it to mechs and check for verbs.
 	var/defence_mode = 0 			//Are we in defence mode
@@ -484,12 +479,6 @@
 	radio.icon_state = icon_state
 	radio.subspace_transmission = 1
 
-/obj/mecha/proc/do_after(delay as num)
-	sleep(delay)
-	if(src)
-		return 1
-	return 0
-
 /obj/mecha/proc/enter_after(delay as num, var/mob/user as mob, var/numticks = 5)
 	var/delayfraction = delay/numticks
 
@@ -685,8 +674,92 @@
 		if(src_object in view(2, src))
 			return STATUS_UPDATE //if they're close enough, allow the occupant to see the screen through the viewport or whatever.
 
-/obj/mecha/proc/melee_action(atom/target)
+/obj/mecha/proc/melee_action(atom/T)
+	if(internal_damage & MECHA_INT_CONTROL_LOST)
+		T = safepick(oview(1,src))
+	if(!melee_can_hit)
+		return
+
+	if(istype(T, /obj/machinery/disposal)) // Stops mechs from climbing into disposals
+		return
+
+	if(isliving(T))
+		var/mob/living/M = T
+		if(src.occupant.a_intent == I_HURT || isbrain(src.occupant)) //Brains cannot change intents; Exo-piloting brains lack any form of physical feedback for control, limiting the ability to 'play nice'.
+			playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
+			do_attack_animation(T)
+			if(damtype == "brute")
+				step_away(M,src,15)
+
+			if(ishuman(T))
+				var/mob/living/carbon/human/H = T
+
+				var/obj/item/organ/external/temp = H.get_organ(pick(BP_TORSO, BP_TORSO, BP_TORSO, BP_HEAD))
+				if(istype(temp))
+					var/update = 0
+					switch(damtype)
+						if("brute")
+							H.Paralyse(1)
+							update |= temp.take_damage(rand(force/2, force), 0)
+						if("fire")
+							update |= temp.take_damage(0, rand(force/2, force))
+						if("tox")
+							if(H.reagents)
+								if(H.reagents.get_reagent_amount("carpotoxin") < force*2)
+									H.reagents.add_reagent("carpotoxin", force)
+								if(H.reagents.get_reagent_amount("cryptobiolin") < force*2)
+									H.reagents.add_reagent("cryptobiolin", force)
+						if("halloss")
+							H.stun_effect_act(1, force / 2, BP_TORSO, src)
+						else
+							return
+					if(update)	H.UpdateDamageIcon()
+				H.updatehealth()
+
+			else
+				switch(damtype)
+					if("brute")
+						M.Paralyse(1)
+						M.take_overall_damage(rand(force/2, force))
+					if("fire")
+						M.take_overall_damage(0, rand(force/2, force))
+					if("tox")
+						if(M.reagents)
+							if(M.reagents.get_reagent_amount("carpotoxin") + force < force*2)
+								M.reagents.add_reagent("carpotoxin", force)
+							if(M.reagents.get_reagent_amount("cryptobiolin") + force < force*2)
+								M.reagents.add_reagent("cryptobiolin", force)
+					else
+						return
+				M.updatehealth()
+			src.occupant_message("You hit [T].")
+			src.visible_message(SPAN_DANGER("[src.name] hits [T]"))
+		else
+			step_away(M,src)
+			src.occupant_message("You push [T] out of the way.")
+			src.visible_message("[src] pushes [T] out of the way.")
+
+	else
+		if(src.occupant.a_intent == I_HURT || isbrain(src.occupant)) // Don't smash unless we mean it
+			if(damtype == "brute")
+				src.occupant_message("You hit [T].")
+				src.visible_message(SPAN_DANGER("[src.name] hits [T]"))
+				playsound(src, 'sound/weapons/heavysmash.ogg', 50, 1)
+				do_attack_animation(T)
+
+				if(istype(T, /obj/structure/girder))
+					T:take_damage(force * 3) //Girders have 200 health by default. Steel, non-reinforced walls take four combat exosuit punches, girders take (with this value-mod) two, girders took five without.
+				else
+					T:take_damage(force)
+
+	melee_can_hit = 0
+	if(mech_delay(melee_cooldown))
+		melee_can_hit = 1
 	return
+
+/obj/mecha/proc/mech_delay(var/delay)
+	sleep(delay)
+	return !QDELETED(src)
 
 /obj/mecha/proc/range_action(atom/target)
 	return
@@ -739,9 +812,12 @@
 	return domove(direction)
 
 /obj/mecha/proc/can_ztravel()
-	for(var/obj/item/mecha_parts/mecha_equipment/tool/jetpack/jp in equipment)
-		return jp.equip_ready
-	return FALSE
+	. = FALSE
+	for(var/obj/item/mecha_parts/mecha_equipment/equip in equipment)
+		. = equip.check_ztravel()
+		if(.)
+			break
+	return
 
 /obj/mecha/proc/domove(direction)
 
@@ -776,6 +852,7 @@
 
 	if(strafing)
 		tally = round(tally * actuator.strafing_multiplier)
+		tally += 0.2 SECONDS
 
 	for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
 		if(istype(ME, /obj/item/mecha_parts/mecha_equipment/speedboost))
@@ -788,6 +865,10 @@
 
 	if(overload)	// At the end, because this would normally just make the mech *slower* since tally wasn't starting at 0.
 		tally = min(1, round(tally/2))
+
+	var/turf/T = get_turf(src)	// At the end of the end, because no matter how fast a mech is, if a turf is rough terrain, you're going to have trouble.
+	if(T.movement_cost)
+		tally += T.movement_cost
 
 	return max(1, round(tally, 0.1))	// Round the total to the nearest 10th. Can't go lower than 1 tick. Even humans have a delay longer than that.
 
@@ -876,7 +957,7 @@
 				float_direction = direction
 				start_process(MECHA_PROC_MOVEMENT)
 				src.log_message("<span class='warning'>Movement control lost. Inertial movement started.</span>")
-		if(do_after(get_step_delay()))
+		if(mech_delay(get_step_delay()))
 			can_move = 1
 		return 1
 	return 0
@@ -1043,15 +1124,8 @@
 
 /obj/mecha/proc/get_damage_absorption()
 	var/obj/item/mecha_parts/component/armor/AC = internal_components[MECH_ARMOR]
-
-	if(!istype(AC))
-		return
-
-	else
-		if(AC.get_efficiency() > 0.25)
-			return AC.damage_absorption
-
-	return
+	if(istype(AC) && AC.get_efficiency() > 0.25)
+		return AC.damage_absorption
 
 /obj/mecha/proc/absorbDamage(damage,damage_type)
 	return call((proc_res["dynabsorbdamage"]||src), "dynabsorbdamage")(damage,damage_type)
@@ -1560,26 +1634,48 @@
 		return
 
 	else if(istype(W,/obj/item/stack/nanopaste))
-		if(state >= MECHA_PANEL_LOOSE)
-			var/obj/item/stack/nanopaste/NP = W
+		if(state < MECHA_PANEL_LOOSE)
+			to_chat(user, SPAN_WARNING("You can't reach \the [src]'s internal components."))
+			return
 
+		var/obj/item/stack/nanopaste/nanopaste = W
+		while(!QDELETED(user) && !QDELETED(src))
+
+			// Get a component to attempt a repair on.
+			var/obj/item/mecha_parts/component/component
 			for(var/slot in internal_components)
-				var/obj/item/mecha_parts/component/C = internal_components[slot]
+				var/obj/item/mecha_parts/component/check_component = internal_components[slot]
+				if(!QDELETED(check_component) && check_component.integrity < check_component.max_integrity)
+					component = check_component
+					break
 
-				if(C)
+			// We've run out of components to fix.
+			if(!component)
+				to_chat(user, SPAN_NOTICE("Nothing to repair!"))
+				break
 
-					if(C.integrity < C.max_integrity)
-						while(C.integrity < C.max_integrity && NP && do_after(user, 1 SECOND, src))
-							if(NP.use(1))
-								C.adjust_integrity(10)
+			// Something has destroyed us or the mech, or we're incapacitated or moved away.
+			if(QDELETED(user) || QDELETED(src) || QDELETED(component) || component.loc != src || !do_after(user, 1 SECOND, src))
+				break
 
-						to_chat(user, "<span class='notice'>You repair damage to \the [C].</span>")
+			// Out of repair gel.
+			if(QDELETED(nanopaste) || !nanopaste.use(1))
+				to_chat(user, SPAN_WARNING("You're out of nanopaste!"))
+				break
 
-			return
+			// Handle the actual repair.
+			component.adjust_integrity(10)
+			if(component.integrity >= component.max_integrity)
+				to_chat(user, SPAN_NOTICE("You repair the damage to \the [component]."))
+			else
+				to_chat(user, SPAN_NOTICE("You repair some of the damage to \the [component]."))
 
-		else
-			to_chat(user, "<span class='notice'>You can't reach \the [src]'s internal components.</span>")
-			return
+			// Do another nanopaste check to avoid wasting a second on a do_after.
+			if(QDELETED(nanopaste) || !nanopaste.can_use(1))
+				to_chat(user, SPAN_WARNING("You're out of nanopaste!"))
+				break
+
+		return
 
 	else
 		call((proc_res["dynattackby"]||src), "dynattackby")(W,user)
@@ -2574,7 +2670,7 @@
 		var/mob/occupant = P.occupant
 
 		user.visible_message("<span class='notice'>\The [user] begins opening the hatch on \the [P]...</span>", "<span class='notice'>You begin opening the hatch on \the [P]...</span>")
-		if (!do_after(user, 40))
+		if (!do_after(user, 4 SECONDS))
 			return
 
 		user.visible_message("<span class='notice'>\The [user] opens the hatch on \the [P] and removes [occupant]!</span>", "<span class='notice'>You open the hatch on \the [P] and remove [occupant]!</span>")
@@ -2614,14 +2710,16 @@
 		src.occupant_message("Recalibrating coordination system.")
 		src.log_message("Recalibration of coordination system started.")
 		var/T = src.loc
-		if(do_after(100))
-			if(T == src.loc)
-				src.clearInternalDamage(MECHA_INT_CONTROL_LOST)
-				src.occupant_message("<font color='blue'>Recalibration successful.</font>")
-				src.log_message("Recalibration of coordination system finished with 0 errors.")
-			else
-				src.occupant_message("<font color='red'>Recalibration failed.</font>")
-				src.log_message("Recalibration of coordination system failed with 1 error.",1)
+		sleep(100)
+		if(QDELETED(src))
+			return
+		if(T == src.loc)
+			src.clearInternalDamage(MECHA_INT_CONTROL_LOST)
+			src.occupant_message("<font color='blue'>Recalibration successful.</font>")
+			src.log_message("Recalibration of coordination system finished with 0 errors.")
+		else
+			src.occupant_message("<font color='red'>Recalibration failed.</font>")
+			src.log_message("Recalibration of coordination system failed with 1 error.",1)
 	if(href_list["drop_from_cargo"])
 		var/obj/O = locate(href_list["drop_from_cargo"])
 		if(O && (O in src.cargo))
@@ -2866,3 +2964,45 @@
 				occupant.throw_alert("mech damage", /obj/screen/alert/low_mech_integrity, 3)
 			else
 				occupant.clear_alert("mech damage")
+
+/obj/mecha/blob_act(var/obj/structure/blob/B)
+	var/datum/blob_type/blob = B?.overmind?.blob_type
+	if(!istype(blob))
+		return FALSE
+
+	var/damage = rand(blob.damage_lower, blob.damage_upper)
+	src.take_damage(damage, blob.damage_type)
+	visible_message("<span class='danger'>\The [B] [blob.attack_verb] \the [src]!</span>", "<span class='danger'>[blob.attack_message_synth]!</span>")
+	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
+
+	return ..()
+
+/obj/mecha/throw_impact(var/atom/hit_atom, var/speed)
+	. = ..(hit_atom, speed)
+
+	for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
+		if(istype(ME, /obj/item/mecha_parts/mecha_equipment/tool/jumpjet))
+			flying = FALSE
+
+/obj/mecha/hit_check(var/speed)
+	if(src.throwing)
+		for(var/atom/A in get_turf(src))
+			if(A == src) continue
+			if(isliving(A))
+				if(A:lying) continue
+				src.throw_impact(A,speed)
+			if(isobj(A))
+				if(!A.density || A.throwpass)
+					continue
+				// Special handling of windows, which are dense but block only from some directions
+				if(istype(A, /obj/structure/window))
+					var/obj/structure/window/W = A
+					if (!W.is_fulltile() && !(turn(src.last_move, 180) & A.dir))
+						continue
+				// Same thing for (closed) windoors, which have the same problem
+				else if(istype(A, /obj/machinery/door/window) && !(turn(src.last_move, 180) & A.dir))
+					continue
+
+				if(flying && A.CanPass(src))
+					continue
+				src.throw_impact(A,speed)

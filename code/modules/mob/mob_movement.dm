@@ -12,13 +12,9 @@
 		. += 5
 
 	// Movespeed delay based on movement mode
-	switch(m_intent)
-		if("run")
-			if(drowsyness > 0)
-				. += 6
-			. += config.run_speed
-		if("walk")
-			. += config.walk_speed
+	if(IS_RUNNING(src) && drowsyness > 0)
+		. += 6
+	. += move_intent.move_delay
 
 /client/proc/client_dir(input, direction=-1)
 	return turn(input, direction*dir2angle(dir))
@@ -206,7 +202,7 @@
 
 	// Can't control ourselves when drifting
 	if((isspace(loc) || my_mob.lastarea?.has_gravity == 0) && isturf(loc))
-		if(!my_mob.Process_Spacemove(0))
+		if(!my_mob.Process_Spacemove(FALSE))
 			return 0
 
 	// Inside an object, tell it we moved
@@ -260,13 +256,10 @@
 					return // No hands to drive your chair? Tough luck!
 			//drunk wheelchair driving
 			else if(my_mob.confused)
-				switch(my_mob.m_intent)
-					if("run")
-						if(prob(50))
-							direct = turn(direct, pick(90, -90))
-					if("walk")
-						if(prob(25))
-							direct = turn(direct, pick(90, -90))
+				if(IS_RUNNING(my_mob) && prob(50))
+					direct = turn(direct, pick(90, -90))
+				else if(IS_WALKING(my_mob) && prob(25))
+					direct = turn(direct, pick(90, -90))
 			total_delay += 3
 
 	// We are now going to move
@@ -275,15 +268,12 @@
 
 	// Confused direction randomization
 	if(my_mob.confused)
-		switch(my_mob.m_intent)
-			if("run")
-				if(prob(75))
-					direct = turn(direct, pick(90, -90))
-					n = get_step(my_mob, direct)
-			if("walk")
-				if(prob(25))
-					direct = turn(direct, pick(90, -90))
-					n = get_step(my_mob, direct)
+		if(IS_RUNNING(my_mob) && prob(75))
+			direct = turn(direct, pick(90, -90))
+			n = get_step(my_mob, direct)
+		else if(IS_WALKING(my_mob) && prob(25))
+			direct = turn(direct, pick(90, -90))
+			n = get_step(my_mob, direct)
 
 	total_delay = DS2NEARESTTICK(total_delay) //Rounded to the next tick in equivalent ds
 	my_mob.setMoveCooldown(total_delay)
@@ -405,6 +395,16 @@
 /mob/proc/get_jetpack()
 	return
 
+// Checks whether this mob is allowed to move in space
+// Return 1 for movement, 0 for none,
+/mob/proc/Allow_Spacemove(var/dense_object)
+	if(restrained())
+		return FALSE
+	var/obj/item/tank/jetpack/J = get_jetpack()
+	if(J?.can_thrust(0.01))
+		return TRUE
+	return !!dense_object
+
 ///Process_Spacemove
 ///Called by /client/Move()
 ///For moving in space
@@ -412,26 +412,31 @@
 /mob/proc/Process_Spacemove(var/check_drift = 0)
 
 	if(is_incorporeal())
-		return
+		return FALSE
 
-	if(!Check_Dense_Object()) //Nothing to push off of so end here
-		update_floating(0)
-		return 0
+	var/dense_object = Check_Dense_Object()
+	if(!Allow_Spacemove(dense_object))
+		update_floating(dense_object)
+		return FALSE
 
-	update_floating(1)
-
-	if(restrained()) //Check to see if we can do things
-		return 0
+	var/obj/item/tank/jetpack/thrust = get_jetpack()
+	if(dense_object || ((!check_drift || thrust?.stabilization_on) && !lying && thrust.do_thrust(0.01, src)))
+		inertia_dir = 0
+		return TRUE
+	else if(!dense_object) //Nothing to push off of so end here
+		update_floating(FALSE)
+		return FALSE
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)) && !buckled)
 		to_chat(src, "<span class='notice'><B>You slipped!</B></span>")
 		inertia_dir = last_move
 		step(src, src.inertia_dir) // Not using Move for smooth glide here because this is a 'slip' so should be sudden.
-		return 0
+		return FALSE
+
 	//If not then we can reset inertia and move
 	inertia_dir = 0
-	return 1
+	return TRUE
 
 /mob/proc/Check_Dense_Object() //checks for anything to push off in the vicinity. also handles magboots on gravity-less floors tiles
 

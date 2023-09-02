@@ -675,3 +675,18 @@ Drinks Data
 
 /datum/reagent/ethanol/mojito
 	glass_icon_state = "mojito"
+
+/datum/reagent/drink/juice/dyn
+	glass_icon_state = "dynjuice"
+
+/datum/reagent/drink/tea/dyn
+	glass_icon_state = "dynhot"
+
+/datum/reagent/drink/tea/icetea/dyn
+	glass_icon_state = "dyncold"
+
+/datum/reagent/drink/soda/kiraniade
+	glass_icon_state = "kiraniade"
+
+/datum/reagent/ethanol/sirisaii_pole
+	glass_icon_state = "sirisaii_pole"

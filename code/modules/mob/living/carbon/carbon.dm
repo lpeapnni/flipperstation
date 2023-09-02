@@ -37,10 +37,10 @@
 	. = ..()
 	if(src.nutrition && src.stat != 2)
 		adjust_nutrition(-DEFAULT_HUNGER_FACTOR / 10)
-		if(src.m_intent == "run")
+		if(IS_RUNNING(src))
 			adjust_nutrition(-DEFAULT_HUNGER_FACTOR / 10)
 
-	if((FAT in src.mutations) && src.m_intent == "run" && src.bodytemperature <= 360)
+	if((FAT in src.mutations) && IS_RUNNING(src) && src.bodytemperature <= 360)
 		src.bodytemperature += 2
 
 	// Moving around increases germ_level faster
@@ -101,7 +101,7 @@
 //higher sensitivity values incur additional effects, starting with confusion/blinding/knockdown and ending with increasing amounts of damage
 //the degree of damage and duration of effects can be tweaked up or down based on the species emp_dmg_mod and emp_stun_mod vars (default 1) on top of tuning the random ranges
 /mob/living/carbon/emp_act(severity)
-	//pregen our stunning stuff, had to do this seperately or else byond complained. remember that severity falls off with distance based on the source, so we don't need to do any extra distance calcs here.
+	//pregen our stunning stuff, had to do this separately or else byond complained. remember that severity falls off with distance based on the source, so we don't need to do any extra distance calcs here.
 	var/agony_str = ((rand(4,6)*15)-(15*severity))*species.emp_stun_mod //big ouchies at high severity, causes 0-75 halloss/agony; shotgun beanbags and revolver rubbers do 60
 	var/deafen_dur = (rand(9,16)-severity)*species.emp_stun_mod //5-15 deafen, on par with a flashbang
 	var/confuse_dur = (rand(4,11)-severity)*species.emp_stun_mod //0-10 wobbliness, on par with a flashbang
@@ -561,3 +561,83 @@
 		return ingest(holder, ingested, amount, multiplier, copy)
 	if(chem_type == CHEM_TOUCH)
 		return holder.trans_to_holder(touching, amount, multiplier, copy)
+
+
+/mob/living/carbon/devour(atom/movable/victim)
+	var/can_eat = can_devour(victim)
+	if(!can_eat)
+		return FALSE
+	var/eat_speed = 100
+	if(can_eat == DEVOUR_FAST)
+		eat_speed = 30
+	visible_message(SPAN_DANGER("\The [src] is attempting to devour \the [victim] whole!"))
+	var/action_target = victim
+	if(isobj(victim))
+		action_target = src
+	if(!do_mob(src, action_target, eat_speed))
+		return FALSE
+	visible_message(SPAN_DANGER("\The [src] devours \the [victim] whole!"))
+	if(ismob(victim))
+		add_attack_logs(src, victim, "devoured")
+	else
+		drop_from_inventory(victim)
+	move_to_stomach(victim)
+	return TRUE
+
+/mob/living/carbon/proc/can_devour(atom/movable/victim, var/silent = FALSE)
+
+	if(!should_have_organ(O_STOMACH))
+		return FALSE
+
+	var/obj/item/organ/internal/stomach/stomach = get_internal_organ(O_STOMACH)
+	if(!istype(stomach) || stomach.is_broken())
+		if(!silent)
+			to_chat(src, SPAN_WARNING("Your stomach is not functional!"))
+		return FALSE
+
+	if(!stomach.can_eat_atom(victim))
+		if(!silent)
+			to_chat(src, SPAN_WARNING("You are not capable of devouring \the [victim] whole!"))
+		return FALSE
+
+	if(stomach.is_full(victim))
+		if(!silent)
+			to_chat(src, SPAN_WARNING("Your [stomach.name] is full!"))
+		return FALSE
+
+	return stomach.get_devour_time(victim)
+
+/mob/living/carbon/proc/move_to_stomach(atom/movable/victim)
+	SHOULD_CALL_PARENT(FALSE)
+	var/mob/mob_victim = victim
+	if(istype(mob_victim, /obj/item/holder))
+		mob_victim = locate(/mob) in mob_victim
+		if(mob_victim && mob_victim != victim)
+			stomach_contents.Add(mob_victim)
+			qdel(victim)
+	else
+		stomach_contents.Add(victim)
+
+/mob/living/carbon/empty_stomach(var/blood_vomit)
+
+	for(var/atom/movable/thing in stomach_contents)
+		thing.dropInto(get_turf(src))
+		if(species.gluttonous & GLUT_PROJECTILE_VOMIT)
+			thing.throw_at(get_edge_target_turf(src,dir),7,7,src)
+
+	visible_message(SPAN_DANGER("\The [src] throws up!"),SPAN_DANGER("You throw up!"))
+	playsound(loc, 'sound/effects/splat.ogg', 50, 1)
+	Stun(5)
+
+	var/turf/simulated/T = get_turf(src)	//TODO: Make add_blood_floor remove blood from human mobs
+	if(istype(T))
+		if(blood_vomit)
+			T.add_blood_floor(src)
+		else
+			T.add_vomit_floor(src, 1)
+	if(blood_vomit)
+		if(getBruteLoss() < 50)
+			adjustBruteLoss(3)
+		else
+			adjust_nutrition(-40)
+			adjustToxLoss(-3)

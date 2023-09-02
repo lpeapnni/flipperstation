@@ -1,6 +1,6 @@
 /datum/lore/codex/category/sif_law
-	name = "Sif Law"
-	data = "This section contains the abbreviated Sif Govermental Authority legal code's potential charges for crimes that are relevant to \
+	name = "Vir Law"
+	data = "This section contains the abbreviated Vir Governmental Authority legal code's potential charges for crimes that are relevant to \
 	the reader."
 	children = list(
 		/datum/lore/codex/page/legal_punishments,
@@ -10,17 +10,17 @@
 
 /datum/lore/codex/page/legal_punishments
 	name = "Punishments (Law)"
-	data = "A violation of Sif Law is considered far more serious then a violation of corporate regulations. \
+	data = "A violation of Vir Law is considered far more serious than a violation of corporate regulations. \
 	As a result, its expected that a member of Internal Affairs be present to observe and assist security with the paperwork if they are able. \
-	Unlike Corporate Regulations, all violations of Sif Law will require a fax detailing the events to be sent to the \
-	Sif Governmental Authority within a certain amount of time based on whether or not it was a minor or major violation. \
+	Unlike Corporate Regulations, all violations of Vir Law will require a fax detailing the events to be sent to the \
+	Vir Governmental Authority within a certain amount of time based on whether or not it was a minor or major violation. \
 	Punishments will usually include brig time with fines still remaining an option for the far less serious crimes. \
 	It should be noted that a majority of major violations carry a 'Hold till Transfer' order."
 
 /datum/lore/codex/category/law_minor_violations
 	name = "Minor Violations (Law)"
-	data = "Here is a list of the less severe violations of local Sif Law that might occur on your facility.  A fax to the Sif Governmental Authority \
-	is required to be sent within 24 hours of a violation being comitted, for minor violations listed here."
+	data = "Here is a list of the less severe violations of local Vir Law that might occur on your facility.  A fax to the Vir Governmental Authority \
+	is required to be sent within 24 hours of a violation being committed, for minor violations listed here."
 	children = list(
 		/datum/lore/codex/page/law/theft,
 		/datum/lore/codex/page/law/assault,
@@ -35,7 +35,7 @@
 /datum/lore/codex/page/law/assault/add_content()
 	name = "Assault"
 	definition = "To threaten use of physical force against someone while also having the capability and/or intent to carry out that threat."
-	suggested_punishments = "Seperation of offender from the threatened person.  Brig time of 10 minutes for first offense.  \
+	suggested_punishments = "Separation of offender from the threatened person.  Brig time of 10 minutes for first offense.  \
 	Repeat offenders can be brigged for up to (10 minutes times number of previous assault charges).  Demotion at discretion of Superior."
 	notes = "Not to be confused with [quick_link("Battery")], which covers actual physical injury. The threat must be viable and serious; \
 	two people threatening to punch each other out over comms wouldn't fall under this."
@@ -106,7 +106,7 @@
 
 /datum/lore/codex/category/law_major_violations
 	name = "Major Violations (Law)"
-	data = "Here is a list of the serious violations of local Sif Law that might occur on your facility.  A fax to the Sif Governmental Authority \
+	data = "Here is a list of the serious violations of local Vir Law that might occur on your facility.  A fax to the Vir Governmental Authority \
 	is required to be sent within one hour, or when it is safe to do so, for major crimes listed here."
 	children = list(
 		/datum/lore/codex/page/law/aggravated_battery,
@@ -150,7 +150,7 @@
 	definition = "Stealing money that is entrusted to you by a corporation or person."
 	suggested_punishments = "Hold until Transfer.  Termination.  Reimbursement of embezzled funds.  Fax Central Command and VirGov."
 	notes = "This includes funneling Departmental, Facility, or Crew funds into the offender's account.  It also includes pocketing \
-	transactions directly that are meant to go to a seperate account."
+	transactions directly that are meant to go to a separate account."
 	mandated = TRUE
 
 /datum/lore/codex/page/law/excessive_force/add_content()
@@ -158,7 +158,7 @@
 	definition = "Using more force than what is required to safely detain someone, using force against a helpless or incapacitated person, \
 	or using force against an unarmed and compliant person."
 	suggested_punishments = "Demotion.  Termination at discretion of Superior, or Station Director.  Send notice to Central Command if a Head of Security had used excessive force."
-	notes = "This charge also is applicible to non-Security personnel acting in self defense.  \
+	notes = "This charge also is applicable to non-Security personnel acting in self defense.  \
 	Persons whom have caused a person to die as a result of excessive force should have [quick_link("Manslaughter")] applied instead, if the circumstances were \
 	unjustified."
 	..()
@@ -168,7 +168,7 @@
 	definition = "To kill a sapient being without intent."
 	suggested_punishments = "Hold until Transfer, if unjustified.  Fax VirGov."
 	notes = "Includes provoked manslaughter, negligent manslaughter, and impassioned killing.  The important distinction between this \
-	and [quick_link("Murder")] is intent.  Manslaughter can be justified if force was nessecary and it was intented to prevent further loss of life or \
+	and [quick_link("Murder")] is intent.  Manslaughter can be justified if force was necessary and it was intended to prevent further loss of life or \
 	grievous injury to self or others, however persons involved in the kill will still be required to answer to higher legal authority \
 	after the shift."
 	mandated = TRUE

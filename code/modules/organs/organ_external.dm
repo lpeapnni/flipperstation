@@ -443,11 +443,12 @@
 		if("omni")src.heal_damage(repair_amount, repair_amount, 0, 1)
 
 	if(damage_desc)
+		var/fix_verb = (damage_amount > repair_amount) ? "patches" : "finishes patching"
 		if(user == src.owner)
 			var/datum/gender/T = gender_datums[user.get_visible_gender()]
-			user.visible_message("<span class='notice'>\The [user] patches [damage_desc] on [T.his] [src.name] with [tool].</span>")
+			user.visible_message("<span class='notice'>\The [user] [fix_verb] [damage_desc] on [T.his] [src.name] with [tool].</span>")
 		else
-			user.visible_message("<span class='notice'>\The [user] patches [damage_desc] on [owner]'s [src.name] with [tool].</span>")
+			user.visible_message("<span class='notice'>\The [user] [fix_verb] [damage_desc] on [owner]'s [src.name] with [tool].</span>")
 
 	return 1
 
@@ -626,7 +627,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 */
 /obj/item/organ/external/proc/update_germs()
 
-	if(robotic >= ORGAN_ROBOT || (owner.species && (owner.species.flags & IS_PLANT || (owner.species.flags & NO_INFECT)))) //Robotic limbs shouldn't be infected, nor should nonexistant limbs.
+	if(robotic >= ORGAN_ROBOT || (owner.species && (owner.species.flags & IS_PLANT || (owner.species.flags & NO_INFECT)))) //Robotic limbs shouldn't be infected, nor should nonexistent limbs.
 		germ_level = 0
 		return
 

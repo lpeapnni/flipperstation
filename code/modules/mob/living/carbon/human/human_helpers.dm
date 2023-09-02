@@ -135,7 +135,7 @@
 				return FBP_POSI
 			else if(istype(mmi_holder.stored_mmi, /obj/item/mmi/digital/robot))
 				return FBP_DRONE
-			else if(istype(mmi_holder.stored_mmi, /obj/item/mmi)) // This needs to come last because inheritence.
+			else if(istype(mmi_holder.stored_mmi, /obj/item/mmi)) // This needs to come last because inheritance.
 				return FBP_CYBORG
 
 	return FBP_NONE
@@ -209,6 +209,16 @@
 			return TRUE
 
 	return FALSE
+
+// FLIPPER ADDITION START - custom species names
+
+/mob/living/carbon/human/get_species_name()
+	if(custom_species)
+		return custom_species
+	var/datum/species/my_species = get_species()
+	return my_species?.name
+
+// FLIPPER ADDITION END
 
 #undef HUMAN_EATING_NO_ISSUE
 #undef HUMAN_EATING_NO_MOUTH

@@ -32,10 +32,9 @@
 /decl/mob_organ_names/quadruped //Most subtypes have this basic body layout.
 	hit_zones = list("head", "torso", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "tail")
 
-/mob/living/simple_mob/animal/examine(var/mob/user)
-	. = ..()
-	if(flavor_text)
-		. += flavor_text
+/mob/living/simple_mob/animal/get_examine_desc()
+	return flavor_text || desc
+
 
 /mob/living/simple_mob/animal/verb/set_flavour_text()
 	set name = "Set Flavour Text"
@@ -105,10 +104,9 @@
 
 	if(istype(snack, /obj/item/organ))
 		var/obj/item/organ/organ = snack
-		if(organ.meat_type)
-			snack = new organ.meat_type(src)
-			qdel(organ)
-	else if(!istype(snack) || !snack.reagents?.total_volume)
+		if(organ.meat_type) // Let's assume not having a meat_type means it's not edible.
+			snack = new /obj/item/reagent_containers/food/snacks/organ(get_turf(snack), snack)
+	if(!istype(snack) || !snack.reagents?.total_volume)
 		to_chat(src, SPAN_WARNING("\The [snack] doesn't seem edible."))
 		return
 

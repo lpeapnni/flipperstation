@@ -8,6 +8,7 @@
 #define WEATHER_HAIL				"hail"
 #define WEATHER_WINDY				"windy"
 #define WEATHER_HOT					"hot"
+#define WEATHER_FOG					"fog"
 #define WEATHER_BLOOD_MOON			"blood moon" // For admin fun or cult later on.
 #define WEATHER_EMBERFALL			"emberfall" // More adminbuse, from TG. Harmless.
 #define WEATHER_ASH_STORM			"ash storm" // Ripped from TG, like the above. Less harmless.
@@ -17,7 +18,7 @@
 #define MOON_PHASE_WAXING_CRESCENT	"waxing crescent"
 #define MOON_PHASE_FIRST_QUARTER	"first quarter"
 #define MOON_PHASE_WAXING_GIBBOUS	"waxing gibbous"
-#define MOON_PHASE_FULL_MOON		"full moon" // ware-shantaks sold seperately.
+#define MOON_PHASE_FULL_MOON		"full moon" // were-shantaks sold separately.
 #define MOON_PHASE_WANING_GIBBOUS	"waning gibbous"
 #define MOON_PHASE_LAST_QUARTER		"last quarter"
 #define MOON_PHASE_WANING_CRESCENT	"waning crescent"

@@ -209,6 +209,7 @@
 
 /turf/simulated/floor/tiled/kafel_full
 	name = "floor"
+	desc = "Ceramic tile flooring."
 	icon_state = "kafel_full"
 	initial_flooring = /decl/flooring/tiling/new_tile/kafel
 /turf/simulated/floor/tiled/kafel_full/white
@@ -420,7 +421,7 @@
 */
 /turf/simulated/floor/airless/ceiling
 /turf/simulated/floor/plating
-/turf/simulated/floor/plating/external // To be overrided by the map files.
+/turf/simulated/floor/plating/external // To be overridden by the map files.
 /turf/simulated/floor/tiled/external
 
 //**** Here lives snow ****

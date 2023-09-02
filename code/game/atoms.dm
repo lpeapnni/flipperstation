@@ -212,6 +212,8 @@ var/global/list/pre_init_created_atoms // atom creation ordering means some stuf
 			found += A.search_contents_for(path,filter_path)
 	return found
 
+/atom/proc/get_examine_desc()
+	return desc
 
 /atom/proc/examine(mob/user, infix = "", suffix = "")
 	var/f_name = "\a [src][infix]."
@@ -224,7 +226,7 @@ var/global/list/pre_init_created_atoms // atom creation ordering means some stuf
 			f_name += "<span class='danger'>blood-stained</span> [name][infix]!"
 		else
 			f_name += "oil-stained [name][infix]."
-	var/list/output = list("[bicon(src)] That's [f_name] [suffix]", desc)
+	var/list/output = list("[bicon(src)] That's [f_name] [suffix]", get_examine_desc())
 	if (user.client?.prefs.examine_text_mode == EXAMINE_MODE_SWITCH_TO_PANEL)
 		user.client.statpanel = "Examine"
 	else if (user.client)
@@ -281,7 +283,7 @@ var/global/list/pre_init_created_atoms // atom creation ordering means some stuf
 /atom/proc/melt()
 	return
 
-// Previously this was defined both on /obj/ and /turf/ seperately.  And that's bad.
+// Previously this was defined both on /obj/ and /turf/ separately.  And that's bad.
 /atom/proc/update_icon()
 	return
 
@@ -674,6 +676,14 @@ var/global/list/pre_init_created_atoms // atom creation ordering means some stuf
 /atom/proc/get_visible_gender(mob/user, force)
 	return gender
 
+/// Checks if slimes will target this atom and move towards it. Defaults to null.
+/atom/proc/is_slime_food()
+	return FALSE
+
+/// Called when a slime interacts with this atom as determined by `is_slime_food()`.
+/// * `slime` - The slime causing the interaction.
+/atom/proc/slime_chomp(mob/living/simple_mob/slime/xenobio/slime)
+	return
 
 /**
 * Constructs an atom/Topic link for the callee.

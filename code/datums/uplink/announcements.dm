@@ -16,10 +16,10 @@
 	item_cost = 20
 
 /datum/uplink_item/abstract/announcements/fake_centcom/extra_args(var/mob/user)
-	var/title = sanitize(input("Enter your announcement title.", "Announcement Title") as null|text)
+	var/title = html_decode(sanitize(input("Enter your announcement title.", "Announcement Title") as null|text))
 	if(!title)
 		return
-	var/message = sanitize(input("Enter your announcement message.", "Announcement Title") as null|text)
+	var/message = html_decode(sanitize(input("Enter your announcement message.", "Announcement Title") as message|null, extra = 0))
 	if(!message)
 		return
 	return list("title" = title, "message" = message)
@@ -72,7 +72,7 @@
 		general.fields["name"] = user.real_name
 		general.fields["sex"] = capitalize(user.gender)
 
-	general.fields["species"] = user.get_species()
+	general.fields["species"] = user.get_species_name()
 	var/datum/data/record/medical = data_core.CreateMedicalRecord(general.fields["name"], general.fields["id"])
 	data_core.CreateSecurityRecord(general.fields["name"], general.fields["id"])
 

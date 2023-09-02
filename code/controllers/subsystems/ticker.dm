@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(ticker)
 	flags = SS_NO_TICK_CHECK | SS_KEEP_TIMING
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME // Every runlevel!
 
-	var/const/restart_timeout = 3 MINUTES	// Default time to wait before rebooting in desiseconds.
+	var/const/restart_timeout = 3 MINUTES	// Default time to wait before rebooting in deciseconds.
 	var/current_state = GAME_STATE_INIT	// We aren't even at pregame yet // TODO replace with CURRENT_GAME_STATE
 
 	/* Relies upon the following globals (TODO move those in here) */
@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(ticker)
 	var/datum/game_mode/mode = null		// The actual gamemode, if selected.
 
 	var/end_game_state = END_GAME_NOT_OVER	// Track where we are ending game/round
-	var/restart_timeleft				// Time remaining until restart in desiseconds
+	var/restart_timeleft				// Time remaining until restart in deciseconds
 	var/last_restart_notify				// world.time of last restart warning.
 	var/delay_end = FALSE               // If set, the round will not restart on its own.
 
@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(ticker)
 // This global variable exists for legacy support so we don't have to rename every 'ticker' to 'SSticker' yet.
 var/global/datum/controller/subsystem/ticker/ticker
 /datum/controller/subsystem/ticker/OnNew()
-	global.ticker = src // TODO - Remove this! Change everything to point at SSticker intead
+	global.ticker = src // TODO - Remove this! Change everything to point at SSticker instead
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	pregame_timeleft = config.pregame_time
@@ -79,7 +79,8 @@ var/global/datum/controller/subsystem/ticker/ticker
 /datum/controller/subsystem/ticker/proc/pregame_welcome()
 	to_world("<span class='boldannounce notice'><em>Welcome to the pregame lobby!</em></span>")
 	to_world("<span class='boldannounce notice'>Please set up your character and select ready. The round will start in [pregame_timeleft] seconds.</span>")
-	world << sound('sound/misc/server-ready.ogg', volume = 100)
+	for (var/mob/M in player_list)
+		M.playsound_local(null, 'sound/misc/server-ready.ogg', 100, FALSE, is_global = TRUE, volume_channel = VOLUME_CHANNEL_SYSTEM)
 
 // Called during GAME_STATE_PREGAME (RUNLEVEL_LOBBY)
 /datum/controller/subsystem/ticker/proc/pregame_tick()
@@ -186,7 +187,8 @@ var/global/datum/controller/subsystem/ticker/ticker
 			if (S.name != "AI")
 				qdel(S)
 		to_world("<span class='boldannounce notice'><em>Enjoy the game!</em></span>")
-		world << sound('sound/AI/welcome.ogg') // Skie
+		for (var/mob/M in player_list)
+			M.playsound_local(null, 'sound/AI/welcome.ogg', 100, FALSE, is_global = TRUE, volume_channel = VOLUME_CHANNEL_SYSTEM)
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
 
@@ -520,7 +522,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 			if(temprole in total_antagonists)	//If the role exists already, add the name to it
 				total_antagonists[temprole] += ", [Mind.name]([Mind.key])"
 			else
-				total_antagonists.Add(temprole) //If the role doesnt exist in the list, create it and add the mob
+				total_antagonists.Add(temprole) //If the role doesn't exist in the list, create it and add the mob
 				total_antagonists[temprole] += ": [Mind.name]([Mind.key])"
 
 	//Now print them all into the log!

@@ -128,24 +128,6 @@
 	icon_state = "greenbandana"
 	flags_inv = 0
 	body_parts_covered = 0
-/obj/item/clothing/head/justice
-	name = "justice hat"
-	desc = "fight for what's righteous!"
-	icon_state = "justicered" //Does this even exist?
-	flags_inv = BLOCKHAIR
-	body_parts_covered = HEAD|EYES
-
-/obj/item/clothing/head/justice/blue
-	icon_state = "justiceblue"
-
-/obj/item/clothing/head/justice/yellow
-	icon_state = "justiceyellow"
-
-/obj/item/clothing/head/justice/green
-	icon_state = "justicegreen"
-
-/obj/item/clothing/head/justice/pink
-	icon_state = "justicepink"
 
 /obj/item/clothing/head/rabbitears
 	name = "rabbit ears"
@@ -341,7 +323,7 @@
 	icon_state = "cowl"
 	body_parts_covered = 0
 
-/obj/item/clothing/head/cowl
+/obj/item/clothing/head/cowl/white
 	name = "white cowl"
 	desc = "A gold-lined white cowl. It gives off uncomfortable cult vibes, but fancy."
 	icon_state = "whitecowl"
@@ -366,7 +348,8 @@
 	icon_state = "buckethat"
 	icon_state = "buckethat"
 	sprite_sheets = list(
-		SPECIES_TAJARAN = 'icons/mob/species/tajaran/helmet.dmi'
+		SPECIES_TAJARAN = 'icons/mob/species/tajaran/helmet.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/head.dmi'
 		)
 
 //Corporate Berets
@@ -401,4 +384,4 @@
 	name = "fish skull"
 	desc = "You... you're not actually going to wear that, right?"
 	icon_state = "fishskull"
-	flags_inv = HIDEEARS|BLOCKHAIR
+	flags_inv = HIDEEARS|BLOCKHEADHAIR

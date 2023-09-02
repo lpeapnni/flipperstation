@@ -42,6 +42,7 @@
 #include "borglab.dmm"
 #include "chasm.dmm"
 #include "deathden.dmm"
+#include "collapsedmine.dmm"
 
 #endif
 
@@ -171,7 +172,7 @@
 	desc = "The surprisingly high-tech home of Sif Free Radio, the only radio station run by mindless clones."
 	mappath = 'maps/submaps/surface_submaps/wilderness/DJOutpost4.dmm'
 	template_group = "Sif Free Radio"
-	cost = 10
+	cost = INFINITY /// Prevent spawning.
 
 /datum/map_template/surface/wilderness/deep/Boombase
 	name = "Boombase"
@@ -190,7 +191,7 @@
 	name = "Blue Shuttle Down"
 	desc = "You REALLY shouldn't be near this. Mostly because they're SolGov."
 	mappath = 'maps/submaps/surface_submaps/wilderness/Blueshuttledown.dmm'
-	cost = 50
+	cost = INFINITY /// Prevent spawning.
 	template_group = "Shuttle Down"
 
 /datum/map_template/surface/wilderness/deep/Rockybase
@@ -348,3 +349,16 @@
 	desc = "Gathering of acolytes gone wrong."
 	mappath = 'maps/submaps/surface_submaps/wilderness/deathden.dmm'
 	cost = 15
+
+/datum/map_template/surface/wilderness/deep/Research
+	name = "Gene Research Lab"
+	desc = "A covert gene research lab guarded by combat drones."
+	mappath = 'maps/submaps/surface_submaps/wilderness/Research1.dmm'
+	cost = 30
+	
+/datum/map_template/surface/wilderness/deep/CollapsedMine
+	name = "Collapsed Mine"
+	desc = "A Grayson expeditionary base, filled with spiders and drone defenders."
+	mappath = 'maps/submaps/surface_submaps/wilderness/collapsedmine.dmm'
+	cost = 45
+

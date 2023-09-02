@@ -1,6 +1,6 @@
 // This folder contains code that was originally ported from Apollo Station and then refactored/optimized/changed.
 
-// Tracks precooked food to stop deep fried baked grilled grilled grilled diona nymph cereal.
+// Tracks precooked food to stop deep fried baked grilled grilled grilled Diona nymph cereal.
 /obj/item/reagent_containers/food/snacks
 	var/tmp/list/cooked = list()
 
@@ -61,7 +61,7 @@
 /obj/machinery/appliance/Destroy()
 	for (var/a in cooking_objs)
 		var/datum/cooking_item/CI = a
-		qdel(CI.container)//Food is fragile, it probably doesnt survive the destruction of the machine
+		qdel(CI.container)//Food is fragile, it probably doesn't survive the destruction of the machine
 		cooking_objs -= CI
 		qdel(CI)
 	return ..()
@@ -98,7 +98,7 @@
 
 	var/half_overcook = (CI.overcook_mult - 1)*0.5
 	if (progress < 1+half_overcook)
-		return "<span class='soghun'><b>It is done !</b></span>"
+		return "<span class='soghun'><b>It is done!</b></span>"
 	if (progress < CI.overcook_mult)
 		return "<span class='warning'>It looks overcooked, get it out!</span>"
 	else
@@ -136,15 +136,15 @@
 	if (stat & POWEROFF)//Its turned off
 		stat &= ~POWEROFF
 		use_power = 1
-		user.visible_message("[user] turns [src] on.", "You turn on [src].")
+		user.visible_message("<span class='filter_notice'>[user] turns [src] on.</span>", "<span class='filter_notice'>You turn on [src].</span>")
 
 	else //Its on, turn it off
 		stat |= POWEROFF
 		use_power = 0
-		user.visible_message("[user] turns [src] off.", "You turn off [src].")
+		user.visible_message("<span class='filter_notice'>[user] turns [src] off.</span>", "<span class='filter_notice'>You turn off [src].</span>")
 		cooking = FALSE // Stop cooking here, too, just in case.
 
-	playsound(src, 'sound/machines/click.ogg', 40, 1)
+	playsound(src, "button", 40, 1)
 	update_icon()
 
 /obj/machinery/appliance/AICtrlClick(mob/user)
@@ -159,14 +159,14 @@
 		return
 
 	if (!usr.IsAdvancedToolUser())
-		to_chat(usr, "You lack the dexterity to do that!")
+		to_chat(usr, "<span class='filter_notice'>You lack the dexterity to do that!</span>")
 		return
 
 	if (usr.stat || usr.restrained() || usr.incapacitated())
 		return
 
 	if (!Adjacent(usr) && !issilicon(usr))
-		to_chat(usr, "You can't adjust the [src] from this distance, get closer!")
+		to_chat(usr, "<span class='filter_notice'>You can't adjust the [src] from this distance, get closer!</span>")
 		return
 
 	if(output_options.len)
@@ -622,7 +622,7 @@
 	var/delete = 1
 	var/status = CI.container.check_contents()
 
-	if (status == 1)//If theres only one object in a container then we extract that
+	if (status == 1)//If there's only one object in a container then we extract that
 		thing = locate(/obj/item) in CI.container
 		delete = 0
 	else//If the container is empty OR contains more than one thing, then we must extract the container
@@ -635,7 +635,7 @@
 		qdel(CI)
 	else
 		CI.reset()//reset instead of deleting if the container is left inside
-	user.visible_message("<span class='notice'>\The [user] remove \the [thing] from \the [src].</span>")
+	user.visible_message("<span class='notice'>\The [user] removes \the [thing] from \the [src].</span>")
 
 /obj/machinery/appliance/proc/cook_mob(var/mob/living/victim, var/mob/user)
 	return
@@ -655,7 +655,7 @@
 		if (isSynthetic())
 			src.composition_reagent = "iron"
 		else
-			if(istype(src, /mob/living/carbon/human/diona) || istype(src, /mob/living/carbon/alien/diona))
+			if(istype(src, /mob/living/carbon/human/diona) || istype(src, /mob/living/carbon/diona))
 				src.composition_reagent = "nutriment" // diona are plants, not meat
 			else
 				src.composition_reagent = "protein"

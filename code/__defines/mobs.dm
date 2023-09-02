@@ -13,7 +13,7 @@
 #define PASSEMOTES  0x40    // Mob has a cortical borer or holders inside of it that need to see emotes.
 #define GODMODE     0x1000
 #define FAKEDEATH   0x2000  // Replaces stuff like changeling.changeling_fakedeath.
-#define DISFIGURED  0x4000  // Set but never checked. Remove this sometime and replace occurences with the appropriate organ code
+#define DISFIGURED  0x4000  // Set but never checked. Remove this sometime and replace occurrences with the appropriate organ code
 
 // Grab levels.
 #define GRAB_PASSIVE    1
@@ -27,7 +27,7 @@
 #define BORGXRAY  0x4
 #define BORGMATERIAL  0x8
 
-#define STANCE_ATTACK    11 // Backwards compatability
+#define STANCE_ATTACK    11 // Backwards compatibility
 #define STANCE_ATTACKING 12 // Ditto
 /*
 #define STANCE_IDLE      1	// Looking for targets if hostile.  Does idle wandering.
@@ -35,7 +35,7 @@
 #define STANCE_ATTACK    3	// Attempting to get into attack position
 #define STANCE_ATTACKING 4	// Doing attacks
 #define STANCE_TIRED     5	// Bears
-#define STANCE_FOLLOW    6	// Following somone
+#define STANCE_FOLLOW    6	// Following someone
 #define STANCE_BUSY      7	// Do nothing on life ticks (Other code is running)
 */
 #define STANCE_SLEEP        0	// Doing (almost) nothing, to save on CPU because nobody is around to notice or the mob died.
@@ -46,7 +46,7 @@
 #define STANCE_BLINDFIGHT   5	// Fighting something that cannot be seen by the mob, from invisibility or out of sight.
 #define STANCE_REPOSITION   6	// Relocating to a better position while in combat. Also used when moving away from a danger like grenades.
 #define STANCE_MOVE         7	// Similar to above but for out of combat. If a baddie is seen, they'll cancel and fight them.
-#define STANCE_FOLLOW       8	// Following somone, without trying to murder them.
+#define STANCE_FOLLOW       8	// Following someone, without trying to murder them.
 #define STANCE_FLEE         9	// Run away from the target because they're too spooky/we're dying/some other reason.
 #define STANCE_DISABLED     10	// Used when the holder is afflicted with certain status effects, such as stuns or confusion.
 
@@ -111,33 +111,39 @@
 #define MAX_SUPPLIED_LAW_NUMBER 50
 
 //default item on-mob icons
-#define INV_HEAD_DEF_ICON 'icons/mob/head.dmi'
-#define INV_BACK_DEF_ICON 'icons/mob/back.dmi'
-#define INV_L_HAND_DEF_ICON 'icons/mob/items/lefthand.dmi'
-#define INV_R_HAND_DEF_ICON 'icons/mob/items/righthand.dmi'
-#define INV_W_UNIFORM_DEF_ICON "icons/mob/uniform"
+#define INV_W_UNIFORM_DEF_STRING "icons/mob/uniform"
+#define INV_SUIT_DEF_STRING      "icons/mob/suit"
+
+#define INV_HEAD_DEF_ICON        'icons/mob/head.dmi'
+#define INV_BACK_DEF_ICON        'icons/mob/back.dmi'
+#define INV_L_HAND_DEF_ICON      'icons/mob/items/lefthand.dmi'
+#define INV_R_HAND_DEF_ICON      'icons/mob/items/righthand.dmi'
+#define INV_W_UNIFORM_DEF_ICON   'icons/mob/uniform.dmi'
 #define INV_ACCESSORIES_DEF_ICON 'icons/mob/ties.dmi'
-#define INV_TIE_DEF_ICON 'icons/mob/ties.dmi'
-#define INV_SUIT_DEF_ICON "icons/mob/suit"
-#define INV_SPACESUIT_DEF_ICON 'icons/mob/spacesuit.dmi'
-#define INV_WEAR_ID_DEF_ICON 'icons/mob/mob.dmi'
-#define INV_GLOVES_DEF_ICON 'icons/mob/hands.dmi'
-#define INV_EYES_DEF_ICON 'icons/mob/eyes.dmi'
-#define INV_EARS_DEF_ICON 'icons/mob/ears.dmi'
-#define INV_FEET_DEF_ICON 'icons/mob/feet.dmi'
-#define INV_BELT_DEF_ICON 'icons/mob/belt.dmi'
-#define INV_MASK_DEF_ICON 'icons/mob/mask.dmi'
-#define INV_HCUFF_DEF_ICON 'icons/mob/mob.dmi'
-#define INV_LCUFF_DEF_ICON 'icons/mob/mob.dmi'
+#define INV_TIE_DEF_ICON         'icons/mob/ties.dmi'
+#define INV_SUIT_DEF_ICON        'icons/mob/suit.dmi'
+#define INV_SPACESUIT_DEF_ICON   'icons/mob/spacesuit.dmi'
+#define INV_WEAR_ID_DEF_ICON     'icons/mob/mob.dmi'
+#define INV_GLOVES_DEF_ICON      'icons/mob/hands.dmi'
+#define INV_EYES_DEF_ICON        'icons/mob/eyes.dmi'
+#define INV_EARS_DEF_ICON        'icons/mob/ears.dmi'
+#define INV_FEET_DEF_ICON        'icons/mob/feet.dmi'
+#define INV_BELT_DEF_ICON        'icons/mob/belt.dmi'
+#define INV_MASK_DEF_ICON        'icons/mob/mask.dmi'
+#define INV_HCUFF_DEF_ICON       'icons/mob/mob.dmi'
+#define INV_LCUFF_DEF_ICON       'icons/mob/mob.dmi'
 
 // Character's economic class
+#define CLASS_VERYHIGH		"Very Wealthy"
 #define CLASS_UPPER 		"Wealthy"
 #define CLASS_UPMID			"Well-off"
 #define CLASS_MIDDLE 		"Average"
 #define CLASS_LOWMID		"Underpaid"
 #define CLASS_LOWER			"Poor"
+#define CLASS_VERYLOW		"Very Poor"
+#define CLASS_EXTREMELYLOW	"Extremely Poor"
 
-#define ECONOMIC_CLASS		list(CLASS_UPPER,CLASS_UPMID,CLASS_MIDDLE,CLASS_LOWMID,CLASS_LOWER)
+#define ECONOMIC_CLASS		list(CLASS_VERYHIGH,CLASS_UPPER,CLASS_UPMID,CLASS_MIDDLE,CLASS_LOWMID,CLASS_LOWER,CLASS_VERYLOW,CLASS_EXTREMELYLOW)
 
 
 // Defines mob sizes, used by lockers and to determine what is considered a small sized mob, etc.
@@ -147,6 +153,21 @@
 #define MOB_SMALL 		10
 #define MOB_TINY 		5
 #define MOB_MINISCULE	1
+
+// Gluttony levels. Used for eating items and mobs.
+#define GLUT_NONE 0       // Cannot eat any mob or item.
+#define GLUT_TINY 1       // Eat anything tiny and smaller
+#define GLUT_SMALLER 2    // Eat anything smaller than we are
+#define GLUT_ANYTHING 4   // Eat anything, ever
+
+#define GLUT_ITEM_TINY 8         // Eat items with a w_class of small or smaller
+#define GLUT_ITEM_NORMAL 16      // Eat items with a w_class of normal or smaller
+#define GLUT_ITEM_ANYTHING 32    // Eat any item
+#define GLUT_PROJECTILE_VOMIT 64 // When vomitting, does it fly out?
+
+// Devour speeds, returned by can_devour()
+#define DEVOUR_SLOW 1
+#define DEVOUR_FAST 2
 
 #define TINT_NONE 0
 #define TINT_MODERATE 1
@@ -249,7 +270,7 @@
 #define BP_HEAD   "head"
 #define BP_TORSO  "torso"
 #define BP_GROIN  "groin"
-#define BP_ALL list(BP_GROIN, BP_TORSO, BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG)
+#define BP_ALL list(BP_TORSO, BP_HEAD, BP_GROIN, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT) //keep so that parent comes before child
 
 #define SYNTH_BLOOD_COLOUR "#030303"
 #define SYNTH_FLESH_COLOUR "#575757"
@@ -271,6 +292,10 @@
 #define TASTE_DULL 0.5 //anything below 30%
 #define TASTE_NUMB 0.1 //anything below 150%
 
+#define TASTE_STRING_DEFAULT     "default"
+#define TASTE_DATA_FIELD         "taste_strings"
+#define TASTE_DATA(DATA)         list(TASTE_DATA_FIELD = DATA)
+
 //Used by emotes
 #define VISIBLE_MESSAGE 1
 #define AUDIBLE_MESSAGE 2
@@ -282,7 +307,7 @@
 #define FBP_DRONE	"Drone"
 
 // Similar to above but for borgs.
-// Seperate defines are unfortunately required since borgs display the brain differently for some reason.
+// Separate defines are unfortunately required since borgs display the brain differently for some reason.
 #define BORG_BRAINTYPE_CYBORG	"Cyborg"
 #define BORG_BRAINTYPE_POSI		"Robot"
 #define BORG_BRAINTYPE_DRONE	"Drone"
@@ -339,13 +364,18 @@
 #define SPECIES_REPLICANT_ALPHA	"Alpha Replicant"
 #define SPECIES_REPLICANT_BETA	"Beta Replicant"
 
-// Used to seperate simple animals by ""intelligence"".
+// Used to separate simple animals by ""intelligence"".
 #define SA_PLANT	1
 #define SA_ANIMAL	2
 #define SA_ROBOTIC	3
 #define SA_HUMANOID	4
 
-// More refined version of SA_* ""intelligence"" seperators.
+// Robot module categorization
+#define ROBOT_MODULE_TYPE_GROUNDED "grounded"
+#define ROBOT_MODULE_TYPE_FLYING   "flying"
+#define ROBOT_MODULE_TYPE_PLATFORM "platform"
+
+// More refined version of SA_* ""intelligence"" separators.
 // Now includes bitflags, so to target two classes you just do 'MOB_CLASS_ANIMAL|MOB_CLASS_HUMANOID'
 #define MOB_CLASS_NONE 			0	// Default value, and used to invert for _ALL.
 #define MOB_CLASS_PLANT			1	// Unused at the moment.
@@ -360,6 +390,11 @@
 #define MOB_CLASS_PHOTONIC		512	// Holographic mobs like holocarp, similar to _ILLUSION, but that make no attempt to hide their true nature.
 
 #define MOB_CLASS_ALL (~MOB_CLASS_NONE)
+
+// Shorthands for simple mob healing with items; adjust lists as additional healing behavior is added.
+#define MOB_CLASSES_HEALABLE (MOB_CLASS_HUMANOID|MOB_CLASS_ANIMAL|MOB_CLASS_SYNTHETIC)
+#define MOB_CLASSES_UNHEALABLE (MOB_CLASS_SLIME|MOB_CLASS_ABERRATION|MOB_CLASS_DEMONIC|MOB_CLASS_ILLUSION|MOB_CLASS_PHOTONIC)
+
 
 // For slime commanding.  Higher numbers allow for more actions.
 #define SLIME_COMMAND_OBEY		1 // When disciplined.
@@ -450,8 +485,8 @@
 /// Used by human/get_visible_gender(user, force) to return the mob's identifying gender
 #define VISIBLE_GENDER_FORCE_IDENTIFYING 2
 
-/// Used by human/get_visible_gender(user, force) to return the mob's biological gender
-#define VISIBLE_GENDER_FORCE_BIOLOGICAL 3
+/// Used by human/get_visible_gender(user, force) to return the mob's body type
+#define VISIBLE_GENDER_FORCE_BODYTYPE 3
 
 
 // Dexterity levels for mob/proc/check_dexterity

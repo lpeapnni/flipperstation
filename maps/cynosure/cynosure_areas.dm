@@ -416,8 +416,8 @@
 	icon_state = "Sleep"
 	holomap_color = HOLOMAP_AREACOLOR_DORMS
 
-/area/surface/station/crew_quarters/sleep/Dorm_5
-	name = "\improper Dormitory Room 5"
+/area/surface/station/crew_quarters/sleep/Dorm_Charge
+	name = "\improper Dormitory Charging Station"
 	icon_state = "Sleep"
 	holomap_color = HOLOMAP_AREACOLOR_DORMS
 
@@ -1216,6 +1216,9 @@
 /area/surface/station/rnd/chargebay
 	name = "\improper Research - Mech Bay"
 	icon_state = "mechbay"
+
+/area/surface/station/rnd/testingsite
+	name = "\improper Research - Testing Site"
 
 //Security
 

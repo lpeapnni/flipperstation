@@ -154,15 +154,16 @@ The box in your backpack has an oxygen tank and gas mask in it."
 
 
 /obj/screen/alert/fat
-	name = "Fat"
-	desc = "You ate too much food, lardass. Run around the station and lose some weight."
+	name = "Full"
+	desc = "You've eaten more than you can handle, maybe you should slow down?"
 	icon_state = "fat"
 
 /obj/screen/alert/fat/vampire
-	desc = "You drank too much blood, lardass. Run around the station and lose some weight."
+	desc = "You've had more than enough blood, for now."
 	icon_state = "v_fat"
 
 /obj/screen/alert/fat/synth
+	name = "Fully Charged"
 	desc = "Your battery is full! Don't overvolt it."
 	icon_state = "c_fat"
 
@@ -172,16 +173,17 @@ The box in your backpack has an oxygen tank and gas mask in it."
 	icon_state = "hungry"
 
 /obj/screen/alert/hungry/vampire
-	desc = "You could use a bloodsnack or two."
+	desc = "You could go for a bite right now..."
 	icon_state = "v_hungry"
 
 /obj/screen/alert/hungry/synth
+	name = "Low Battery"
 	desc = "Battery's running a bit low, could use a topoff."
 	icon_state = "c_hungry"
 
 /obj/screen/alert/starving
-	name = "Starving"
-	desc = "You're severely malnourished. The hunger pains make moving around a chore."
+	name = "Very Hungry"
+	desc = "You're starving. You barely have enough energy to move around."
 	icon_state = "starving"
 
 /obj/screen/alert/starving/vampire
@@ -189,6 +191,7 @@ The box in your backpack has an oxygen tank and gas mask in it."
 	icon_state = "v_starving"
 
 /obj/screen/alert/starving/synth
+	name = "Very Low Battery"
 	desc = "Your battery is about to die! Charge it ASAP!"
 	icon_state = "c_starving"
 
@@ -203,7 +206,7 @@ The box in your backpack has an oxygen tank and gas mask in it."
 	icon_state = "hot"
 
 /obj/screen/alert/hot/robot
-	desc = "The air around you is too hot for a humanoid. Be careful to avoid exposing them to this enviroment."
+	desc = "The air around you is too hot for a humanoid. Be careful to avoid exposing them to this environment."
 
 /obj/screen/alert/chilly
 	name = "Too Chilly"
@@ -216,7 +219,7 @@ The box in your backpack has an oxygen tank and gas mask in it."
 	icon_state = "cold"
 
 /obj/screen/alert/cold/robot
-	desc = "The air around you is too cold for a humanoid. Be careful to avoid exposing them to this enviroment."
+	desc = "The air around you is too cold for a humanoid. Be careful to avoid exposing them to this environment."
 
 /obj/screen/alert/lowpressure
 	name = "Low Pressure"
@@ -251,12 +254,12 @@ or something covering your eyes."
 
 /obj/screen/alert/confused
 	name = "Confused"
-	desc = "You're confused, and may stumble into things! This may be from concussive effects, drugs, or dizzyness. Walking will help reduce incidents."
+	desc = "You're confused, and may stumble into things! This may be from concussive effects, drugs, or dizziness. Walking will help reduce incidents."
 	icon_state = "confused"
 
 /obj/screen/alert/high
 	name = "High"
-	desc = "Whoa man, you're tripping balls! Careful you don't get addicted... if you aren't already."
+	desc = "Whoa, you're tripping balls!"
 	icon_state = "high"
 
 /obj/screen/alert/embeddedobject
@@ -297,8 +300,8 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 //ALIENS
 
 /obj/screen/alert/alien_tox
-	name = "Plasma"
-	desc = "There's flammable plasma in the air. If it lights up, you'll be toast."
+	name = "Phoron"
+	desc = "There's flammable phoron in the air. If it lights up, you'll be toast."
 	icon_state = "alien_tox"
 	alerttooltipstyle = "alien"
 
@@ -433,7 +436,7 @@ so as to remain in compliance with the most up-to-date laws."
 		return 1
 	for(var/i = 1, i <= alerts.len, i++)
 		var/obj/screen/alert/alert = alerts[alerts[i]]
-		
+
 		if(alert.icon_state in cached_icon_states(ui_style))
 			alert.icon = ui_style
 		else if(!alert.no_underlay)
@@ -441,7 +444,7 @@ so as to remain in compliance with the most up-to-date laws."
 			I.color = ui_color
 			I.alpha = ui_alpha
 			alert.underlays = list(I)
-		
+
 		switch(i)
 			if(1)
 				. = ui_alert1

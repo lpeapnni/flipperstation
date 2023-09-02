@@ -499,6 +499,7 @@
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/grenade/frag/mini
 	materials = list(MAT_STEEL = 10000, MAT_GOLD = 2500, MAT_URANIUM = 3000, MAT_OSMIUM = 3000, MAT_PLASTIC = 3000)
 
+/* Removing these weapons from the fab until such a time that fire is not a I win button
 /datum/design/item/mecha/weapon/flamer
 	name = "CR-3 Mark 8 Flamethrower"
 	desc = "A weapon that violates the CCWC at two hundred gallons per minute."
@@ -522,6 +523,7 @@
 	req_tech = list(TECH_MATERIAL = 4, TECH_COMBAT = 5, TECH_PHORON = 2, TECH_ILLEGAL = 1)
 	materials = list(MAT_STEEL = 8000, MAT_GOLD = 2000, MAT_SILVER = 1750, MAT_URANIUM = 1500, MAT_PHORON = 4000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/incendiary
+*/
 
 // *** Nonweapon modules
 /datum/design/item/mecha/wormhole_gen
@@ -618,6 +620,14 @@
 	req_tech = list(TECH_ENGINEERING = 3, TECH_MAGNET = 4) //One less magnet than the actual got-damn teleporter.
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/jetpack
 	materials = list(MAT_STEEL = 7500, MAT_SILVER = 300, MAT_GLASS = 600)
+
+/datum/design/item/mecha/jumpjet
+	name = "Jumpjet"
+	desc = "A jumpjet harness typically used for exosuit mobility in urban environments to limit structural damage from climbing."
+	id = "mech_jumpjet"
+	req_tech = list(TECH_ENGINEERING = 5, TECH_PHORON = 4, TECH_MAGNET = 4, TECH_POWER = 4)
+	build_path = /obj/item/mecha_parts/mecha_equipment/tool/jumpjet
+	materials = list(MAT_STEEL = 7500, MAT_PHORON = 6000, MAT_URANIUM = 3000, MAT_PHORON = 2500)
 
 /datum/design/item/mecha/phoron_generator
 	desc = "Phoron Reactor"
@@ -984,6 +994,14 @@
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 5, TECH_MAGNET = 3, TECH_POWER = 4)
 	materials = list(MAT_PLASTEEL = 2000, MAT_GRAPHITE = 1500, MAT_OSMIUM = 500)
 	build_path = /obj/item/rig_module/vision/material
+
+/datum/design/item/mechfab/rigsuit/mining
+	name = "hardsuit mining visor"
+	desc = "A compact mining visor for a hardsuit."
+	id = "rig_component_miningvision"
+	req_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 6, TECH_MAGNET = 5, TECH_POWER = 5)
+	materials = list(MAT_PLASTEEL = 3500, MAT_GRAPHITE = 3000, MAT_OSMIUM = 1000, MAT_ALUMINIUM = 1000)
+	build_path = /obj/item/rig_module/vision/mining
 
 /datum/design/item/mechfab/rigsuit/nvg
 	name = "hardsuit night-vision visor"

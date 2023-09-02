@@ -18,7 +18,7 @@
 	step_volume_mod = 0	//It's a mime
 
 /obj/item/clothing/shoes/galoshes
-	desc = "Rubber boots"
+	desc = "rubber boots"
 	name = "galoshes"
 	icon_state = "galoshes"
 	permeability_coefficient = 0.05
@@ -53,6 +53,11 @@
 	desc = "A pair of plastic clog shoes."
 	icon_state = "clogs"
 
+
+/obj/item/clothing/shoes/sandal/clogs/random/New()
+	..()
+	color = get_random_colour()
+
 /obj/item/clothing/shoes/sandal/marisa
 	desc = "A pair of magic, black shoes."
 	name = "magic shoes"
@@ -68,6 +73,9 @@
 	var/footstep = 1	//used for squeeks whilst walking
 	species_restricted = null
 
+/obj/item/clothing/shoes/clown_shoes/is_mob_movement_sensitive()
+	return TRUE
+
 /obj/item/clothing/shoes/clown_shoes/handle_movement(var/turf/walking, var/running)
 	if(running)
 		if(footstep >= 2)
@@ -80,7 +88,7 @@
 
 /obj/item/clothing/shoes/cult
 	name = "boots"
-	desc = "A pair of boots worn by the followers of Nar-Sie."
+	desc = "A pair of boots worn by the followers of an unknown god."
 	icon_state = "cult"
 	item_state_slots = list(slot_r_hand_str = "cult", slot_l_hand_str = "cult")
 	force = 2
@@ -173,6 +181,11 @@
 	species_restricted = null
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
+
+/obj/item/clothing/shoes/ceremonial_guards
+	name = "ceremonial leg guards"
+	desc = "A pair of shin guards with gold inlay that cut off around the ankle."
+	icon_state = "ceremonial_guards"
 
 /obj/item/clothing/shoes/ranger
 	var/bootcolor = "white"

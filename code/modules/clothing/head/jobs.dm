@@ -32,10 +32,11 @@
 	icon_state = "officercap"
 
 //HOP
-/obj/item/clothing/head/caphat/hop
-	name = "crew resource's hat"
-	desc = "A stylish hat that both protects you from enraged former-crewmembers and gives you a false sense of authority."
+/obj/item/clothing/head/hop
+	name = "head of personnel's cap"
+	desc = "A stylish cap that both protects you from enraged former-crewmembers and gives you a false sense of authority."
 	icon_state = "hopcap"
+	body_parts_covered = 0
 
 //Chaplain
 /obj/item/clothing/head/chaplain_hood
@@ -43,7 +44,7 @@
 	desc = "It's a hood that covers the head. It keeps you warm during the space winters."
 	icon_state = "chaplain_hood"
 	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
-	flags_inv = BLOCKHAIR
+	flags_inv = BLOCKHEADHAIR
 	body_parts_covered = HEAD
 
 //Chaplain but spookier

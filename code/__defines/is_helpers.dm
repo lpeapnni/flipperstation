@@ -40,7 +40,6 @@
 #define isxeno(A)		istype(A, /mob/living/simple_mob/animal/space/alien)
 
 #define iscarbon(A)		istype(A, /mob/living/carbon)
-#define isalien(A)		istype(A, /mob/living/carbon/alien)
 #define isbrain(A)		istype(A, /mob/living/carbon/brain)
 #define ishuman(A)		istype(A, /mob/living/carbon/human)
 
@@ -50,6 +49,11 @@
 #define ispAI(A)		istype(A, /mob/living/silicon/pai)
 
 #define isbot(A)		istype(A, /mob/living/bot)
+
+#define ismecha(A)		istype(A, /obj/mecha)
+#define isvehicle(A)	istype(A, /obj/vehicle)
+
+#define isprojectile(A)	istype(A, /obj/item/projectile)
 
 #define isvoice(A)		istype(A, /mob/living/voice)
 

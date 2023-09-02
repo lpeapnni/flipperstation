@@ -1219,20 +1219,6 @@
 	icon_state = "hair_ziegler"
 	flags = HAIR_TIEABLE
 
-/datum/sprite_accessory/hair/una_hood
-	name = "Cobra Hood"
-	icon = 'icons/mob/human_face_alt.dmi'
-	icon_add = 'icons/mob/human_face_alt_add.dmi'
-	icon_state = "soghun_hood"
-	species_allowed = list(SPECIES_UNATHI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-
-/datum/sprite_accessory/hair/una_doublehorns
-	name = "Double Unathi Horns"
-	icon = 'icons/mob/human_face_alt.dmi'
-	icon_add = 'icons/mob/human_face_alt_add.dmi'
-	icon_state = "soghun_dubhorns"
-	species_allowed = list(SPECIES_UNATHI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-
 /datum/sprite_accessory/hair/sergal_plain
 	name = "Sergal Plain"
 	icon = 'icons/mob/human_face_alt.dmi'
@@ -1688,9 +1674,83 @@ shaved
 //Unathi Head-Bits
 
 /datum/sprite_accessory/hair/una
-	name = "Long Unathi Spines"
-	icon_state = "soghun_longspines"
+	name            = "Long Unathi Spines"
+	icon_state      = "soghun_longspines"
 	species_allowed = list(SPECIES_UNATHI)
+	icon            = 'icons/mob/hair_unathi.dmi'
+	icon_add        = 'icons/mob/hair_unathi_add.dmi'
+
+/datum/sprite_accessory/hair/una/finhawk
+	name = "Unathi Finhawk"
+	icon_state = "fin_hawk"
+
+/datum/sprite_accessory/hair/una/downcurve_horns
+	name = "Downward-Curved Unathi Horns"
+	icon_state = "curved_down"
+
+/datum/sprite_accessory/hair/una/upcurve_horns
+	name = "Upward-Curved Unathi Horns"
+	icon_state = "curved_up"
+
+/datum/sprite_accessory/hair/una/samurai_horns
+	name = "Unathi Samurai Horns"
+	icon_state = "samurai"
+
+/datum/sprite_accessory/hair/una/big_frills
+	name = "Big Unathi Frills"
+	icon_state = "big_frills"
+
+/datum/sprite_accessory/hair/una/head_spikes
+	name = "Unathi Head Spikes"
+	icon_state = "head_spikes"
+
+/datum/sprite_accessory/hair/una/overgrown_spikes
+	name = "Overgrown Unathi Head Spikes"
+	icon_state = "overgrown_head_spikes"
+
+/datum/sprite_accessory/hair/una/cobrahood
+	name = "Unathi Cobra Hood"
+	icon_state = "unathi_cobrahood"
+
+/datum/sprite_accessory/hair/una/demon_horns
+	name = "Unathi Demon Horns"
+	icon_state = "unathi_horns_demon"
+
+/datum/sprite_accessory/hair/una/large_ram_horns
+	name = "Large Unathi Ram Horns"
+	icon_state = "unathi_horns_ram_big"
+
+/datum/sprite_accessory/hair/una/aqua_frills
+	name = "Unathi Aqua Frills"
+	icon_state = "unathi_frills_aqua"
+
+/datum/sprite_accessory/hair/una/curled_horns
+	name = "Curled Unathi Horns"
+	icon_state = "unathi_horns_curled"
+
+/datum/sprite_accessory/hair/una/ram_horns
+	name = "Unathi Ram Horns"
+	icon_state = "unathi_horns_ram"
+
+/datum/sprite_accessory/hair/una/thick_ram_horns
+	name = "Thick Unathi Ram Horns"
+	icon_state = "unathi_horns_ram_thick"
+
+/datum/sprite_accessory/hair/una/double_horns
+	name = "Double Unathi Horns"
+	icon_state = "unathi_horns_double"
+
+/datum/sprite_accessory/hair/una/swept_horns
+	name = "Swept Unathi Horns"
+	icon_state = "unathi_horns_swept"
+
+/datum/sprite_accessory/hair/una/short_spined_frills
+	name = "Short Spined Unathi Frills"
+	icon_state = "unathi_spined_short_frills"
+
+/datum/sprite_accessory/hair/una/long_spined_frills
+	name = "Long Spined Unathi Frills"
+	icon_state = "unathi_spined_long_frills"
 
 /datum/sprite_accessory/hair/una/spines_short
 	name = "Short Unathi Spines"
@@ -1726,9 +1786,11 @@ shaved
 //Skrell 'hairstyles'
 
 /datum/sprite_accessory/hair/skr
-	name = "Tentacles, Average"
-	icon_state = "skrell_short"
+	name            = "Tentacles, Average"
+	icon_state      = "skrell_short"
 	species_allowed = list(SPECIES_SKRELL, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	icon            = 'icons/mob/hair_skrell.dmi'
+	icon_add        = 'icons/mob/hair_skrell_add.dmi'
 
 /datum/sprite_accessory/hair/skr/pullback
 	name = "Tentacles, Average, Pullback"
@@ -1769,6 +1831,11 @@ shaved
 /datum/sprite_accessory/hair/skr/very_long/wavy
 	name = "Tentacles, Very Long, Wavy"
 	icon_state = "skrell_very_long_wavy"
+
+/datum/sprite_accessory/hair/skr/split
+	name = "Tentacles, Split"
+	icon_state = "skrell_split"
+
 
 //Tajaran hairstyles
 /datum/sprite_accessory/hair/taj
@@ -2075,6 +2142,7 @@ shaved
 	icon = 'icons/mob/hair_vox.dmi'
 	icon_add = 'icons/mob/hair_vox_add.dmi'
 	icon_state = "vox_longbraid"
+	color_blend_mode = ICON_MULTIPLY
 	species_allowed = list(SPECIES_VOX)
 
 /datum/sprite_accessory/hair/vox/braid_short
@@ -2084,6 +2152,10 @@ shaved
 /datum/sprite_accessory/hair/vox/quills_short
 	name = "Short Vox Quills"
 	icon_state = "vox_shortquills"
+
+/datum/sprite_accessory/hair/vox/quills_long
+	name = "Long Vox Quills"
+	icon_state = "vox_longquills"
 
 /datum/sprite_accessory/hair/vox/quills_kingly
 	name = "Kingly Vox Quills"
@@ -2159,7 +2231,7 @@ shaved
 	name = "Tajaran Smallsatche"
 	icon_state = "facial_smallstache"
 
-//unathi horn beards and the like
+//Unathi horn beards and the like
 
 /datum/sprite_accessory/facial_hair/una
 	name = "Unathi Chin Horn"
@@ -2270,8 +2342,6 @@ shaved
 	icon_state = "tat_tiger"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
 
-//New tats
-
 /datum/sprite_accessory/marking/tat_belly
 	name = "Tattoo (Belly)"
 	icon_state = "tat_belly"
@@ -2367,16 +2437,212 @@ shaved
 	icon_state = "tat_wingsback"
 	body_parts = list(BP_TORSO)
 
-/datum/sprite_accessory/marking/tilaka
-	name = "Tilaka"
-	icon_state = "tilaka"
-	body_parts = list(BP_HEAD)
+/datum/sprite_accessory/marking/tat_wings_big
+	name = "Tattoo (Wings, Full Back)"
+	icon_state = "tat_wingsbig"
+	body_parts = list(BP_TORSO)
 
+/datum/sprite_accessory/marking/tat_armband_r
+	name = "Tattoo (Forearm Band, R. Arm)"
+	icon_state = "tat_armband_r"
+	body_parts = list(BP_R_ARM)
+
+/datum/sprite_accessory/marking/tat_armband_l
+	name = "Tattoo (Forearm Band, L. Arm)"
+	icon_state = "tat_armband_l"
+	body_parts = list(BP_L_ARM)
+
+/datum/sprite_accessory/marking/tat_knuckle_l
+	name = "Tattoo (Knuckle Tats, L. Hand)"
+	icon_state = "tat_knuckle_l"
+	body_parts = list(BP_L_HAND)
+
+/datum/sprite_accessory/marking/tat_knuckle_r
+	name = "Tattoo (Knuckle Tats, R. Hand)"
+	icon_state = "tat_knuckle_r"
+	body_parts = list(BP_R_HAND)
+
+/datum/sprite_accessory/marking/tat_collarbone
+	name = "Tattoo (Collarbone, Chest)"
+	icon_state = "tat_laurel"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_pecs
+	name = "Tattoo (Pectoral Lines, Chest)"
+	icon_state = "tat_pecs"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_barcodeleg_r
+	name = "Tattoo (Barcode, R. Leg)"
+	icon_state = "tat_legcode_r"
+	body_parts = list(BP_R_LEG)
+
+/datum/sprite_accessory/marking/tat_barcodeleg_l
+	name = "Tattoo (Barcode, L. Leg)"
+	icon_state = "tat_legcode_l"
+	body_parts = list(BP_L_LEG)
+
+/datum/sprite_accessory/marking/tat_barcodeneck
+	name = "Tattoo (Barcode, Neck)"
+	icon_state = "tat_neckcode"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_moonleft
+	name = "Tattoo (Moon, Left Chest)"
+	icon_state = "tat_moonleft"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_moonright
+	name = "Tattoo (Moon, Right Chest)"
+	icon_state = "tat_moonright"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_gang1
+	name = "Tattoo (Gang Mark, Upper Back)"
+	icon_state = "tat_gang1"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_gang2
+	name = "Tattoo (Gang Mark, Middle Back)"
+	icon_state = "tat_gang2"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_gang3
+	name = "Tattoo (Gang Mark, Right Back)"
+	icon_state = "tat_gang3"
+	body_parts = list(BP_TORSO)
+
+/datum/sprite_accessory/marking/tat_snake_r
+	name = "Tattoo (Snake Green, R. Arm)"
+	icon_state = "tat_snake_r"
+	body_parts = list(BP_R_ARM)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_snake_l
+	name = "Tattoo (Snake Green, L. Arm)"
+	icon_state = "tat_snake_l"
+	body_parts = list(BP_L_ARM)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_snake_col_r
+	name = "Tattoo (Snake Colorable, R. Arm)"
+	icon_state = "tat_snake_col_r"
+	body_parts = list(BP_R_ARM)
+
+/datum/sprite_accessory/marking/tat_snake_col_l
+	name = "Tattoo (Snake Colorable, L. Arm)"
+	icon_state = "tat_snake_col_l"
+	body_parts = list(BP_L_ARM)
+
+/datum/sprite_accessory/marking/tat_serpent
+	name = "Tattoo (Red Serpent, Torso)"
+	icon_state = "tat_serpent"
+	body_parts = list(BP_TORSO)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_rose_lleg
+	name = "Tattoo (Roses, L. Leg)"
+	icon_state = "tat_rose_lleg"
+	body_parts = list(BP_L_LEG)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_rose_rleg
+	name = "Tattoo (Roses, R. Leg)"
+	icon_state = "tat_rose_rleg"
+	body_parts = list(BP_R_LEG)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_rose_larm
+	name = "Tattoo (Roses, L. Arm)"
+	icon_state = "tat_rose_larm"
+	body_parts = list(BP_L_ARM)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_rose_rarm
+	name = "Tattoo (Roses, R. Arm)"
+	icon_state = "tat_rose_rarm"
+	body_parts = list(BP_R_ARM)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_nanotrasen
+	name = "Tattoo (NanoTrasen, Chest)"
+	icon_state = "tat_nt"
+	body_parts = list(BP_TORSO)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_heartbreak
+	name = "Tattoo (Heart and Sword, Back)"
+	icon_state = "tat_heartbreaker"
+	body_parts = list(BP_TORSO)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_heartthorn
+	name = "Tattoo (Heart and Thorns, Back)"
+	icon_state = "tat_thornheart"
+	body_parts = list(BP_TORSO)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_koi_torso
+	name = "Tattoo (Koi, Full Torso)"
+	icon_state = "tat_koi"
+	body_parts = list(BP_TORSO)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_koi_torso/backonly
+	name = "Tattoo (Koi, Back)"
+	icon_state = "tat_koi_back"
+
+/datum/sprite_accessory/marking/tat_koi_lleg
+	name = "Tattoo (Koi, L. Leg)"
+	icon_state = "tat_koi"
+	body_parts = list(BP_L_LEG)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_koi_rleg
+	name = "Tattoo (Koi, R. Leg)"
+	icon_state = "tat_koi"
+	body_parts = list(BP_R_LEG)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_koi_larm
+	name = "Tattoo (Koi, L. Arm)"
+	icon_state = "tat_koi"
+	body_parts = list(BP_L_ARM)
+	do_colouration = 0
+
+/datum/sprite_accessory/marking/tat_koi_rarm
+	name = "Tattoo (Koi, R. Arm)"
+	icon_state = "tat_koi"
+	body_parts = list(BP_R_ARM)
+	do_colouration = 0
 
 /datum/sprite_accessory/marking/bands
 	name = "Color Bands"
 	icon_state = "bands"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_TORSO,BP_GROIN)
+
+/datum/sprite_accessory/marking/tiger_stripes
+	name = "Tiger Stripes"
+	icon_state = "tiger"
+	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_GROIN)
+	species_allowed = list(SPECIES_TAJ) //There's a tattoo for non-cats
+
+/datum/sprite_accessory/marking/backstripe
+	name = "Back Stripe"
+	icon_state = "backstripe"
+	body_parts = list(BP_TORSO)
+
+//Facial Tattoos
+/datum/sprite_accessory/marking/tigerhead
+	name = "Tiger Stripes (Head, Minor)"
+	icon_state = "tigerhead"
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/tigerface
+	name = "Tiger Stripes (Head, Major)"
+	icon_state = "tigerface"
+	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_TAJ) //There's a tattoo for non-cats
 
 /datum/sprite_accessory/marking/bandsface
 	name = "Color Bands (Face)"
@@ -2390,28 +2656,24 @@ shaved
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN,SPECIES_SKRELL)
 
-/datum/sprite_accessory/marking/tiger_stripes
-	name = "Tiger Stripes"
-	icon_state = "tiger"
-	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_GROIN)
-	species_allowed = list(SPECIES_TAJ) //There's a tattoo for non-cats
-
-/datum/sprite_accessory/marking/tigerhead
-	name = "Tiger Stripes (Head, Minor)"
-	icon_state = "tigerhead"
+/datum/sprite_accessory/marking/tat_face_ridge
+	name = "Tattoo (Nose Ridge, Face)"
+	icon_state = "tat_face_ridge"
 	body_parts = list(BP_HEAD)
+	species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN,SPECIES_SKRELL)
 
-/datum/sprite_accessory/marking/tigerface
-	name = "Tiger Stripes (Head, Major)"
-	icon_state = "tigerface"
+/datum/sprite_accessory/marking/tat_face_hunter
+	name = "Tattoo (Hunter Marks, Face)"
+	icon_state = "tat_face_hunter"
 	body_parts = list(BP_HEAD)
-	species_allowed = list(SPECIES_TAJ) //There's a tattoo for non-cats
+	species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN,SPECIES_SKRELL)
 
-/datum/sprite_accessory/marking/backstripe
-	name = "Back Stripe"
-	icon_state = "backstripe"
-	body_parts = list(BP_TORSO)
+//Other Facial Marks
 
+/datum/sprite_accessory/marking/tilaka
+	name = "Tilaka"
+	icon_state = "tilaka"
+	body_parts = list(BP_HEAD)
 /datum/sprite_accessory/marking/bindi
 	name = "Bindi"
 	icon_state = "bindi"
@@ -2538,19 +2800,11 @@ shaved
 	icon_state = "nosestripe_tesh"
 	species_allowed = list(SPECIES_TESHARI)
 
-/datum/sprite_accessory/marking/nosetape
-	name = "Nose Tape"
-	icon_state = "nosetape"
-	body_parts = list(BP_HEAD)
-	genetic = FALSE
-
-/datum/sprite_accessory/marking/nosetape/tesh
-	name = "Nose Tape (Teshari)"
-	icon_state = "nosetape_tesh"
-	species_allowed = list(SPECIES_TESHARI)
+//Scars
 
 /datum/sprite_accessory/marking/scar_abdomen_left
 	name = "Scar, Abdomen Left"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_abdomen_l"
 	body_parts = list(BP_GROIN)
 
@@ -2561,6 +2815,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_abdomen_right
 	name = "Scar, Abdomen Right"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_abdomen_r"
 	body_parts = list(BP_GROIN)
 
@@ -2571,6 +2826,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_abdomen_small_left
 	name = "Scar, Abdomen Small Left"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_abdomensmall_l"
 	body_parts = list(BP_GROIN)
 
@@ -2581,6 +2837,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_abdomen_small_right
 	name = "Scar, Abdomen Small Right"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_abdomensmall_r"
 	body_parts = list(BP_GROIN)
 
@@ -2591,6 +2848,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_back_large
 	name = "Scar, Back Large"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_back_large"
 	body_parts = list(BP_GROIN)
 
@@ -2601,6 +2859,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_back_small
 	name = "Scar, Back Small (Center)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_back_small"
 	body_parts = list(BP_TORSO)
 
@@ -2612,26 +2871,31 @@ shaved
 
 /datum/sprite_accessory/marking/scar_back_small_upper_right
 	name = "Scar, Back Small (Upper Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_back_small_ur"
 	body_parts = list(BP_TORSO)
 
 /datum/sprite_accessory/marking/scar_back_small_upper_left
 	name = "Scar, Back Small (Upper Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_back_small_ul"
 	body_parts = list(BP_TORSO)
 
 /datum/sprite_accessory/marking/scar_back_small_lower_right
 	name = "Scar, Back Small (Lower Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_back_small_lr"
 	body_parts = list(BP_TORSO)
 
 /datum/sprite_accessory/marking/scar_back_small_lower_left
 	name = "Scar, Back Small (Lower Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_back_small_ll"
 	body_parts = list(BP_TORSO)
 
 /datum/sprite_accessory/marking/scar_chest_large_left
 	name = "Scar, Chest Large (Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_chest_large_l"
 	body_parts = list(BP_TORSO)
 
@@ -2643,6 +2907,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_chest_large_right
 	name = "Scar, Chest Large (Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_chest_large_r"
 	body_parts = list(BP_TORSO)
 
@@ -2654,6 +2919,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_chest_small_left
 	name = "Scar, Chest Small (Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_chest_small_l"
 	body_parts = list(BP_TORSO)
 
@@ -2664,6 +2930,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_chest_small_right
 	name = "Scar, Chest Small (Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_chest_small_r"
 	body_parts = list(BP_TORSO)
 
@@ -2674,6 +2941,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_belly
 	name = "Scar, Belly"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_belly"
 	body_parts = list(BP_TORSO)
 
@@ -2685,16 +2953,19 @@ shaved
 
 /datum/sprite_accessory/marking/scar_cheek_left
 	name = "Scar, Cheek (Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_cheek_l"
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/scar_cheek_right
 	name = "Scar, Cheek (Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_cheek_r"
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/scar_forehead_left
 	name = "Scar, Forehead (Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_forehead_l"
 	body_parts = list(BP_HEAD)
 
@@ -2705,6 +2976,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_forehead_right
 	name = "Scar, Forehead (Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_forehead_r"
 	body_parts = list(BP_HEAD)
 
@@ -2715,17 +2987,20 @@ shaved
 
 /datum/sprite_accessory/marking/scar_chin
 	name = "Scar, Chin"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_chin"
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/scar_muzzle_teshari
 	name = "Scar, Muzzle"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_muzzle_tesh"
 	species_allowed = list(SPECIES_TESHARI)
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/scar_eye_left
 	name = "Scar, Over Eye (Left)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_eye_l"
 	body_parts = list(BP_HEAD)
 
@@ -2736,6 +3011,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_eye_right
 	name = "Scar, Over Eye (Right)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_eye_r"
 	body_parts = list(BP_HEAD)
 
@@ -2746,6 +3022,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_arm_upper
 	name = "Scar, Left Arm (Upper)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_arm_left_u"
 	body_parts = list(BP_L_ARM)
 
@@ -2756,6 +3033,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_arm_lower
 	name = "Scar, Left Arm (Lower)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_arm_left_l"
 	body_parts = list(BP_L_ARM)
 
@@ -2766,6 +3044,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_arm_rear
 	name = "Scar, Left Arm (Rear)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_arm_left_rear"
 	body_parts = list(BP_L_ARM)
 
@@ -2776,6 +3055,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_hand
 	name = "Scar, Left Hand"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_hand_left"
 	body_parts = list(BP_L_HAND)
 
@@ -2786,6 +3066,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_arm_upper
 	name = "Scar, Right Arm (Upper)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_arm_right_u"
 	body_parts = list(BP_R_ARM)
 
@@ -2796,6 +3077,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_arm_lower
 	name = "Scar, Right Arm (Lower)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_arm_right_l"
 	body_parts = list(BP_R_ARM)
 
@@ -2806,6 +3088,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_arm_rear
 	name = "Scar, Right Arm (Rear)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_arm_right_rear"
 	body_parts = list(BP_R_ARM)
 
@@ -2816,6 +3099,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_hand
 	name = "Scar, Right Hand"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_hand_right"
 	body_parts = list(BP_R_HAND)
 
@@ -2826,6 +3110,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_leg_upper
 	name = "Scar, Left Leg (Upper)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_leg_left_u"
 	body_parts = list(BP_L_LEG)
 
@@ -2836,6 +3121,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_leg_lower
 	name = "Scar, Left Leg (Lower)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_leg_left_l"
 	body_parts = list(BP_L_LEG)
 
@@ -2846,6 +3132,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_leg_rear
 	name = "Scar, Left Leg (Rear)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_leg_left_rear"
 	body_parts = list(BP_L_LEG)
 
@@ -2856,6 +3143,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_left_foot
 	name = "Scar, Left Foot"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_left_foot"
 	body_parts = list(BP_L_FOOT)
 
@@ -2866,6 +3154,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_leg_upper
 	name = "Scar, Right Leg (Upper)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_right_leg_u"
 	body_parts = list(BP_R_LEG)
 
@@ -2876,6 +3165,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_leg_lower
 	name = "Scar, Right Leg (Lower)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_right_leg_l"
 	body_parts = list(BP_R_LEG)
 
@@ -2886,6 +3176,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_leg_rear
 	name = "Scar, Right Leg (Rear)"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_right_leg_rear"
 	body_parts = list(BP_R_LEG)
 
@@ -2896,6 +3187,7 @@ shaved
 
 /datum/sprite_accessory/marking/scar_right_foot
 	name = "Scar, Right Foot"
+	icon = 'icons/mob/human_races/sprite_accessories/scars.dmi'
 	icon_state = "scar_right_foot"
 	body_parts = list(BP_R_FOOT)
 
@@ -2973,8 +3265,8 @@ shaved
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_TAJ)
 
+//Taj specific stuff
 
-	//Taj specific stuff
 /datum/sprite_accessory/marking/taj_belly
 	name = "Belly Fur (Taj)"
 	icon_state = "taj_belly"
@@ -3031,9 +3323,11 @@ shaved
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_TAJ)
 */
-	//Una specific stuff
+
 /*
 // FLIPPER REMOVAL - axes redundant markings
+
+//Unathi specific stuff
 /datum/sprite_accessory/marking/una_face
 	name = "Face Color (Una)"
 	icon_state = "una_face"
@@ -3052,7 +3346,7 @@ shaved
 	body_parts = list(BP_TORSO)
 	species_allowed = list(SPECIES_UNATHI)
 
-	//Tesh stuff.
+//Tesh specific stuff.
 
 /datum/sprite_accessory/marking/teshi_feathers
 	name = "Teshari limb feathers"
@@ -3240,7 +3534,7 @@ shaved
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_TESHARI)
 
-	//Diona stuff.
+//Diona stuff.
 
 /datum/sprite_accessory/marking/diona_leaves
 	name = "Leaves (Diona)"
@@ -3300,6 +3594,7 @@ shaved
 
 /datum/sprite_accessory/marking/aug
 	name = "Augment (Backports, Back)"
+	icon = 'icons/mob/human_races/sprite_accessories/augments.dmi'
 	icon_state = "aug_backports"
 	genetic = FALSE
 	body_parts = list(BP_TORSO)
@@ -3473,8 +3768,21 @@ shaved
 
 //bandages
 
+/datum/sprite_accessory/marking/nosetape
+	name = "Nose Tape"
+	icon = 'icons/mob/human_races/sprite_accessories/bandages.dmi'
+	icon_state = "nosetape"
+	body_parts = list(BP_HEAD)
+	genetic = FALSE
+
+/datum/sprite_accessory/marking/nosetape/tesh
+	name = "Nose Tape (Teshari)"
+	icon_state = "nosetape_tesh"
+	species_allowed = list(SPECIES_TESHARI)
+
 /datum/sprite_accessory/marking/bandage
 	name = "Bandage, Head 1"
+	icon = 'icons/mob/human_races/sprite_accessories/bandages.dmi'
 	icon_state = "bandage1"
 	body_parts = list(BP_HEAD)
 	genetic = FALSE
@@ -3765,7 +4073,7 @@ shaved
 	species_allowed = list(SPECIES_TESHARI)
 
 /datum/sprite_accessory/marking/bandage/r_foot/r_foot3
-	name = "Bandage, Rufgt Foot 3"
+	name = "Bandage, Right Foot 3"
 	icon_state = "bandage3"
 
 /datum/sprite_accessory/marking/bandage/r_foot/r_foot3/teshari
@@ -3791,7 +4099,7 @@ shaved
 	species_allowed = list(SPECIES_HUMAN,SPECIES_HUMAN_VATBORN)
 
 /datum/sprite_accessory/skin/tajaran
-	name = "Default tajaran skin"
+	name = "Default Tajaran skin"
 	icon_state = "default"
 	icon = 'icons/mob/human_races/r_tajaran.dmi'
 	species_allowed = list(SPECIES_TAJ)
@@ -3803,7 +4111,7 @@ shaved
 	species_allowed = list(SPECIES_UNATHI)
 
 /datum/sprite_accessory/skin/skrell
-	name = "Default skrell skin"
+	name = "Default Skrell skin"
 	icon_state = "default"
 	icon = 'icons/mob/human_races/r_skrell.dmi'
 	species_allowed = list(SPECIES_SKRELL)

@@ -1,5 +1,5 @@
 // Here are where all the other colors of slime live.
-// They will generally fight each other if not Unified, meaning the xenobiologist has to seperate them.
+// They will generally fight each other if not Unified, meaning the xenobiologist has to separate them.
 
 // Tier 1.
 
@@ -148,6 +148,12 @@
 			/mob/living/simple_mob/slime/xenobio/metal,
 			/mob/living/simple_mob/slime/xenobio/orange
 		)
+
+
+/mob/living/simple_mob/slime/xenobio/yellow/ICheckRangedAttack(atom/A)
+	if (!ismob(A))
+		return FALSE
+	return ..()
 
 /mob/living/simple_mob/slime/xenobio/yellow/apply_melee_effects(atom/A)
 	..()

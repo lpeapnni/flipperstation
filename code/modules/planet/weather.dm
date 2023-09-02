@@ -109,7 +109,7 @@
 	our_planet.needs_work |= PLANET_PROCESS_TEMP
 
 /datum/weather_holder/proc/update_wind()
-	var/new_wind_speed = rand(current_weather.wind_low, current_weather.wind_high)
+	var/new_wind_speed = round(rand() * (current_weather.wind_high - current_weather.wind_low) + current_weather.wind_low, 0.5)
 	if(!new_wind_speed)
 		wind_speed = 0
 		wind_dir = 0
@@ -153,12 +153,12 @@
 	var/datum/weather_holder/holder = null // Reference to the datum that manages the planet's weather.
 	var/timer_low_bound = 5			// How long this weather must run before it tries to change, in minutes
 	var/timer_high_bound = 10		// How long this weather can run before it tries to change, in minutes
-	var/sky_visible = FALSE			// If the sky can be clearly seen while this is occuring, used for flavor text when looking up.
+	var/sky_visible = FALSE			// If the sky can be clearly seen while this is occurring, used for flavor text when looking up.
 
 	var/effect_message = null		// Should be a string, this is what is shown to a mob caught in the weather
 	var/last_message = 0			// Keeps track of when the weather last tells EVERY player it's hitting them
 	var/message_delay = 10 SECONDS	// Delay in between weather hit messages
-	var/show_message = FALSE		// Is set to TRUE and plays the messsage every [message_delay]
+	var/show_message = FALSE		// Is set to TRUE and plays the message every [message_delay]
 
 	var/list/transition_messages = list()// List of messages shown to all outdoor mobs when this weather is transitioned to, for flavor. Not shown if already this weather.
 	var/observed_message = null // What is shown to a player 'examining' the weather.
@@ -255,6 +255,6 @@
 	plane = PLANE_PLANETLIGHTING
 
 // This is for special effects for specific types of weather, such as lightning flashes in a storm.
-// It's a seperate object to allow the use of flick().
+// It's a separate object to allow the use of flick().
 /atom/movable/weather_visuals/special
 	plane = PLANE_LIGHTING_ABOVE

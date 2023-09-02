@@ -438,7 +438,7 @@
 
 	activate_pin(2)
 
-// Updates some changable aspects of the hologram like the size or position.
+// Updates some changeable aspects of the hologram like the size or position.
 /obj/item/integrated_circuit/output/holographic_projector/proc/update_hologram()
 	if(!hologram)
 		return FALSE
@@ -455,7 +455,7 @@
 
 	return TRUE
 
-// This is a seperate function because other things besides do_work() might warrant updating position, like movement, without bothering with other parts.
+// This is a separate function because other things besides do_work() might warrant updating position, like movement, without bothering with other parts.
 /obj/item/integrated_circuit/output/holographic_projector/proc/update_hologram_position()
 	var/holo_x = get_pin_data(IC_INPUT, 4)
 	var/holo_y = get_pin_data(IC_INPUT, 5)
@@ -483,8 +483,7 @@
 	if(istype(AM) && assembly)
 		if(AM in view(get_turf(src))) // It must be able to 'see' the object it will copy.
 			hologram = new(src)
-			var/icon/holo_icon = getHologramIcon(getFlatIcon(AM), no_color = TRUE)
-		//	holo_icon.GrayScale() // So it looks better colored.
+			var/icon/holo_icon = getHologramIcon(getFlatIcon(AM))
 			if(holo_color) // The color pin should ensure that it is a valid hex.
 				holo_icon.ColorTone(holo_color)
 			hologram.icon = holo_icon

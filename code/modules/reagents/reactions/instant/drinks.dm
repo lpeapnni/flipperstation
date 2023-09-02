@@ -171,7 +171,7 @@
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/kahlua
-	name = "Kahlua"
+	name = "Kahlúa"
 	id = "kahlua"
 	result = "kahlua"
 	required_reagents = list("coffee" = 5, "sugar" = 5)
@@ -1263,4 +1263,40 @@
 	id = "ayahuasca"
 	result = "ayahuasca"
 	required_reagents = list("water" = 1, "dmt" = 2, "honey" = 1)
+	result_amount = 3
+
+/decl/chemical_reaction/instant/drinks/dyntea
+	name = "Dyn tea"
+	id = "dynhot"
+	result = "dynhot"
+	required_reagents = list("dynjuice" = 1, "water" = 4)
+	result_amount = 5
+
+/decl/chemical_reaction/instant/drinks/dynicetea
+	name = "Dyn iced tea"
+	id = "dyncold"
+	result = "dyncold"
+	required_reagents = list("dynjuice" = 1, "ice" = 2, "sodawater" = 2)
+	result_amount = 5
+
+/decl/chemical_reaction/instant/drinks/kiranicider
+	name = "Kirani cider"
+	id = "kirani_cider"
+	result = "kirani_cider"
+	required_reagents = list("kirani_jelly" = 10)
+	catalysts = list("enzyme" = 5)
+	result_amount = 10
+
+/decl/chemical_reaction/instant/drinks/kiraniade
+	name = "Kiraniade"
+	id = "kiraniade"
+	result = "kiraniade"
+	required_reagents = list("kirani_jelly" = 1, "sodawater" = 2)
+	result_amount = 3
+
+/decl/chemical_reaction/instant/drinks/sirisaii_pole
+	name = "Sirisaii pole"
+	id = "sirisaii_pole"
+	result = "sirisaii_pole"
+	required_reagents = list("kirani_cider" = 1, "gauli_juice" = 1, "ice" = 1)
 	result_amount = 3

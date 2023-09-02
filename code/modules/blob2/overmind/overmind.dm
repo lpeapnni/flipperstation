@@ -62,6 +62,7 @@ var/global/list/overminds = list()
 		if(B && B.overmind == src)
 			B.overmind = null
 			B.update_icon() //reset anything that was ours
+			B.fall()	// No longer held up by whatever blob horror the core had going on (if any), fall like a really gross rock.
 
 	for(var/BLO in blob_mobs)
 		var/mob/living/simple_mob/blob/spore/BM = BLO
@@ -147,7 +148,7 @@ var/global/list/overminds = list()
 	//Handle nonverbal languages here
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if(S.speaking.flags & NONVERBAL)
-			custom_emote(1, "[pick(S.speaking.signlang_verb)].")
+			custom_emote(VISIBLE_MESSAGE, "[pick(S.speaking.signlang_verb)].")
 
 	for(var/mob/M in listening)
 		spawn()
@@ -165,3 +166,6 @@ var/global/list/overminds = list()
 
 	log_say(message, src)
 	return 1
+
+/mob/observer/blob/can_fall()
+	return FALSE

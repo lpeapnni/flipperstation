@@ -20,16 +20,11 @@
 	var/last_malware_spread_time = null
 
 /datum/event2/event/brand_intelligence/set_up()
-	for(var/obj/machinery/vending/V in machines)
-		if(!(V.z in using_map.station_levels))
-			continue
-		vending_machines += V
-
+	vending_machines = get_vendors_on_station()
 	if(!vending_machines.len)
 		log_debug("Could not find any vending machines on station Z levels. Aborting.")
 		abort()
 		return
-
 	vender_zero = pick(vending_machines)
 
 /datum/event2/event/brand_intelligence/announce()
@@ -67,10 +62,8 @@
 	return FALSE
 
 /datum/event2/event/brand_intelligence/end()
-	if(can_propagate(vender_zero)) // The crew failed and all the machines are infected!
-		return
 	// Otherwise Vender Zero was taken out in some form.
-	if(vender_zero)
+	if(vender_zero && can_propagate(vender_zero))
 		vender_zero.visible_message(span("notice", "\The [vender_zero]'s network activity light flickers wildly \
 		for a few seconds as a small screen reads: 'Rolling out firmware reset to networked machines'."))
 	for(var/obj/machinery/vending/vender in infected_vending_machines)

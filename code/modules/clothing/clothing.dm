@@ -1,3 +1,5 @@
+var/global/list/light_overlay_cache = list() //see get_worn_overlay() on helmets and /obj/item/clothing/head/update_icon()
+
 /obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9
@@ -147,13 +149,13 @@
 	//Set species_restricted list
 	switch(target_species)
 		if(SPECIES_HUMAN, SPECIES_SKRELL)	//humanoid bodytypes
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN) //skrell/humans can wear each other's suits
+			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN) //Skrell/humans can wear each other's suits
 		else
 			species_restricted = list(target_species)
 
 	//Set icon
 	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		sprite_sheets[target_species] = sprite_sheets_refit[target_species]
+		LAZYSET(sprite_sheets, target_species, sprite_sheets_refit[target_species])
 
 	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
 		icon = sprite_sheets_obj[target_species]
@@ -167,14 +169,14 @@
 	//Set species_restricted list
 	switch(target_species)
 		if(SPECIES_SKRELL)
-			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN) //skrell helmets fit humans too
+			species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_PROMETHEAN) //Srell helmets fit humans too
 
 		else
 			species_restricted = list(target_species)
 
 	//Set icon
 	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		sprite_sheets[target_species] = sprite_sheets_refit[target_species]
+		LAZYSET(sprite_sheets, target_species, sprite_sheets_refit[target_species])
 
 	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
 		icon = sprite_sheets_obj[target_species]
@@ -189,7 +191,8 @@
 	throwforce = 2
 	slot_flags = SLOT_EARS
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/ears.dmi')
+		SPECIES_TESHARI = 'icons/mob/species/teshari/ears.dmi'
+	)
 
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
@@ -432,6 +435,7 @@
 	var/brightness_on
 	var/on = 0
 	var/image/helmet_light
+	var/allow_hair_toggle = TRUE
 
 	sprite_sheets = list(
 		SPECIES_TESHARI = 'icons/mob/species/teshari/head.dmi',
@@ -480,8 +484,8 @@
 		else
 			D.wear_hat(src)
 			success = 1
-	else if(istype(user, /mob/living/carbon/alien/diona))
-		var/mob/living/carbon/alien/diona/D = user
+	else if(istype(user, /mob/living/carbon/diona))
+		var/mob/living/carbon/diona/D = user
 		if(D.hat)
 			success = 2
 		else
@@ -513,7 +517,7 @@
 
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
 		var/body_type = (H && H.species.get_bodytype(H))
-		var/cache_key = "[light_overlay][body_type && sprite_sheets[body_type] ? "_[body_type]" : ""]"
+		var/cache_key = "[light_overlay][body_type && LAZYACCESS(sprite_sheets, body_type) ? "_[body_type]" : ""]"
 		if(!light_overlay_cache[cache_key])
 			var/use_icon = LAZYACCESS(sprite_sheets,body_type) || 'icons/mob/light_overlays.dmi'
 			light_overlay_cache[cache_key] = image(icon = use_icon, icon_state = "[light_overlay]")
@@ -528,6 +532,23 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_head()
+
+/obj/item/clothing/head/Initialize(mapload, material_key)
+	. = ..()
+	if(allow_hair_toggle)
+		verbs += /obj/item/clothing/head/proc/toggle_block_hair
+
+/obj/item/clothing/head/proc/toggle_block_hair()
+	set name = "Toggle Hair Coverage"
+	set category = "Object"
+
+	if(allow_hair_toggle)
+		flags_inv ^= BLOCKHEADHAIR
+		to_chat(usr, SPAN_NOTICE("[src] will now [flags_inv & BLOCKHEADHAIR ? "hide" : "show"] hair."))
+		if(ishuman(usr))
+			var/mob/living/carbon/human/H = usr
+			H.update_hair()
+
 
 ///////////////////////////////////////////////////////////////////////
 //Mask
@@ -618,7 +639,7 @@
 		usr.visible_message("<span class='danger'>\The [usr] pulls a knife out of their boot!</span>")
 		playsound(src, 'sound/weapons/holster/sheathout.ogg', 25)
 		holding = null
-		cut_overlay(image(icon, "[icon_state]_knife"))
+		cut_overlay(image(icon, "boot_knife"))
 	else
 		to_chat(usr, "<span class='warning'>Your need an empty, unbroken hand to do that.</span>")
 		holding.forceMove(src)
@@ -665,7 +686,7 @@
 /obj/item/clothing/shoes/update_icon()
 	. = ..()
 	if(holding)
-		add_overlay(image(icon, "[icon_state]_knife"))
+		add_overlay(image(icon, "boot_knife"))
 	if(ismob(usr))
 		var/mob/M = usr
 		M.update_inv_shoes()
@@ -673,9 +694,6 @@
 /obj/item/clothing/shoes/clean_blood()
 	update_icon()
 	return ..()
-
-/obj/item/clothing/shoes/proc/handle_movement(var/turf/walking, var/running)
-	return
 
 /obj/item/clothing/shoes/update_clothing_icon()
 	if (ismob(src.loc))
@@ -845,14 +863,15 @@
 
 /obj/item/clothing/under/proc/update_rolldown_status()
 	var/mob/living/carbon/human/H
-	if(istype(src.loc, /mob/living/carbon/human))
-		H = src.loc
+	if(ishuman(loc))
+		H = loc
 
 	var/icon/under_icon
+	var/body_type = H?.species.get_bodytype(H)
 	if(icon_override)
 		under_icon = icon_override
-	else if(H && sprite_sheets && sprite_sheets[H.species.get_bodytype(H)])
-		under_icon = sprite_sheets[H.species.get_bodytype(H)]
+	else if(body_type  && LAZYACCESS(sprite_sheets, body_type))
+		under_icon = LAZYACCESS(sprite_sheets, body_type)
 	else if(item_icons && item_icons[slot_w_uniform_str])
 		under_icon = item_icons[slot_w_uniform_str]
 	else if ("[worn_state]_s" in cached_icon_states(rolled_down_icon))
@@ -868,20 +887,21 @@
 
 /obj/item/clothing/under/proc/update_rollsleeves_status()
 	var/mob/living/carbon/human/H
-	if(istype(src.loc, /mob/living/carbon/human))
-		H = src.loc
+	if(ishuman(loc))
+		H = loc
 
 	var/icon/under_icon
+	var/body_type = H?.species.get_bodytype(H)
 	if(icon_override)
 		under_icon = icon_override
-	else if(H && sprite_sheets && sprite_sheets[H.species.get_bodytype(H)])
-		under_icon = sprite_sheets[H.species.get_bodytype(H)]
+	else if(H && LAZYACCESS(sprite_sheets, body_type))
+		under_icon = LAZYACCESS(sprite_sheets, body_type)
 	else if(item_icons && item_icons[slot_w_uniform_str])
 		under_icon = item_icons[slot_w_uniform_str]
 	else if ("[worn_state]_s" in cached_icon_states(rolled_down_sleeves_icon))
 		under_icon = rolled_down_sleeves_icon
 	else if(index)
-		under_icon = new /icon("[INV_W_UNIFORM_DEF_ICON]_[index].dmi")
+		under_icon = new /icon("[INV_W_UNIFORM_DEF_STRING]_[index].dmi")
 
 	// The _s is because the icon update procs append it.
 	if((under_icon == rolled_down_sleeves_icon && ("[worn_state]_s" in cached_icon_states(under_icon))) || ("[worn_state]_r_s" in cached_icon_states(under_icon)))
@@ -889,7 +909,8 @@
 			rolled_sleeves = 0
 	else
 		rolled_sleeves = -1
-	if(H) update_clothing_icon()
+	if(H)
+		update_clothing_icon()
 
 /obj/item/clothing/under/update_clothing_icon()
 	if (ismob(src.loc))

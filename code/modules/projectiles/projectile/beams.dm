@@ -42,20 +42,47 @@
 	damage = 15
 	hud_state = "laser"
 
+/obj/item/projectile/beam/weaklaser/ion
+	damage_type = ELECTROMAG
+	light_color = "#00CCFF"
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
+
 /obj/item/projectile/beam/smalllaser
 	damage = 25
 	hud_state = "laser"
+
+/obj/item/projectile/beam/smalllaser/ion
+	damage_type = ELECTROMAG
+	light_color = "#00CCFF"
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 /obj/item/projectile/beam/burstlaser
 	damage = 30
 	armor_penetration = 10
 	hud_state = "laser"
 
+/obj/item/projectile/beam/burstlaser/ion
+	damage_type = ELECTROMAG
+	light_color = "#00CCFF"
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 /obj/item/projectile/beam/midlaser
 	damage = 40
 	armor_penetration = 10
 	hud_state = "laser"
+
+/obj/item/projectile/beam/midlaser/ion
+	damage_type = ELECTROMAG
+	light_color = "#00CCFF"
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
 
 /obj/item/projectile/beam/mininglaser
 	name = "pulsating laser"
@@ -96,9 +123,16 @@
 	tracer_type = /obj/effect/projectile/tracer/emitter
 	impact_type = /obj/effect/projectile/impact/emitter
 
+/obj/item/projectile/beam/heavylaser/ion
+	damage_type = ELECTROMAG
+	light_color = "#00CCFF"
+	muzzle_type = /obj/effect/projectile/muzzle/laser_em
+	tracer_type = /obj/effect/projectile/tracer/laser_em
+	impact_type = /obj/effect/projectile/impact/laser_em
+
 /obj/item/projectile/beam/heavylaser/cannon
-	damage = 80
-	armor_penetration = 50
+	damage = 75
+	armor_penetration = 40
 	light_color = "#FF0D00"
 	hud_state = "laser_overcharge"
 
@@ -106,8 +140,8 @@
 	name = "xray beam"
 	icon_state = "xray"
 	fire_sound = 'sound/weapons/eluger.ogg'
-	damage = 25
-	armor_penetration = 50
+	damage = 35
+	armor_penetration = 60
 	light_color = "#00CC33"
 	hud_state = "laser_sniper"
 
@@ -231,8 +265,8 @@
 	name = "sniper beam"
 	icon_state = "xray"
 	fire_sound = 'sound/weapons/gauss_shoot.ogg'
-	damage = 50
-	armor_penetration = 10
+	damage = 45
+	armor_penetration = 20
 	light_color = "#00CC33"
 	hud_state = "laser_sniper"
 
