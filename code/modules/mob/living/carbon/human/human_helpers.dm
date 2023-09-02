@@ -211,11 +211,13 @@
 	return FALSE
 
 // FLIPPER ADDITION START - custom species names
+
 /mob/living/carbon/human/get_species_name()
 	if(custom_species)
 		return custom_species
 	var/datum/species/my_species = get_species()
 	return my_species?.name
+
 // FLIPPER ADDITION END
 
 #undef HUMAN_EATING_NO_ISSUE
