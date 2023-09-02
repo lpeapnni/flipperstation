@@ -155,4 +155,6 @@
 	// Custom Species Name
 	var/custom_species
 
+	var/list/body_markings = list() // FLIPPER ADDITION - so we can reapply body markings
+
 	dexterity = MOB_DEXTERITY_FULL

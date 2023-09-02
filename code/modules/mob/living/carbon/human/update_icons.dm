@@ -580,6 +580,7 @@ var/global/list/_index_extended_clothing_icon_cache= list()
 	if(transforming || QDELETED(src))
 		return
 
+	reapply_body_markings()
 	update_icons_body()
 	UpdateDamageIcon()
 	update_mutations()
@@ -1242,6 +1243,22 @@ var/global/list/_index_extended_clothing_icon_cache= list()
 /mob/living/carbon/human/stop_flying()
 	if((. = ..()))
 		update_wing_showing()
+
+// FLIPPER ADDITION START - marking bullshit
+/mob/living/carbon/human/proc/reapply_body_markings()
+	for(var/N in organs_by_name)
+		var/obj/item/organ/external/O = organs_by_name[N]
+		O.markings.Cut()
+
+	for(var/M in body_markings)
+		var/datum/sprite_accessory/marking/mark_datum = body_marking_styles_list[M]
+		var/mark_color = "[body_markings[M]]"
+
+		for(var/BP in mark_datum.body_parts)
+			var/obj/item/organ/external/O = organs_by_name[BP]
+			if(O)
+				O.markings[M] = list("color" = mark_color, "datum" = mark_datum)
+// FLIPPER ADDITION END
 
 //Human Overlays Indexes/////////
 #undef MUTATIONS_LAYER
