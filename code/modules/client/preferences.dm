@@ -71,7 +71,7 @@ var/global/list/preferences_datums = list()
 	var/g_synth							//Same as above
 	var/b_synth							//Same as above
 	var/synth_markings = 0				//Enable/disable markings on synth parts.
-	var/mismatched_accessories = 0		// FLIPPER ADDITION - Enable nonspecies sprite accessories
+	var/mismatched_accessories = 1		// FLIPPER ADDITION - Enable nonspecies sprite accessories
 
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
