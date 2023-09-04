@@ -364,6 +364,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.r_synth	= pref.r_synth
 	character.g_synth	= pref.g_synth
 	character.b_synth	= pref.b_synth
+	character.body_markings = pref.body_markings  // FLIPPER ADDITION THAT REALLY SHOULDNT BE AN ADDITION
 	character.synth_markings = pref.synth_markings
 	character.mismatched_accessories = pref.mismatched_accessories // FLIPPER ADDITION
 	character.custom_species = pref.custom_species // FLIPPER ADDITION
