@@ -12,17 +12,16 @@
 add: Added new mechanics or gameplay changes
 add: Added more things
 del: Removed old things
-qol: made something easier to use
-balance: rebalanced something
 fix: fixed a few things
-sound: added/modified/removed audio or sound effects
-image: added/modified/removed some icons or images
+soundadd: added/modified audio or sound effects
+sounddel: removed audio or sound effects
+imageadd: added/modified some icons or images
+imagedel: removed some icons or images
 spellcheck: fixed a few typos
-code: changed some code
-refactor: refactored some code
-config: changed some config setting
-admin: messed with admin stuff
-server: something server ops should know
+tweak: had a mental breakdown over gun balance/how aesthetically pleasing perfectly functional code is to look at
+remap: changed the map
+experiment: installs MK-ULTRA Bloatware into the codebase
+wip: breaks the game
 /:cl:
 
 <!-- Both :cl:'s are required for the changelog to work! -->
